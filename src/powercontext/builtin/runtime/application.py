@@ -484,6 +484,7 @@ class ScopedSourceApplication:
                             value.metadata,
                             handoff_receipt=handoff_receipt,
                         )
+                        self._runtime._wake_count_admission()
                         if span is not None:
                             span.set_attributes({_MEMORY_CAPTURE_SOURCE_COUNT: 1})
             except BaseValueConflictError as error:
@@ -504,6 +505,7 @@ class ScopedSourceApplication:
                 )
                 if span is not None:
                     span.set_attributes({_MEMORY_CAPTURE_SOURCE_COUNT: 1})
+            self._runtime._wake_count_admission()
             return SourceReceipt(source_ref=context.sources.catalog.as_ref(source), sequence=sequence)
 
 
@@ -563,7 +565,9 @@ class ScopedRecordApplication:
         /,
     ) -> ArtifactCreated:
         async with self._runtime._scope_operation(self.scope_id), self._runtime._locked(self.scope_id):
-            return await self._runtime._records().create_artifact(self.scope_id, family, write)
+            created = await self._runtime._records().create_artifact(self.scope_id, family, write)
+            self._runtime._wake_count_admission()
+            return created
 
     async def get_artifact(self, family: str, artifact_id: str, /) -> ArtifactRecord:
         async with self._runtime._scope_operation(self.scope_id):
@@ -846,6 +850,22 @@ class ScopedContextApplication:
             if authorize_scopes is not None:
                 await authorize_scopes((self.scope_id, *scope.context_references))
             return await self._prepare(request, scope)
+
+    async def prepare_incremental(
+        self,
+        request: PrepareContextRequest,
+        /,
+        base_pack: "ContextPack | None" = None,
+    ) -> "ContextPack | ContextPackDelta":
+        """Return the target context as a full pack, or a delta over one base pack."""
+
+        from powercontext.builtin.runtime.context_pack import ContextPack, ContextPackDelta
+
+        result = await self.prepare(request)
+        target = ContextPack.from_content(result.content or "")
+        if base_pack is None:
+            return target
+        return ContextPackDelta.between(base_pack, target)
 
     async def _prepare(self, request: PrepareContextRequest, scope: ScopeDescriptor, /) -> PreparedContext:
         build, effort = await self._prepare_build(request, scope)
@@ -3427,6 +3447,22 @@ class BuiltinRuntime:
         if authorizer is not None:
             service.configure_authorization(lambda ref: authorizer(scope, ref), self._review_authorization_context)
         return service
+
+    def _wake_count_admission(self) -> None:
+        """Best-effort wake so count thresholds re-evaluate after new journal rows."""
+
+        supervisor = self.artifact_processing_supervisor
+        if supervisor is None:
+            return
+        try:
+            supervisor.wake_count_admission()
+        except Exception as error:
+            log_safely(
+                logger,
+                logging.WARNING,
+                "Source count admission wake failed",
+                exc_info=error,
+            )
 
     def _records(self) -> RecordService:
         if self._record_service is None:
