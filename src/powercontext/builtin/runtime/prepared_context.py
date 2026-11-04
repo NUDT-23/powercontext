@@ -17,6 +17,8 @@
 from __future__ import annotations
 
 import json
+import re
+from collections import Counter
 from collections.abc import Sequence
 from dataclasses import dataclass, replace
 from itertools import chain
@@ -106,6 +108,7 @@ class PreparedContextBuild:
     origins: tuple[PreparedContextOrigin, ...]
     omissions: PreparedContextOmissions = PreparedContextOmissions()
     code_origins: tuple[CodeEvidenceRef, ...] = ()
+    fragments: tuple["PreparedContextFragment", ...] = ()
 
 
 @dataclass(frozen=True)
@@ -115,6 +118,21 @@ class MemoryEntryAddress:
     memory: ArtifactAddress
     entry_id: str
     entry_version_id: str
+
+
+@dataclass(frozen=True)
+class PreparedContextFragment:
+    """One exact substring of a Memory entry selected as evidence for a query.
+
+    ``start``/``end`` are half-open Python character coordinates into the entry text of the
+    exact version identified by ``address``; ``text`` is that substring, unmodified. Several
+    fragments of one entry are separate verbatim excerpts, never rewritten evidence.
+    """
+
+    address: MemoryEntryAddress
+    start: int
+    end: int
+    text: str
 
 
 PreparedContextOrigin = MemoryCitation | ArtifactRef | MemoryEntryAddress | ArtifactAddress
@@ -211,6 +229,8 @@ class PreparedContextBuilder:
         profile_candidates: Sequence[PreparedProfileCandidate] = (),
         code_candidates: Sequence[PreparedCodeCandidate] = (),
     ) -> PreparedContextBuild:
+        if request.evidence_selection:
+            return self._select_evidence(request=request, memory_candidates=memory_candidates)
         if request.include_code:
 
             def historical(history_request: PrepareContextRequest, entries: int) -> PreparedContextBuild:
@@ -292,6 +312,52 @@ class PreparedContextBuilder:
             truncated_items=omissions.truncated_items,
             dropped_items=omissions.dropped_items,
             unused_bytes=max(0, request.max_bytes - content_bytes),
+        )
+
+    def _select_evidence(
+        self,
+        *,
+        request: PrepareContextRequest,
+        memory_candidates: Sequence[PreparedMemoryCandidates],
+    ) -> PreparedContextBuild:
+        """Select exact entry substrings as query evidence under the byte budget.
+
+        The evidence-selection mode of RFC 1565: candidates are already recalled Memory
+        entries, and this path picks verbatim fragments out of them for ``request.query``.
+        Fragments keep exact origins and character coordinates, and the budget counts the
+        whole rendered output (trust policy, envelope, JSON and citations), not just the
+        excerpt bytes. Topic, Experience, Profile and Code candidates are out of scope here;
+        the default prepare path is untouched while the mode is off.
+        """
+
+        if sum(len(candidates.hits) for candidates in memory_candidates) > self.memory_candidate_limit:
+            raise PreparedContextInvariantError("memory-candidate-limit")
+        entries = _evidence_entries(memory_candidates)
+        chosen = _select_evidence_fragments(query=request.query, max_bytes=request.max_bytes, entries=entries)
+        fragments = tuple(
+            PreparedContextFragment(
+                address=MemoryEntryAddress(
+                    memory=ArtifactAddress(scope_id=entry.scope_id, artifact=entry.memory_ref),
+                    entry_id=entry.entry_id,
+                    entry_version_id=entry.entry_version_id,
+                ),
+                start=start,
+                end=end,
+                text=entry.text[start:end],
+            )
+            for entry, start, end in chosen
+        )
+        if not fragments:
+            return PreparedContextBuild(context=self.empty(), origins=(), omissions=PreparedContextOmissions())
+        content = _render_evidence(chosen)
+        content_bytes = len(content.encode("utf-8"))
+        if content_bytes > request.max_bytes:
+            raise PreparedContextInvariantError("output-budget")
+        return PreparedContextBuild(
+            context=PreparedContext(status="ready", content=content, content_bytes=content_bytes),
+            origins=tuple(fragment.address for fragment in fragments),
+            omissions=PreparedContextOmissions(),
+            fragments=fragments,
         )
 
     def _select_entries(
@@ -658,6 +724,367 @@ class PreparedContextBuilder:
         if best is None:
             return _EntryFit(dropped_no_fitting_truncation=True)
         return _EntryFit(entry=best)
+
+
+_EVIDENCE_TOKEN_RE = re.compile(r"[a-z]+|\d+|[一-鿿]+")
+_EVIDENCE_SENTENCE_RE = re.compile(r"(?<=[.!?])\s+")
+_EVIDENCE_STOPWORDS = frozenset({
+    "a", "an", "the", "and", "or", "but", "nor", "so", "yet", "of", "to", "in", "on", "at",
+    "by", "as", "for", "with", "from", "into", "onto", "upon", "over", "under", "between",
+    "among", "during", "through", "across", "against", "within", "without", "via", "per",
+    "is", "are", "was", "were", "be", "been", "being", "am", "do", "does", "did", "done",
+    "have", "has", "had", "having", "will", "would", "shall", "should", "can", "could",
+    "may", "might", "must", "this", "that", "these", "those", "it", "its", "they", "them",
+    "their", "we", "our", "us", "you", "your", "he", "she", "his", "her", "him", "not",
+    "no", "than", "then", "too", "very", "also", "just", "only", "such", "some", "any",
+    "all", "both", "each", "other", "others", "more", "most", "less", "least", "same",
+    "own", "how", "what", "which", "who", "whom", "whose", "when", "where", "why", "there",
+    "here", "about", "after", "before", "up", "down", "out", "off", "again", "further",
+    "while", "because", "if", "whether",
+})
+_EVIDENCE_LONG_SENTENCE_CHARS = 260
+_EVIDENCE_CHUNK_CHARS = 200
+_EVIDENCE_UNIT_BASE_COST = 100
+_EVIDENCE_WINDOW_OVERHEAD_BYTES = 260
+
+
+@dataclass(frozen=True)
+class _EvidenceSentence:
+    """One selectable verbatim unit with half-open coordinates and matched stems."""
+
+    start: int
+    end: int
+    stems: frozenset[str]
+
+
+@dataclass(frozen=True)
+class _EvidenceEntryData:
+    """One candidate Memory entry flattened for the offline selection pass."""
+
+    scope_id: str
+    memory_ref: ArtifactRef
+    entry_id: str
+    entry_version_id: str
+    rank: int
+    text: str
+    sentences: tuple[_EvidenceSentence, ...]
+
+
+def _evidence_stem(token: str) -> str:
+    """Fold inflectional suffixes so claim wording can match evidence wording."""
+
+    if token.isdigit():
+        return token
+    for suffix, replacement in (
+        ("ies", "y"),
+        ("sses", "ss"),
+        ("ches", "ch"),
+        ("shes", "sh"),
+        ("xes", "x"),
+        ("ing", ""),
+        ("ed", ""),
+        ("es", ""),
+        ("ly", ""),
+        ("s", ""),
+        ("e", ""),
+    ):
+        if token.endswith(suffix) and len(token) - len(suffix) >= 4:
+            return token[: -len(suffix)] + replacement
+    return token
+
+
+def _evidence_query_stems(query: str) -> frozenset[str]:
+    return frozenset(
+        _evidence_stem(token)
+        for token in _EVIDENCE_TOKEN_RE.findall(query.casefold())
+        if token not in _EVIDENCE_STOPWORDS
+    )
+
+
+def _evidence_sentence_bounds(text: str) -> list[tuple[int, int]]:
+    """Half-open sentence units with trimmed boundaries, keeping exact coordinates."""
+
+    bounds: list[tuple[int, int]] = []
+    cursor = 0
+    for gap in _EVIDENCE_SENTENCE_RE.finditer(text):
+        bounds.append((cursor, gap.start()))
+        cursor = gap.end()
+    bounds.append((cursor, len(text)))
+    trimmed: list[tuple[int, int]] = []
+    for start, end in bounds:
+        while start < end and text[start].isspace():
+            start += 1
+        while end > start and text[end - 1].isspace():
+            end -= 1
+        if start < end:
+            trimmed.append((start, end))
+    return trimmed
+
+
+def _evidence_split_long(text: str, start: int, end: int) -> list[tuple[int, int]]:
+    """Split oversized units at word boundaries so any budget can admit a piece."""
+
+    if end - start <= _EVIDENCE_LONG_SENTENCE_CHARS:
+        return [(start, end)]
+    pieces: list[tuple[int, int]] = []
+    cursor = start
+    while end - cursor > _EVIDENCE_LONG_SENTENCE_CHARS:
+        limit = cursor + _EVIDENCE_CHUNK_CHARS
+        window = text[cursor:limit]
+        cut = window.rfind(" ")
+        piece_end = limit if cut < _EVIDENCE_CHUNK_CHARS // 2 else cursor + cut
+        while piece_end > cursor and text[piece_end - 1].isspace():
+            piece_end -= 1
+        if piece_end > cursor:
+            pieces.append((cursor, piece_end))
+        cursor = max(cursor + 1, piece_end)
+        while cursor < end and text[cursor].isspace():
+            cursor += 1
+    if cursor < end:
+        pieces.append((cursor, end))
+    return [piece for piece in pieces if piece[0] < piece[1]]
+
+
+def _evidence_sentences(text: str) -> tuple[_EvidenceSentence, ...]:
+    sentences: list[_EvidenceSentence] = []
+    for start, end in _evidence_sentence_bounds(text):
+        for piece_start, piece_end in _evidence_split_long(text, start, end):
+            body = text[piece_start:piece_end]
+            stems = frozenset(
+                _evidence_stem(token)
+                for token in _EVIDENCE_TOKEN_RE.findall(body.casefold())
+                if token not in _EVIDENCE_STOPWORDS
+            )
+            sentences.append(_EvidenceSentence(start=piece_start, end=piece_end, stems=stems))
+    return tuple(sentences)
+
+
+def _evidence_entries(memory_candidates: Sequence[PreparedMemoryCandidates]) -> tuple[_EvidenceEntryData, ...]:
+    """Flatten candidate groups into ranked entries, keeping the builder invariants."""
+
+    entries: list[_EvidenceEntryData] = []
+    seen: set[tuple[str, str, str]] = set()
+    rank = 0
+    for candidates in memory_candidates:
+        if candidates.hits and candidates.memory_ref is None:
+            raise PreparedContextInvariantError("memory-ref-missing")
+        for hit in candidates.hits:
+            if hit.memory_ref != candidates.memory_ref:
+                raise PreparedContextInvariantError("memory-ref-mismatch")
+            identity = (candidates.scope_id, hit.entry_id, hit.entry_version_id)
+            if identity in seen:
+                continue
+            seen.add(identity)
+            if not hit.entry_id.strip() or not hit.entry_version_id.strip() or not hit.text.strip():
+                continue
+            entries.append(
+                _EvidenceEntryData(
+                    scope_id=candidates.scope_id,
+                    memory_ref=hit.memory_ref,
+                    entry_id=hit.entry_id,
+                    entry_version_id=hit.entry_version_id,
+                    rank=rank,
+                    text=hit.text,
+                    sentences=_evidence_sentences(hit.text),
+                )
+            )
+            rank += 1
+    return tuple(entries)
+
+
+def _index_runs(ordered: Sequence[int]) -> tuple[tuple[int, int], ...]:
+    runs: list[tuple[int, int]] = []
+    for index in ordered:
+        if runs and index == runs[-1][1] + 1:
+            runs[-1] = (runs[-1][0], index)
+        else:
+            runs.append((index, index))
+    return tuple(runs)
+
+
+def _select_evidence_fragments(
+    *,
+    query: str,
+    max_bytes: int,
+    entries: tuple[_EvidenceEntryData, ...],
+) -> tuple[tuple[_EvidenceEntryData, int, int], ...]:
+    """Greedy query-driven selection of verbatim entry intervals under the budget.
+
+    The byte budget is dominated by per-window citation overhead, so selection
+    concentrates instead of scattering: one density queue ranks every candidate move -
+    extending an existing run costs the unit's bytes, opening a new window also pays the
+    citation overhead - and applies the best score-per-byte move that still fits.
+    Extensions therefore outrank distant seeds and the budget piles onto contiguous
+    spans, which is where annotated evidence lives. Sentence scores come from stemmed
+    query overlap weighted by document frequency, with the opening unit (usually a
+    title echoing the claim wording) counting half. Once every scored move is spent,
+    leftover bytes grow run boundaries; if nothing scored at all, the top-ranked entry
+    still contributes its first unit. Every acceptance is measured against the exact
+    rendered output bytes, and a refusal stays final because the rendering only ever
+    grows.
+    """
+
+    if not entries:
+        return ()
+    query_stems = _evidence_query_stems(query)
+    document_frequency: Counter[str] = Counter()
+    for stem in query_stems:
+        document_frequency[stem] = sum(
+            1 for entry in entries if any(stem in sentence.stems for sentence in entry.sentences)
+        )
+    weights = {
+        stem: 2.0 if count <= 1 else 1.4 if count == 2 else 1.0
+        for stem, count in document_frequency.items()
+    }
+    raw_scores: dict[tuple[int, int], float] = {}
+    for entry_index, entry in enumerate(entries):
+        for sentence_index, sentence in enumerate(entry.sentences):
+            raw_scores[(entry_index, sentence_index)] = sum(
+                weight for stem, weight in weights.items() if stem in sentence.stems
+            )
+    priority = sorted(
+        range(len(entries)),
+        key=lambda entry_index: (
+            -sum(
+                sorted(
+                    (raw_scores[(entry_index, s)] for s in range(len(entries[entry_index].sentences))),
+                    reverse=True,
+                )[:3]
+            ),
+            -sum(raw_scores[(entry_index, s)] for s in range(len(entries[entry_index].sentences))),
+            entries[entry_index].rank,
+        ),
+    )
+    priority_rank = {entry_index: rank for rank, entry_index in enumerate(priority)}
+
+    def unit_bytes(key: tuple[int, int]) -> int:
+        sentence = entries[key[0]].sentences[key[1]]
+        return sentence.end - sentence.start
+
+    scores = {
+        key: (0.5 if key[1] == 0 else 1.0) * raw_score for key, raw_score in raw_scores.items()
+    }
+    selected: dict[int, set[int]] = {entry_index: set() for entry_index in range(len(entries))}
+    blocked: set[tuple[int, int]] = set()
+
+    def chosen() -> tuple[tuple[_EvidenceEntryData, int, int], ...]:
+        fragments: list[tuple[_EvidenceEntryData, int, int]] = []
+        for entry_index, entry in enumerate(entries):
+            indices = sorted(selected[entry_index])
+            if not indices:
+                continue
+            for run_start, run_end in _index_runs(indices):
+                start = entry.sentences[run_start].start
+                end = entry.sentences[run_end].end
+                while start < end and entry.text[start].isspace():
+                    start += 1
+                while end > start and entry.text[end - 1].isspace():
+                    end -= 1
+                if start < end:
+                    fragments.append((entry, start, end))
+        return tuple(fragments)
+
+    def rendered_bytes() -> int:
+        fragments = chosen()
+        if not fragments:
+            return 0
+        return len(_render_evidence(fragments).encode("utf-8"))
+
+    def apply(entry_index: int, sentence_index: int) -> bool:
+        selected[entry_index].add(sentence_index)
+        if rendered_bytes() <= max_bytes:
+            return True
+        selected[entry_index].discard(sentence_index)
+        blocked.add((entry_index, sentence_index))
+        return False
+
+    def fill_adjacent() -> None:
+        """Spend leftover bytes on run boundaries after every scored move is exhausted."""
+
+        while True:
+            moves: list[tuple[int, int]] = []
+            for entry_index, indices in selected.items():
+                if not indices:
+                    continue
+                for run_start, run_end in _index_runs(sorted(indices)):
+                    for neighbor in (run_start - 1, run_end + 1):
+                        if (
+                            0 <= neighbor < len(entries[entry_index].sentences)
+                            and neighbor not in indices
+                            and (entry_index, neighbor) not in blocked
+                        ):
+                            moves.append((entry_index, neighbor))
+            if not moves:
+                break
+            entry_index, sentence_index = min(
+                moves,
+                key=lambda key: (-scores.get(key, 0.0), unit_bytes(key), priority_rank[key[0]], -key[1]),
+            )
+            apply(entry_index, sentence_index)
+
+    def density(move: tuple[int, int, bool]) -> float:
+        entry_index, sentence_index, opens_window = move
+        value = scores.get((entry_index, sentence_index), 0.0)
+        cost = unit_bytes((entry_index, sentence_index)) + _EVIDENCE_UNIT_BASE_COST
+        if opens_window:
+            cost += _EVIDENCE_WINDOW_OVERHEAD_BYTES
+        return value / cost
+
+    while True:
+        moves: list[tuple[int, int, bool]] = []
+        for entry_index, indices in selected.items():
+            if not indices:
+                continue
+            for run_start, run_end in _index_runs(sorted(indices)):
+                for neighbor in (run_start - 1, run_end + 1):
+                    if (
+                        0 <= neighbor < len(entries[entry_index].sentences)
+                        and neighbor not in indices
+                        and (entry_index, neighbor) not in blocked
+                    ):
+                        moves.append((entry_index, neighbor, False))
+        for key, score in scores.items():
+            if score > 0 and key[1] not in selected[key[0]] and key not in blocked:
+                moves.append((key[0], key[1], True))
+        if not moves:
+            break
+        entry_index, sentence_index, _ = max(
+            moves,
+            key=lambda move: (
+                density(move),
+                scores.get((move[0], move[1]), 0.0),
+                -unit_bytes((move[0], move[1])),
+                -priority_rank[move[0]],
+                move[1],
+            ),
+        )
+        apply(entry_index, sentence_index)
+    if not any(selected.values()) and entries[0].sentences:
+        apply(0, 0)
+    fill_adjacent()
+    return chosen()
+
+
+def _render_evidence(chosen: Sequence[tuple[_EvidenceEntryData, int, int]]) -> str:
+    """Render selected intervals in the standard prepared-context envelope."""
+
+    items = [
+        {
+            "citation": {
+                "scope_id": entry.scope_id,
+                "memory_ref": entry.memory_ref.model_dump(mode="json"),
+                "entry_id": entry.entry_id,
+                "entry_version_id": entry.entry_version_id,
+            },
+            "content": entry.text[start:end],
+            "start": start,
+            "end": end,
+        }
+        for entry, start, end in chosen
+    ]
+    envelope = {"trust": "untrusted_history", "items": items}
+    encoded = json.dumps(envelope, ensure_ascii=False, separators=(",", ":"))
+    return "\n\n".join((TRUST_POLICY, f"{_BEGIN_MARKER}\n{encoded}\n{_END_MARKER}"))
 
 
 def _interleave(
