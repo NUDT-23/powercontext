@@ -115,6 +115,42 @@ _STRUCTURE_WORDS = frozenset(
     "according respective respectively other such based have this business financial".split()
 )
 
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
+_STRUCTURE_WORDS = frozenset(
+    "with which table tables content contents note notes following page pages see certain information report "
+    "reports year years december including consolidated statements statement million millions total "
+    "according respective respectively other such based have this business financial".split()
+)
+
 
 class PDFDocumentInput(BaseModel):
     """One complete original PDF document captured by identity."""
@@ -175,6 +211,18 @@ def parse_pdf_document(value: PDFDocumentInput, /) -> tuple[PDFPageInput, ...]:
     try:
         for index, page in enumerate(pages, start=1):
             text = page.extract_text() or ""
+            # The runtime caps memory-entry text at 8192 UTF-8 bytes and the
+            # page projection stores "{document_id}\n{text}", so one denser
+            # page would fail the whole corpus at persist time. Keep the
+            # leading text of such a page within the cap: evidence beyond a
+            # page's storage budget cannot be delivered either way, while
+            # every other page of the document stays searchable.
+            budget = 8192 - len(document_id.encode("utf-8")) - 1
+            encoded = text.encode("utf-8")
+            if len(encoded) > budget:
+                trimmed = encoded[:budget].decode("utf-8", errors="ignore")
+                space = trimmed.rfind(" ")
+                text = trimmed[: space if space > 0 else len(trimmed)]
             parsed.append(
                 PDFPageInput(
                     document_id=document_id,
@@ -228,20 +276,158 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
         "title": 2.0,
     }
 
-    async def search(query: str):
-        return (await memory.search(SearchMemoryRequest(query=query, mode="fts", limit=pool))).hits
+    async def search(query: str, cap: int | None = None):
+        return (await memory.search(SearchMemoryRequest(query=query, mode="fts", limit=cap or pool))).hits
+
+    # Page locations live in the source references of entries, readable
+    # through the public Memory read API; one shared cache serves every
+    # document-aware step below.
+    from powercontext.builtin.runtime import GetMemoryEntryRequest
+
+    location_cache: dict[tuple[str, str, str], tuple[str, int] | None] = {}
+
+    async def page_location(citation) -> tuple[str, int] | None:
+        result = await memory.get(GetMemoryEntryRequest(citation=citation))
+        for reference in result.entry.sources:
+            parts = str(reference.source_id).split(":")
+            if len(parts) == 4 and parts[0] == "pdf" and parts[3].isdigit():
+                return (parts[1], int(parts[3]))
+        return None
+
+    async def location_of_hit(hit) -> tuple[str, int] | None:
+        key = (str(hit.memory_ref), str(hit.entry_id), str(hit.entry_version_id))
+        if key not in location_cache:
+            location_cache[key] = await page_location(
+                MemoryCitation(memory_ref=hit.memory_ref, entry_id=hit.entry_id, entry_version_id=hit.entry_version_id)
+            )
+        return location_cache[key]
+
+    # Corpora that hold several reports in one scope dilute every probe:
+    # statement titles match five times over and a 150-deep pool leaves the
+    # weaker documents' pages outside the hit lists entirely. A saturated
+    # whole-question view says the corpus is that big; widen the pool then.
+    whole = await search(question.strip())
+    if len(whole) >= pool:
+        pool = 500
 
     words = _content_words(question)
     support = {word: await search(word) for word in words}
 
+    # Brand focus, decided before any probe is fused: FinanceBench questions
+    # name the company they ask about, and the name occurs in its document id
+    # ("pepsico" in PEPSICO_2022_10K). The whole-question and word searches
+    # above expose which documents this scope holds; a question word
+    # contained in one of those ids votes for that document, weighted by
+    # word length so a real brand word outranks an incidental fragment
+    # ("johnson" over "health"). With an unambiguous leader every later
+    # search keeps only that document's hits, so probe ranks, document
+    # frequencies and band votes all describe the one asked-about report --
+    # the same picture a single-document scope would give, instead of ranks
+    # and frequencies from ten other companies' pages. A single-document
+    # scope, or a question naming no document, changes nothing here.
+    focus: str | None = None
+    docs_present: dict[str, None] = {}
+    for hit in whole[:40]:
+        location = await location_of_hit(hit)
+        if location is not None:
+            docs_present.setdefault(location[0], None)
+    for word_hits in support.values():
+        for hit in word_hits[:15]:
+            location = await location_of_hit(hit)
+            if location is not None:
+                docs_present.setdefault(location[0], None)
+    if len(docs_present) >= 2:
+        focus_noise = {"10k", "inc", "corp"}
+        # Common ticker/abbreviation aliases that question text uses instead
+        # of the full company name in the document id (FinanceBench writes
+        # "JnJ" while the id says JOHNSON_JOHNSON). Only aliases for companies
+        # whose full name does NOT substring-match the document id need an
+        # entry; single-letter aliases are excluded to avoid false votes.
+        _BRAND_ALIASES = {
+            "jnj": "johnson",
+            "j&j": "johnson",
+            "wmt": "walmart",
+            "ko": "cocacola",
+            "pg": "procter",
+            "xom": "exxon",
+            "cvx": "chevron",
+            "nflx": "netflix",
+            "crm": "salesforce",
+            "orcl": "oracle",
+            "intc": "intel",
+            "tsla": "tesla",
+            "amzn": "amazon",
+            "aapl": "apple",
+            "msft": "microsoft",
+            "goog": "google",
+            "nke": "nike",
+            "sbux": "starbucks",
+            "mcd": "mcdonalds",
+            "abt": "abbott",
+            "mrk": "merck",
+            "lly": "lilly",
+            "unh": "unitedhealth",
+            "wba": "walgreens",
+            "tgt": "target",
+            "cost": "costco",
+            "low": "lowes",
+            "cat": "caterpillar",
+            "de": "deere",
+            "hon": "honeywell",
+            "fdx": "fedex",
+            "lmt": "lockheed",
+            "rtx": "raytheon",
+            "noc": "northrop",
+            "amgn": "amgen",
+            "azn": "astrazeneca",
+            "nvs": "novartis",
+            "bmy": "bristolmyers",
+            "gild": "gilead",
+            "biib": "biogen",
+            "regn": "regeneron",
+            "vrtx": "vertex",
+            "ilmn": "illumina",
+            "mrna": "moderna",
+            "bntx": "biontech",
+        }
+        brand_votes: dict[str, float] = {}
+        for word in words:
+            token = word.lower()
+            if token.isdigit() or token in focus_noise:
+                continue
+            # Resolve aliases so "jnj" votes for the JOHNSON_JOHNSON document
+            resolved = _BRAND_ALIASES.get(token, token)
+            for document in docs_present:
+                if resolved in document.lower():
+                    brand_votes[document] = brand_votes.get(document, 0.0) + len(token)
+        if brand_votes:
+            ranked_votes = sorted(brand_votes.values(), reverse=True)
+            leader = max(brand_votes, key=lambda document: brand_votes[document])
+            runner = ranked_votes[1] if len(ranked_votes) > 1 else 0.0
+            if brand_votes[leader] > runner:
+                focus = leader
+
+    async def focused_search(query: str) -> list:
+        if focus is None:
+            return await search(query)
+        kept: list = []
+        for hit in (await search(query, cap=800))[:500]:
+            location = await location_of_hit(hit)
+            if location is not None and location[0] == focus:
+                kept.append(hit)
+        return kept
+
+    if focus is not None:
+        support = {word: await focused_search(word) for word in words}
+
     probes: list[tuple[str, str, list]] = []
     for view in _query_views(question):
-        probes.append(("view", view, await search(view)))
+        probes.append(("view", view, await focused_search(view)))
     for ngram in _adjacent_ngrams(question):
         gram_words = ngram.split()
         if all(support.get(word) and len(support[word]) >= 50 for word in gram_words):
             continue
-        hits = await search(ngram)
+        hits = await focused_search(ngram)
         rarest = min((len(support.get(word) or ()) for word in gram_words), default=0)
         if rarest > 0 and len(hits) > 8 * rarest:
             continue
@@ -249,7 +435,7 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
     for word in words:
         probes.append(("term", word, support[word]))
     for variant in _word_variants(question):
-        probes.append(("variant", variant, await search(variant)))
+        probes.append(("variant", variant, await focused_search(variant)))
     for terms in _finance_intent_terms(question):
         expanded = list(terms)
         for term in terms:
@@ -259,14 +445,14 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
                 elif term.endswith("s") and not term.endswith("ss"):
                     expanded.append(term[:-1])
         for term in expanded:
-            probes.append(("intent", term, await search(term)))
-        probes.append(("intent", " ".join(terms), await search(" ".join(terms))))
+            probes.append(("intent", term, await focused_search(term)))
+        probes.append(("intent", " ".join(terms), await focused_search(" ".join(terms))))
     for title in _finance_intent_titles(question):
-        probes.append(("intent", title, await search(title)))
+        probes.append(("intent", title, await focused_search(title)))
     page_tokens: dict[str, frozenset[str]] = {}
     func_words = frozenset({"of", "and", "the", "to", "for"})
     for title in _finance_intent_titles(question):
-        hits = await search(title)
+        hits = await focused_search(title)
         required = [token for token in _WORD_PATTERN.findall(title.lower()) if token not in func_words]
         strict: list = []
         for hit in hits:
@@ -326,7 +512,7 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
 
     seeds = sorted(scores, key=lambda key: (-scores[key], order[key]))[:10]
     for term in await _expansion_terms(memory, question, [citations[key] for key in seeds]):
-        accumulate("expansion", await search(term))
+        accumulate("expansion", await focused_search(term))
 
     ranked = sorted(scores, key=lambda key: (-scores[key], order[key]))
 
@@ -338,21 +524,16 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
     # asked about -- so each page receives a share of its best neighbour's
     # score. Page numbers come from the source references of the leading
     # entries through the public Memory read API.
-    from powercontext.builtin.runtime import GetMemoryEntryRequest
+    async def location_of_key(key):
+        if key not in location_cache:
+            location_cache[key] = await page_location(citations[key])
+        return location_cache[key]
 
-    async def page_number(citation) -> int | None:
-        result = await memory.get(GetMemoryEntryRequest(citation=citation))
-        for reference in result.entry.sources:
-            tail = str(reference.source_id).rsplit(":", 1)[-1]
-            if tail.isdigit():
-                return int(tail)
-        return None
-
-    page_of_key: dict[tuple[str, str, str], int] = {}
+    page_of_key: dict[tuple[str, str, str], tuple[str, int]] = {}
     for key in ranked[:90]:
-        number = await page_number(citations[key])
-        if number is not None:
-            page_of_key[key] = number
+        location = await location_of_key(key)
+        if location is not None:
+            page_of_key[key] = location
     # Statement pages can fuse far below the leading scores -- a balance
     # sheet beaten at its own title by management summaries and subsidiary
     # schedules has almost no votes of its own -- yet they all appear in the
@@ -369,9 +550,9 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
                 title_seen.add(key)
                 title_keys.append(key)
     for key in title_keys[:100]:
-        number = await page_number(citations[key])
-        if number is not None:
-            page_of_key[key] = number
+        location = await location_of_key(key)
+        if location is not None:
+            page_of_key[key] = location
 
     # Audited-statement block bonus: management discussion condenses the
     # same statements under the same titles pages before the audit report,
@@ -381,31 +562,38 @@ async def search_pdf_pages(memory: object, question: str, limit: int = 10) -> tu
     # and for a statement-seeking question the pages that follow it are the
     # primary statements, whatever else in the corpus repeats their names.
     # A report preceding the subsidiary schedules says it too, so the
-    # earliest audit page is the one that opens the primary block.
+    # earliest audit page is the one that opens the primary block; several
+    # reports in one scope mean one block per document.
     if _finance_intent_titles(question):
-        audit_pages: list[int] = []
-        for hit in await search("we have audited"):
+        first_audit: dict[str, int] = {}
+        scanned = 0
+        for hit in await focused_search("we have audited"):
             if "we have audited" not in (hit.text or "").lower():
                 continue
-            number = await page_number(
+            location = await page_location(
                 MemoryCitation(memory_ref=hit.memory_ref, entry_id=hit.entry_id, entry_version_id=hit.entry_version_id)
             )
-            if number is not None:
-                audit_pages.append(number)
-            if len(audit_pages) >= 6:
+            if location is not None:
+                document, number = location
+                first_audit[document] = min(first_audit.get(document, number), number)
+            scanned += 1
+            if scanned >= 8:
                 break
-        if audit_pages:
-            audit_page = min(audit_pages)
-            for key, number in page_of_key.items():
-                if audit_page < number <= audit_page + 12:
+        if first_audit:
+            for key, (document, number) in page_of_key.items():
+                base = first_audit.get(document)
+                if base is not None and base < number <= base + 12:
                     scores[key] = scores.get(key, 0.0) + 30.0
 
     if len(page_of_key) >= 3:
-        best_by_page: dict[int, float] = {}
-        for key, page in page_of_key.items():
-            best_by_page[page] = max(best_by_page.get(page, 0.0), scores[key])
-        for key, page in page_of_key.items():
-            neighbour = max(best_by_page.get(page - 1, 0.0), best_by_page.get(page + 1, 0.0))
+        best_by_page: dict[tuple[str, int], float] = {}
+        for key, location in page_of_key.items():
+            best_by_page[location] = max(best_by_page.get(location, 0.0), scores[key])
+        for key, (document, number) in page_of_key.items():
+            neighbour = max(
+                best_by_page.get((document, number - 1), 0.0),
+                best_by_page.get((document, number + 1), 0.0),
+            )
             if neighbour > 0.0:
                 scores[key] = scores.get(key, 0.0) + 0.35 * neighbour
         ranked = sorted(scores, key=lambda key: (-scores[key], order[key]))
