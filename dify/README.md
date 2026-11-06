@@ -42,11 +42,35 @@ Dify Chatflow
 - 玩家身份：会话变量 `player_key`，开局问一次名字后固定（`tavern:张三`），跨会话用同一 scope。
 - LLM：智谱 GLM（Dify 内置 zhihu/zhipu provider，用户已有 bigmodel 账号）。
 
-### PowerContext 服务部署
+### PowerContext 服务部署（2026-11-07 凌晨已实测跑通）
 
-- WSL2 内 `uv run --locked powercontext server` 起服务（127.0.0.1:8000）。
-- 公网可达：cloudflared quick tunnel（`cloudflared tunnel --url http://localhost:8000` → trycloudflare.com 临时 URL）。**评测用自部署说明 + DSL 中环境变量占位 `{{POWERCONTEXT_URL}}`**，不提交任何真实凭据。
-- 认证：Bearer token（服务端配置固定 token → 服务 Principal，scope-bindings 授权 tavern scope）。DSL 里用 Dify 环境变量填。
+- WSL2 内启动（venv 已装好，依赖 ~409M）：
+  ```bash
+  cd /root/powercontext
+  setsid nohup .venv/bin/powercontext server run --host 127.0.0.1 --port 8000 \
+    --no-env-file > /root/pc_server.log 2>&1 < /dev/null &
+  ```
+- 服务端点：`GET /health/live` → `{"status":"ok"}`
+- **scope 由服务端生成 ID**（请求体不能自带 scope_id）：
+  ```bash
+  curl -X POST http://127.0.0.1:8000/v1/scopes -H 'Content-Type: application/json' \
+    -d '{"title":"Tavern","summary":"酒馆记忆","idempotency_key":"tavern-1"}'
+  # → {"scope_id":"scp_xxx", ...}  记下这个 id
+  ```
+- 记忆写入/检索（已实测，FTS 中文命中）：
+  ```bash
+  curl -X POST .../v1/memory/remember -d '{"scope_id":"scp_xxx","kind":"tavern-turn","text":"...","reason":"tavern turn"}'
+  curl -X POST .../v1/memory/search  -d '{"scope_id":"scp_xxx","query":"酒钱","limit":8}'
+  # search 返回 {"mode":"fts","hits":[{"text":...,"score":...}]}
+  ```
+- **重启持久化已验证**：kill 服务→重启→search 仍命中（SQLite WAL，数据在
+  `/root/.local/share/powercontext/powercontext.db`；服务还内嵌 seekdb 目录，见 paths.py）。
+- 公网隧道（cloudflared 已装 Windows）：
+  ```bash
+  "/c/Program Files (x86)/cloudflared/cloudflared" tunnel --url http://localhost:8000
+  # → https://xxx.trycloudflare.com（临时 URL，重启即换；DSL 中用环境变量占位）
+  ```
+  2026-11-07 凌晨实测：公网 URL health + memory/search 全通（URL 会过期，重跑命令拿新的）。
 
 ### 验证样例（交付材料）
 
