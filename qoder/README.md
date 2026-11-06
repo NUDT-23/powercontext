@@ -45,6 +45,15 @@ docker compose up --build -d
 make seed        # 导入 20 篇 arXiv 公开文献（LLM Agent × 因果推断主题）到 demo 项目
 ```
 
+### 多用户现场试用（可选）
+
+```bash
+make trial N=12  # 创建 trial-01 ~ trial-12，每人独立语料、独立 PowerContext Scope
+# 无 make 时：docker compose exec -T app python -m app.seed --trials 12
+```
+
+试用者用 `http://<本机局域网IP>:8080/?u=U01` 打开，页面会自动填入编号并选中「试用 U01」项目；检索、综述与反馈事件都按 `U01` 记录。执行手册、三个计时任务、匿名问卷与数据导出方式见 [`evidence/usage/trial/`](evidence/usage/trial/README.md)。
+
 ### 自动验收
 
 ```bash

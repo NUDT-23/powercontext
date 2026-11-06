@@ -10,6 +10,7 @@
 | `powercontext/` | 记忆读写 trace、Dashboard 截图、记忆开关对比 | `make evidence` + 手动截图 |
 | `seekdb/` | 混合检索 trace、seed 统计、查询样例 | `make evidence` |
 | `usage/` | 真实用户事件、反馈 CSV、问卷与提效对比 | `make evidence` + 手动补充 |
+| `usage/trial/` | 现场试用手册、三个计时任务、匿名问卷、计时表与每人汇总 | `make trial` + `make evidence` + 手动填写 |
 | `demo/` | 产品截图（`ui-*.png`，无头浏览器自动截取）、演示视频 | `export_evidence` 收集截图；视频手动录制 |
 | `verification/` | 自动验收报告与样例数据 | `make verify` |
 
@@ -20,7 +21,7 @@
 - [ ] Qoder UID、对话截图、commit hash 对应
 - [ ] PowerContext 记忆写入/召回 trace 含时间、scope、artifact
 - [ ] seekdb 检索 trace 含 query、过滤条件、结果 id、耗时
-- [ ] 至少 10 名真实用户的事件与问卷
+- [ ] 至少 10 名真实用户的事件与问卷（按 `evidence/usage/trial/README.md` 执行，结果写入 `timing.csv` 与 `trial_summary.json`）
 - [ ] 3 分钟演示视频，无断点
 - [x] Qoder Sites 公开链接无痕窗口可访问：<https://paperlens-5efj7ylekjq.qoder.zone/>
 - [ ] 仓库不含任何真实密钥

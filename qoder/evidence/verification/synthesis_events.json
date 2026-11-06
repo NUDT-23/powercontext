@@ -152,7 +152,7 @@
   },
   {
     "type": "delta",
-    "content": "/"
+    "content": "与"
   },
   {
     "type": "delta",
@@ -300,7 +300,7 @@
   },
   {
     "type": "delta",
-    "content": "作出"
+    "content": "给出"
   },
   {
     "type": "delta",
@@ -320,7 +320,11 @@
   },
   {
     "type": "delta",
-    "content": "总结"
+    "content": "综述"
+  },
+  {
+    "type": "delta",
+    "content": "结论"
   },
   {
     "type": "delta",
@@ -700,11 +704,15 @@
   },
   {
     "type": "delta",
-    "content": "实验"
+    "content": "数据集"
   },
   {
     "type": "delta",
-    "content": "数据"
+    "content": "或"
+  },
+  {
+    "type": "delta",
+    "content": "实验"
   },
   {
     "type": "delta",
@@ -816,7 +824,7 @@
   },
   {
     "type": "delta",
-    "content": "中"
+    "content": "片段"
   },
   {
     "type": "delta",
@@ -824,7 +832,47 @@
   },
   {
     "type": "delta",
-    "content": "提供"
+    "content": "给出"
+  },
+  {
+    "type": "delta",
+    "content": "实验"
+  },
+  {
+    "type": "delta",
+    "content": "验证"
+  },
+  {
+    "type": "delta",
+    "content": "细节"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "属"
+  },
+  {
+    "type": "delta",
+    "content": "立场"
+  },
+  {
+    "type": "delta",
+    "content": "/"
+  },
+  {
+    "type": "delta",
+    "content": "综述"
+  },
+  {
+    "type": "delta",
+    "content": "性"
+  },
+  {
+    "type": "delta",
+    "content": "讨论"
   },
   {
     "type": "delta",
@@ -924,7 +972,11 @@
   },
   {
     "type": "delta",
-    "content": "数据进行"
+    "content": "数据"
+  },
+  {
+    "type": "delta",
+    "content": "推断"
   },
   {
     "type": "delta",
@@ -932,7 +984,7 @@
   },
   {
     "type": "delta",
-    "content": "推断"
+    "content": "结构"
   },
   {
     "type": "delta",
@@ -1048,15 +1100,27 @@
   },
   {
     "type": "delta",
-    "content": "具体"
-  },
-  {
-    "type": "delta",
-    "content": "实验"
+    "content": "实证"
   },
   {
     "type": "delta",
     "content": "数据"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "为"
+  },
+  {
+    "type": "delta",
+    "content": "理论"
+  },
+  {
+    "type": "delta",
+    "content": "推导"
   },
   {
     "type": "delta",
@@ -1081,6 +1145,10 @@
   {
     "type": "delta",
     "content": "类"
+  },
+  {
+    "type": "delta",
+    "content": "分类"
   },
   {
     "type": "delta",
@@ -1120,6 +1188,14 @@
   },
   {
     "type": "delta",
+    "content": "因果"
+  },
+  {
+    "type": "delta",
+    "content": "参数"
+  },
+  {
+    "type": "delta",
     "content": "可"
   },
   {
@@ -1128,11 +1204,7 @@
   },
   {
     "type": "delta",
-    "content": "因果"
-  },
-  {
-    "type": "delta",
-    "content": "参数"
+    "content": "性"
   },
   {
     "type": "delta",
@@ -1200,19 +1272,23 @@
   },
   {
     "type": "delta",
-    "content": " ["
+    "content": "；"
   },
   {
     "type": "delta",
-    "content": "P"
+    "content": "扩展"
   },
   {
     "type": "delta",
-    "content": "2"
+    "content": "性"
   },
   {
     "type": "delta",
-    "content": "]"
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "验证"
   },
   {
     "type": "delta",
@@ -1312,11 +1388,19 @@
   },
   {
     "type": "delta",
+    "content": "两种"
+  },
+  {
+    "type": "delta",
     "content": "因果"
   },
   {
     "type": "delta",
-    "content": "推断"
+    "content": "分析"
+  },
+  {
+    "type": "delta",
+    "content": "视角"
   },
   {
     "type": "delta",
@@ -1376,19 +1460,11 @@
   },
   {
     "type": "delta",
-    "content": "（"
-  },
-  {
-    "type": "delta",
-    "content": "理论"
+    "content": "的理论"
   },
   {
     "type": "delta",
     "content": "分析"
-  },
-  {
-    "type": "delta",
-    "content": "）"
   },
   {
     "type": "delta",
@@ -1456,6 +1532,26 @@
   },
   {
     "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "可"
+  },
+  {
+    "type": "delta",
+    "content": "建立"
+  },
+  {
+    "type": "delta",
+    "content": "桥"
+  },
+  {
+    "type": "delta",
+    "content": "接"
+  },
+  {
+    "type": "delta",
     "content": " ["
   },
   {
@@ -1496,23 +1592,23 @@
   },
   {
     "type": "delta",
-    "content": "场景"
+    "content": "；"
   },
   {
     "type": "delta",
-    "content": " ["
+    "content": "其他"
   },
   {
     "type": "delta",
-    "content": "P"
+    "content": "情形"
   },
   {
     "type": "delta",
-    "content": "3"
+    "content": "仅为"
   },
   {
     "type": "delta",
-    "content": "]"
+    "content": "展望"
   },
   {
     "type": "delta",
@@ -1648,15 +1744,15 @@
   },
   {
     "type": "delta",
-    "content": "："
+    "content": "，"
   },
   {
     "type": "delta",
-    "content": "通过"
+    "content": "提出"
   },
   {
     "type": "delta",
-    "content": "把"
+    "content": "将"
   },
   {
     "type": "delta",
@@ -1720,7 +1816,7 @@
   },
   {
     "type": "delta",
-    "content": "成"
+    "content": "呈"
   },
   {
     "type": "delta",
@@ -1788,7 +1884,15 @@
   },
   {
     "type": "delta",
-    "content": "仍有"
+    "content": "仍"
+  },
+  {
+    "type": "delta",
+    "content": "保持"
+  },
+  {
+    "type": "delta",
+    "content": "有"
   },
   {
     "type": "delta",
@@ -1824,63 +1928,11 @@
   },
   {
     "type": "delta",
-    "content": "关注"
+    "content": "则"
   },
   {
     "type": "delta",
     "content": "从"
-  },
-  {
-    "type": "delta",
-    "content": "观测"
-  },
-  {
-    "type": "delta",
-    "content": "数据"
-  },
-  {
-    "type": "delta",
-    "content": "识别"
-  },
-  {
-    "type": "delta",
-    "content": "因果"
-  },
-  {
-    "type": "delta",
-    "content": "结构"
-  },
-  {
-    "type": "delta",
-    "content": "："
-  },
-  {
-    "type": "delta",
-    "content": "利用"
-  },
-  {
-    "type": "delta",
-    "content": " Gro"
-  },
-  {
-    "type": "delta",
-    "content": "eb"
-  },
-  {
-    "type": "delta",
-    "content": "ner"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "基"
-  },
-  {
-    "type": "delta",
-    "content": "等"
   },
   {
     "type": "delta",
@@ -1892,7 +1944,11 @@
   },
   {
     "type": "delta",
-    "content": "工具"
+    "content": "角度"
+  },
+  {
+    "type": "delta",
+    "content": "出发"
   },
   {
     "type": "delta",
@@ -1900,7 +1956,7 @@
   },
   {
     "type": "delta",
-    "content": "对"
+    "content": "针对"
   },
   {
     "type": "delta",
@@ -1944,7 +2000,35 @@
   },
   {
     "type": "delta",
-    "content": "进行"
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "利用"
+  },
+  {
+    "type": "delta",
+    "content": " Gro"
+  },
+  {
+    "type": "delta",
+    "content": "eb"
+  },
+  {
+    "type": "delta",
+    "content": "ner"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "基"
+  },
+  {
+    "type": "delta",
+    "content": "给出"
   },
   {
     "type": "delta",
@@ -1960,19 +2044,11 @@
   },
   {
     "type": "delta",
-    "content": "划分"
+    "content": "分类"
   },
   {
     "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "并"
-  },
-  {
-    "type": "delta",
-    "content": "给出"
+    "content": "及"
   },
   {
     "type": "delta",
@@ -1993,6 +2069,38 @@
   {
     "type": "delta",
     "content": "约束"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "并"
+  },
+  {
+    "type": "delta",
+    "content": "讨论"
+  },
+  {
+    "type": "delta",
+    "content": "因果"
+  },
+  {
+    "type": "delta",
+    "content": "参数"
+  },
+  {
+    "type": "delta",
+    "content": "的可"
+  },
+  {
+    "type": "delta",
+    "content": "识别"
+  },
+  {
+    "type": "delta",
+    "content": "性"
   },
   {
     "type": "delta",
@@ -2024,7 +2132,11 @@
   },
   {
     "type": "delta",
-    "content": "关注"
+    "content": "讨论"
+  },
+  {
+    "type": "delta",
+    "content": "的是"
   },
   {
     "type": "delta",
@@ -2037,30 +2149,6 @@
   {
     "type": "delta",
     "content": "中"
-  },
-  {
-    "type": "delta",
-    "content": "两种"
-  },
-  {
-    "type": "delta",
-    "content": "总体"
-  },
-  {
-    "type": "delta",
-    "content": "视角"
-  },
-  {
-    "type": "delta",
-    "content": "的理论"
-  },
-  {
-    "type": "delta",
-    "content": "衔接"
-  },
-  {
-    "type": "delta",
-    "content": "："
   },
   {
     "type": "delta",
@@ -2092,15 +2180,11 @@
   },
   {
     "type": "delta",
-    "content": "在"
+    "content": "的概念"
   },
   {
     "type": "delta",
-    "content": "概念"
-  },
-  {
-    "type": "delta",
-    "content": "和"
+    "content": "与"
   },
   {
     "type": "delta",
@@ -2108,11 +2192,7 @@
   },
   {
     "type": "delta",
-    "content": "上"
-  },
-  {
-    "type": "delta",
-    "content": "不同"
+    "content": "差异"
   },
   {
     "type": "delta",
@@ -2120,27 +2200,39 @@
   },
   {
     "type": "delta",
-    "content": "导致"
+    "content": "证明"
   },
   {
     "type": "delta",
-    "content": "均值"
+    "content": "在"
   },
   {
     "type": "delta",
-    "content": "差"
+    "content": "完全"
   },
   {
     "type": "delta",
-    "content": "估计"
+    "content": "随机"
   },
   {
     "type": "delta",
-    "content": "量的"
+    "content": "实验"
   },
   {
     "type": "delta",
-    "content": "抽样"
+    "content": "下"
+  },
+  {
+    "type": "delta",
+    "content": "二者"
+  },
+  {
+    "type": "delta",
+    "content": "虽"
+  },
+  {
+    "type": "delta",
+    "content": "采样"
   },
   {
     "type": "delta",
@@ -2164,10 +2256,6 @@
   },
   {
     "type": "delta",
-    "content": "得到的"
-  },
-  {
-    "type": "delta",
     "content": "方差"
   },
   {
@@ -2180,7 +2268,27 @@
   },
   {
     "type": "delta",
-    "content": "相同"
+    "content": "一致"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "从而"
+  },
+  {
+    "type": "delta",
+    "content": "建立"
+  },
+  {
+    "type": "delta",
+    "content": "桥"
+  },
+  {
+    "type": "delta",
+    "content": "接"
   },
   {
     "type": "delta",
@@ -2200,7 +2308,351 @@
   },
   {
     "type": "delta",
-    "content": "就"
+    "content": "从"
+  },
+  {
+    "type": "delta",
+    "content": "“"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "”"
+  },
+  {
+    "type": "delta",
+    "content": "角度看"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "三"
+  },
+  {
+    "type": "delta",
+    "content": "篇"
+  },
+  {
+    "type": "delta",
+    "content": "文献"
+  },
+  {
+    "type": "delta",
+    "content": "均"
+  },
+  {
+    "type": "delta",
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "提出"
+  },
+  {
+    "type": "delta",
+    "content": "针对"
+  },
+  {
+    "type": "delta",
+    "content": " LL"
+  },
+  {
+    "type": "delta",
+    "content": "M"
+  },
+  {
+    "type": "delta",
+    "content": " Agent"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "框架"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "基准"
+  },
+  {
+    "type": "delta",
+    "content": "或"
+  },
+  {
+    "type": "delta",
+    "content": "指标"
+  },
+  {
+    "type": "delta",
+    "content": "。"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "1"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "属"
+  },
+  {
+    "type": "delta",
+    "content": "理论"
+  },
+  {
+    "type": "delta",
+    "content": "性"
+  },
+  {
+    "type": "delta",
+    "content": "讨论"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "提供"
+  },
+  {
+    "type": "delta",
+    "content": "实验"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": " ["
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "1"
+  },
+  {
+    "type": "delta",
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "为"
+  },
+  {
+    "type": "delta",
+    "content": "理论"
+  },
+  {
+    "type": "delta",
+    "content": "推导"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "涉及"
+  },
+  {
+    "type": "delta",
+    "content": "实证"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": " ["
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "虽"
+  },
+  {
+    "type": "delta",
+    "content": "涉及"
+  },
+  {
+    "type": "delta",
+    "content": "方差"
+  },
+  {
+    "type": "delta",
+    "content": "估计"
+  },
+  {
+    "type": "delta",
+    "content": "量的"
+  },
+  {
+    "type": "delta",
+    "content": "比较"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "但其"
+  },
+  {
+    "type": "delta",
+    "content": "对象"
+  },
+  {
+    "type": "delta",
+    "content": "是"
+  },
+  {
+    "type": "delta",
+    "content": "因果"
+  },
+  {
+    "type": "delta",
+    "content": "效应"
+  },
+  {
+    "type": "delta",
+    "content": "估计"
+  },
+  {
+    "type": "delta",
+    "content": "量"
+  },
+  {
+    "type": "delta",
+    "content": "而非"
+  },
+  {
+    "type": "delta",
+    "content": " Agent"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "系统"
+  },
+  {
+    "type": "delta",
+    "content": " ["
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": "]。"
+  },
+  {
+    "type": "delta",
+    "content": "因此"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "若"
+  },
+  {
+    "type": "delta",
+    "content": "以"
   },
   {
     "type": "delta",
@@ -2221,6 +2673,86 @@
   {
     "type": "delta",
     "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "记忆"
+  },
+  {
+    "type": "delta",
+    "content": "或"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "”"
+  },
+  {
+    "type": "delta",
+    "content": "为"
+  },
+  {
+    "type": "delta",
+    "content": "筛选"
+  },
+  {
+    "type": "delta",
+    "content": "标准"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "这三"
+  },
+  {
+    "type": "delta",
+    "content": "篇"
+  },
+  {
+    "type": "delta",
+    "content": "文献"
+  },
+  {
+    "type": "delta",
+    "content": "均"
+  },
+  {
+    "type": "delta",
+    "content": "不"
+  },
+  {
+    "type": "delta",
+    "content": "构成"
+  },
+  {
+    "type": "delta",
+    "content": "直接"
+  },
+  {
+    "type": "delta",
+    "content": "相关"
+  },
+  {
+    "type": "delta",
+    "content": "证据"
+  },
+  {
+    "type": "delta",
+    "content": "。\n\n"
+  },
+  {
+    "type": "delta",
+    "content": "就"
+  },
+  {
+    "type": "delta",
+    "content": "“"
   },
   {
     "type": "delta",
@@ -2264,6 +2796,14 @@
   },
   {
     "type": "delta",
+    "content": "任何"
+  },
+  {
+    "type": "delta",
+    "content": "形式的"
+  },
+  {
+    "type": "delta",
     "content": "记忆"
   },
   {
@@ -2276,15 +2816,15 @@
   },
   {
     "type": "delta",
-    "content": "记忆"
+    "content": "上下文"
   },
   {
     "type": "delta",
-    "content": "存储"
+    "content": "保持"
   },
   {
     "type": "delta",
-    "content": "/"
+    "content": "、"
   },
   {
     "type": "delta",
@@ -2292,11 +2832,35 @@
   },
   {
     "type": "delta",
+    "content": "增强"
+  },
+  {
+    "type": "delta",
     "content": "或"
   },
   {
     "type": "delta",
-    "content": " Agent"
+    "content": "长期"
+  },
+  {
+    "type": "delta",
+    "content": "记忆"
+  },
+  {
+    "type": "delta",
+    "content": "管理"
+  },
+  {
+    "type": "delta",
+    "content": "。"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "1"
   },
   {
     "type": "delta",
@@ -2304,7 +2868,43 @@
   },
   {
     "type": "delta",
-    "content": "架构"
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "算术"
+  },
+  {
+    "type": "delta",
+    "content": "电路"
+  },
+  {
+    "type": "delta",
+    "content": "是"
+  },
+  {
+    "type": "delta",
+    "content": "推断"
+  },
+  {
+    "type": "delta",
+    "content": "表示"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "不是"
+  },
+  {
+    "type": "delta",
+    "content": "记忆"
+  },
+  {
+    "type": "delta",
+    "content": "系统"
   },
   {
     "type": "delta",
@@ -2320,7 +2920,11 @@
   },
   {
     "type": "delta",
-    "content": "]["
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "；"
   },
   {
     "type": "delta",
@@ -2332,7 +2936,111 @@
   },
   {
     "type": "delta",
-    "content": "]["
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": " Gro"
+  },
+  {
+    "type": "delta",
+    "content": "eb"
+  },
+  {
+    "type": "delta",
+    "content": "ner"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "基"
+  },
+  {
+    "type": "delta",
+    "content": "是"
+  },
+  {
+    "type": "delta",
+    "content": "代数"
+  },
+  {
+    "type": "delta",
+    "content": "计算"
+  },
+  {
+    "type": "delta",
+    "content": "工具"
+  },
+  {
+    "type": "delta",
+    "content": " ["
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "方差"
+  },
+  {
+    "type": "delta",
+    "content": "分解"
+  },
+  {
+    "type": "delta",
+    "content": "是"
+  },
+  {
+    "type": "delta",
+    "content": "统计"
+  },
+  {
+    "type": "delta",
+    "content": "推断"
+  },
+  {
+    "type": "delta",
+    "content": "工具"
+  },
+  {
+    "type": "delta",
+    "content": " ["
   },
   {
     "type": "delta",
@@ -2348,15 +3056,23 @@
   },
   {
     "type": "delta",
-    "content": "就"
+    "content": "三者"
   },
   {
     "type": "delta",
-    "content": "“"
+    "content": "均"
   },
   {
     "type": "delta",
-    "content": "LL"
+    "content": "不能"
+  },
+  {
+    "type": "delta",
+    "content": "作为"
+  },
+  {
+    "type": "delta",
+    "content": " LL"
   },
   {
     "type": "delta",
@@ -2372,27 +3088,11 @@
   },
   {
     "type": "delta",
-    "content": "评测"
+    "content": "记忆"
   },
   {
     "type": "delta",
-    "content": "”"
-  },
-  {
-    "type": "delta",
-    "content": "而言"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "三"
-  },
-  {
-    "type": "delta",
-    "content": "篇"
+    "content": "研究的"
   },
   {
     "type": "delta",
@@ -2400,7 +3100,27 @@
   },
   {
     "type": "delta",
-    "content": "也未"
+    "content": "依据"
+  },
+  {
+    "type": "delta",
+    "content": "。\n\n"
+  },
+  {
+    "type": "delta",
+    "content": "综上"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "基于"
+  },
+  {
+    "type": "delta",
+    "content": "所"
   },
   {
     "type": "delta",
@@ -2408,91 +3128,7 @@
   },
   {
     "type": "delta",
-    "content": "任何"
-  },
-  {
-    "type": "delta",
-    "content": " Agent"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
-    "content": "基准"
-  },
-  {
-    "type": "delta",
-    "content": "、"
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
-    "content": "指标"
-  },
-  {
-    "type": "delta",
-    "content": "或"
-  },
-  {
-    "type": "delta",
-    "content": "实验"
-  },
-  {
-    "type": "delta",
-    "content": "方案"
-  },
-  {
-    "type": "delta",
-    "content": " ["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "1"
-  },
-  {
-    "type": "delta",
-    "content": "]["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "2"
-  },
-  {
-    "type": "delta",
-    "content": "]["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": "]。"
-  },
-  {
-    "type": "delta",
-    "content": "因此"
+    "content": "材料"
   },
   {
     "type": "delta",
@@ -2504,7 +3140,15 @@
   },
   {
     "type": "delta",
-    "content": "从"
+    "content": "完成"
+  },
+  {
+    "type": "delta",
+    "content": "“"
+  },
+  {
+    "type": "delta",
+    "content": "总结"
   },
   {
     "type": "delta",
@@ -2512,19 +3156,11 @@
   },
   {
     "type": "delta",
-    "content": "材料"
+    "content": "论文"
   },
   {
     "type": "delta",
-    "content": "中"
-  },
-  {
-    "type": "delta",
-    "content": "提炼"
-  },
-  {
-    "type": "delta",
-    "content": "出"
+    "content": "在"
   },
   {
     "type": "delta",
@@ -2560,35 +3196,11 @@
   },
   {
     "type": "delta",
+    "content": "主要"
+  },
+  {
+    "type": "delta",
     "content": "差异"
-  },
-  {
-    "type": "delta",
-    "content": "。\n\n"
-  },
-  {
-    "type": "delta",
-    "content": "若"
-  },
-  {
-    "type": "delta",
-    "content": "强行"
-  },
-  {
-    "type": "delta",
-    "content": "寻找"
-  },
-  {
-    "type": "delta",
-    "content": "与"
-  },
-  {
-    "type": "delta",
-    "content": "“"
-  },
-  {
-    "type": "delta",
-    "content": "评测"
   },
   {
     "type": "delta",
@@ -2596,259 +3208,7 @@
   },
   {
     "type": "delta",
-    "content": "相关的"
-  },
-  {
-    "type": "delta",
-    "content": "间接"
-  },
-  {
-    "type": "delta",
-    "content": "联系"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "讨论了"
-  },
-  {
-    "type": "delta",
-    "content": "估计"
-  },
-  {
-    "type": "delta",
-    "content": "量"
-  },
-  {
-    "type": "delta",
-    "content": "方差"
-  },
-  {
-    "type": "delta",
-    "content": "在"
-  },
-  {
-    "type": "delta",
-    "content": "两种"
-  },
-  {
-    "type": "delta",
-    "content": "总体"
-  },
-  {
-    "type": "delta",
-    "content": "视角"
-  },
-  {
-    "type": "delta",
-    "content": "下"
-  },
-  {
-    "type": "delta",
-    "content": "的一致性"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "这可"
-  },
-  {
-    "type": "delta",
-    "content": "视为"
-  },
-  {
-    "type": "delta",
-    "content": "一种"
-  },
-  {
-    "type": "delta",
-    "content": "统计"
-  },
-  {
-    "type": "delta",
-    "content": "评估"
-  },
-  {
-    "type": "delta",
-    "content": "视角"
-  },
-  {
-    "type": "delta",
-    "content": "的"
-  },
-  {
-    "type": "delta",
-    "content": "讨论"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "但其"
-  },
-  {
-    "type": "delta",
-    "content": "对象"
-  },
-  {
-    "type": "delta",
-    "content": "是"
-  },
-  {
-    "type": "delta",
-    "content": "因果"
-  },
-  {
-    "type": "delta",
-    "content": "效应"
-  },
-  {
-    "type": "delta",
-    "content": "估计"
-  },
-  {
-    "type": "delta",
-    "content": "量"
-  },
-  {
-    "type": "delta",
-    "content": "而非"
-  },
-  {
-    "type": "delta",
-    "content": " LL"
-  },
-  {
-    "type": "delta",
-    "content": "M"
-  },
-  {
-    "type": "delta",
-    "content": " Agent"
-  },
-  {
-    "type": "delta",
-    "content": " ["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": "]"
-  },
-  {
-    "type": "delta",
-    "content": "；"
-  },
-  {
-    "type": "delta",
-    "content": "这"
-  },
-  {
-    "type": "delta",
-    "content": "不足以"
-  },
-  {
-    "type": "delta",
-    "content": "支撑"
-  },
-  {
-    "type": "delta",
-    "content": "关于"
-  },
-  {
-    "type": "delta",
-    "content": " Agent"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
-    "content": "差异"
-  },
-  {
-    "type": "delta",
-    "content": "的"
-  },
-  {
-    "type": "delta",
-    "content": "结论"
-  },
-  {
-    "type": "delta",
-    "content": "。\n\n"
-  },
-  {
-    "type": "delta",
-    "content": "综上"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "基于"
-  },
-  {
-    "type": "delta",
-    "content": "所"
-  },
-  {
-    "type": "delta",
-    "content": "给"
-  },
-  {
-    "type": "delta",
-    "content": "文献"
-  },
-  {
-    "type": "delta",
-    "content": "片段"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "本"
-  },
-  {
-    "type": "delta",
-    "content": "综述"
+    "content": "这一"
   },
   {
     "type": "delta",
@@ -2856,19 +3216,71 @@
   },
   {
     "type": "delta",
-    "content": "的核心"
+    "content": "；"
   },
   {
     "type": "delta",
-    "content": "问题"
+    "content": "材料"
   },
   {
     "type": "delta",
-    "content": "（"
+    "content": "主题"
   },
   {
     "type": "delta",
-    "content": "LL"
+    "content": "与"
+  },
+  {
+    "type": "delta",
+    "content": "任务"
+  },
+  {
+    "type": "delta",
+    "content": "目标"
+  },
+  {
+    "type": "delta",
+    "content": "不"
+  },
+  {
+    "type": "delta",
+    "content": "匹配"
+  },
+  {
+    "type": "delta",
+    "content": "。"
+  },
+  {
+    "type": "delta",
+    "content": "若"
+  },
+  {
+    "type": "delta",
+    "content": "需"
+  },
+  {
+    "type": "delta",
+    "content": "该"
+  },
+  {
+    "type": "delta",
+    "content": "综述"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "应"
+  },
+  {
+    "type": "delta",
+    "content": "补充"
+  },
+  {
+    "type": "delta",
+    "content": " LL"
   },
   {
     "type": "delta",
@@ -2888,7 +3300,7 @@
   },
   {
     "type": "delta",
-    "content": "或"
+    "content": "/"
   },
   {
     "type": "delta",
@@ -2896,15 +3308,7 @@
   },
   {
     "type": "delta",
-    "content": "差异"
-  },
-  {
-    "type": "delta",
-    "content": "）"
-  },
-  {
-    "type": "delta",
-    "content": "**"
+    "content": "相关"
   },
   {
     "type": "delta",
@@ -2912,67 +3316,7 @@
   },
   {
     "type": "delta",
-    "content": "中"
-  },
-  {
-    "type": "delta",
-    "content": "未"
-  },
-  {
-    "type": "delta",
-    "content": "提供"
-  },
-  {
-    "type": "delta",
-    "content": "**"
-  },
-  {
-    "type": "delta",
-    "content": "可用"
-  },
-  {
-    "type": "delta",
-    "content": "证据"
-  },
-  {
-    "type": "delta",
-    "content": " ["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "1"
-  },
-  {
-    "type": "delta",
-    "content": "]["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "2"
-  },
-  {
-    "type": "delta",
-    "content": "]["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": "]。\n\n"
+    "content": "。\n\n"
   },
   {
     "type": "delta",
@@ -3012,7 +3356,27 @@
   },
   {
     "type": "delta",
-    "content": " "
+    "content": " **"
+  },
+  {
+    "type": "delta",
+    "content": "主题"
+  },
+  {
+    "type": "delta",
+    "content": "不"
+  },
+  {
+    "type": "delta",
+    "content": "匹配"
+  },
+  {
+    "type": "delta",
+    "content": "**"
+  },
+  {
+    "type": "delta",
+    "content": "："
   },
   {
     "type": "delta",
@@ -3028,11 +3392,27 @@
   },
   {
     "type": "delta",
-    "content": "均"
+    "content": "均为"
   },
   {
     "type": "delta",
-    "content": "不"
+    "content": "因果"
+  },
+  {
+    "type": "delta",
+    "content": "推断"
+  },
+  {
+    "type": "delta",
+    "content": "领域"
+  },
+  {
+    "type": "delta",
+    "content": "，"
+  },
+  {
+    "type": "delta",
+    "content": "未"
   },
   {
     "type": "delta",
@@ -3132,7 +3512,39 @@
   },
   {
     "type": "delta",
-    "content": " P"
+    "content": " **"
+  },
+  {
+    "type": "delta",
+    "content": "缺少"
+  },
+  {
+    "type": "delta",
+    "content": "实验"
+  },
+  {
+    "type": "delta",
+    "content": "与"
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "细节"
+  },
+  {
+    "type": "delta",
+    "content": "**"
+  },
+  {
+    "type": "delta",
+    "content": "："
+  },
+  {
+    "type": "delta",
+    "content": "P"
   },
   {
     "type": "delta",
@@ -3140,7 +3552,27 @@
   },
   {
     "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
     "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "片段"
   },
   {
     "type": "delta",
@@ -3152,7 +3584,11 @@
   },
   {
     "type": "delta",
-    "content": "具体"
+    "content": "数据集"
+  },
+  {
+    "type": "delta",
+    "content": "、"
   },
   {
     "type": "delta",
@@ -3160,7 +3596,7 @@
   },
   {
     "type": "delta",
-    "content": "数据"
+    "content": "设置"
   },
   {
     "type": "delta",
@@ -3172,7 +3608,7 @@
   },
   {
     "type": "delta",
-    "content": "设置"
+    "content": "指标"
   },
   {
     "type": "delta",
@@ -3188,23 +3624,31 @@
   },
   {
     "type": "delta",
-    "content": "]"
+    "content": "]["
   },
   {
     "type": "delta",
-    "content": "。\n"
-  },
-  {
-    "type": "delta",
-    "content": "-"
-  },
-  {
-    "type": "delta",
-    "content": " P"
+    "content": "P"
   },
   {
     "type": "delta",
     "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
   },
   {
     "type": "delta",
@@ -3216,119 +3660,15 @@
   },
   {
     "type": "delta",
-    "content": "覆盖"
-  },
-  {
-    "type": "delta",
-    "content": "两个"
-  },
-  {
-    "type": "delta",
-    "content": "二"
-  },
-  {
-    "type": "delta",
-    "content": "值"
-  },
-  {
-    "type": "delta",
-    "content": "观测"
-  },
-  {
-    "type": "delta",
-    "content": "变量的"
-  },
-  {
-    "type": "delta",
-    "content": "受限"
-  },
-  {
-    "type": "delta",
-    "content": "结构"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "未"
-  },
-  {
-    "type": "delta",
     "content": "涉及"
   },
   {
     "type": "delta",
-    "content": "任何"
+    "content": "理论"
   },
   {
     "type": "delta",
-    "content": "语言"
-  },
-  {
-    "type": "delta",
-    "content": "模型"
-  },
-  {
-    "type": "delta",
-    "content": "场景"
-  },
-  {
-    "type": "delta",
-    "content": " ["
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "2"
-  },
-  {
-    "type": "delta",
-    "content": "]"
-  },
-  {
-    "type": "delta",
-    "content": "。\n"
-  },
-  {
-    "type": "delta",
-    "content": "-"
-  },
-  {
-    "type": "delta",
-    "content": " P"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "限于"
-  },
-  {
-    "type": "delta",
-    "content": "完全"
-  },
-  {
-    "type": "delta",
-    "content": "随机"
-  },
-  {
-    "type": "delta",
-    "content": "实验"
-  },
-  {
-    "type": "delta",
-    "content": "的理论"
+    "content": "方差"
   },
   {
     "type": "delta",
@@ -3336,30 +3676,6 @@
   },
   {
     "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "未"
-  },
-  {
-    "type": "delta",
-    "content": "涉及"
-  },
-  {
-    "type": "delta",
-    "content": " Agent"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
     "content": " ["
   },
   {
@@ -3384,11 +3700,15 @@
   },
   {
     "type": "delta",
-    "content": " "
+    "content": " **"
   },
   {
     "type": "delta",
-    "content": "因此"
+    "content": "无法"
+  },
+  {
+    "type": "delta",
+    "content": "比较"
   },
   {
     "type": "delta",
@@ -3396,15 +3716,55 @@
   },
   {
     "type": "delta",
-    "content": "这些"
+    "content": "记忆"
   },
   {
     "type": "delta",
-    "content": "论文"
+    "content": "或"
   },
   {
     "type": "delta",
-    "content": "在"
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "差异"
+  },
+  {
+    "type": "delta",
+    "content": "”"
+  },
+  {
+    "type": "delta",
+    "content": "**"
+  },
+  {
+    "type": "delta",
+    "content": "："
+  },
+  {
+    "type": "delta",
+    "content": "文献"
+  },
+  {
+    "type": "delta",
+    "content": "中"
+  },
+  {
+    "type": "delta",
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "提供"
+  },
+  {
+    "type": "delta",
+    "content": "任何"
+  },
+  {
+    "type": "delta",
+    "content": "关于"
   },
   {
     "type": "delta",
@@ -3436,23 +3796,7 @@
   },
   {
     "type": "delta",
-    "content": "上的"
-  },
-  {
-    "type": "delta",
-    "content": "主要"
-  },
-  {
-    "type": "delta",
-    "content": "差异"
-  },
-  {
-    "type": "delta",
-    "content": "”"
-  },
-  {
-    "type": "delta",
-    "content": "这一问题"
+    "content": "的内容"
   },
   {
     "type": "delta",
@@ -3460,7 +3804,27 @@
   },
   {
     "type": "delta",
-    "content": "**"
+    "content": "故"
+  },
+  {
+    "type": "delta",
+    "content": "该"
+  },
+  {
+    "type": "delta",
+    "content": "维"
+  },
+  {
+    "type": "delta",
+    "content": "度的"
+  },
+  {
+    "type": "delta",
+    "content": "差异"
+  },
+  {
+    "type": "delta",
+    "content": "“"
   },
   {
     "type": "delta",
@@ -3480,15 +3844,7 @@
   },
   {
     "type": "delta",
-    "content": "**"
-  },
-  {
-    "type": "delta",
-    "content": "依据"
-  },
-  {
-    "type": "delta",
-    "content": "。\n\n"
+    "content": "”。\n\n"
   },
   {
     "type": "delta",
@@ -3552,99 +3908,11 @@
   },
   {
     "type": "delta",
-    "content": "确认"
+    "content": "补充"
   },
   {
     "type": "delta",
-    "content": "文献"
-  },
-  {
-    "type": "delta",
-    "content": "列表"
-  },
-  {
-    "type": "delta",
-    "content": "是否"
-  },
-  {
-    "type": "delta",
-    "content": "完整"
-  },
-  {
-    "type": "delta",
-    "content": "或"
-  },
-  {
-    "type": "delta",
-    "content": "是否存在"
-  },
-  {
-    "type": "delta",
-    "content": "主题"
-  },
-  {
-    "type": "delta",
-    "content": "错"
-  },
-  {
-    "type": "delta",
-    "content": "配"
-  },
-  {
-    "type": "delta",
-    "content": "："
-  },
-  {
-    "type": "delta",
-    "content": "当前"
-  },
-  {
-    "type": "delta",
-    "content": "三"
-  },
-  {
-    "type": "delta",
-    "content": "篇"
-  },
-  {
-    "type": "delta",
-    "content": "均为"
-  },
-  {
-    "type": "delta",
-    "content": "因果"
-  },
-  {
-    "type": "delta",
-    "content": "推断"
-  },
-  {
-    "type": "delta",
-    "content": "论文"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "建议"
-  },
-  {
-    "type": "delta",
-    "content": "核对"
-  },
-  {
-    "type": "delta",
-    "content": "是否"
-  },
-  {
-    "type": "delta",
-    "content": "遗漏"
-  },
-  {
-    "type": "delta",
-    "content": "了"
+    "content": "检索"
   },
   {
     "type": "delta",
@@ -3668,14 +3936,6 @@
   },
   {
     "type": "delta",
-    "content": "/"
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
     "content": "相关"
   },
   {
@@ -3684,7 +3944,163 @@
   },
   {
     "type": "delta",
-    "content": "。\n"
+    "content": "（"
+  },
+  {
+    "type": "delta",
+    "content": "如"
+  },
+  {
+    "type": "delta",
+    "content": "长期"
+  },
+  {
+    "type": "delta",
+    "content": "记忆"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "检索"
+  },
+  {
+    "type": "delta",
+    "content": "增强"
+  },
+  {
+    "type": "delta",
+    "content": "生成"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "上下文"
+  },
+  {
+    "type": "delta",
+    "content": "压缩"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "记忆"
+  },
+  {
+    "type": "delta",
+    "content": "写入"
+  },
+  {
+    "type": "delta",
+    "content": "/"
+  },
+  {
+    "type": "delta",
+    "content": "遗忘"
+  },
+  {
+    "type": "delta",
+    "content": "策略"
+  },
+  {
+    "type": "delta",
+    "content": "等"
+  },
+  {
+    "type": "delta",
+    "content": "），"
+  },
+  {
+    "type": "delta",
+    "content": "以及"
+  },
+  {
+    "type": "delta",
+    "content": " Agent"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "评测"
+  },
+  {
+    "type": "delta",
+    "content": "基准"
+  },
+  {
+    "type": "delta",
+    "content": "（"
+  },
+  {
+    "type": "delta",
+    "content": "如"
+  },
+  {
+    "type": "delta",
+    "content": "任务"
+  },
+  {
+    "type": "delta",
+    "content": "完成"
+  },
+  {
+    "type": "delta",
+    "content": "率"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "工具"
+  },
+  {
+    "type": "delta",
+    "content": "调用"
+  },
+  {
+    "type": "delta",
+    "content": "正确"
+  },
+  {
+    "type": "delta",
+    "content": "性"
+  },
+  {
+    "type": "delta",
+    "content": "、"
+  },
+  {
+    "type": "delta",
+    "content": "多"
+  },
+  {
+    "type": "delta",
+    "content": "轮"
+  },
+  {
+    "type": "delta",
+    "content": "一致性"
+  },
+  {
+    "type": "delta",
+    "content": "等"
+  },
+  {
+    "type": "delta",
+    "content": "）。\n"
   },
   {
     "type": "delta",
@@ -3704,207 +4120,27 @@
   },
   {
     "type": "delta",
-    "content": "任务"
+    "content": "坚持"
   },
   {
     "type": "delta",
-    "content": "确"
+    "content": "使用"
   },
   {
     "type": "delta",
-    "content": "为"
+    "content": "现有"
   },
   {
     "type": "delta",
-    "content": " LL"
+    "content": "三"
   },
   {
     "type": "delta",
-    "content": "M"
-  },
-  {
-    "type": "delta",
-    "content": " Agent"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "记忆"
-  },
-  {
-    "type": "delta",
-    "content": "或"
-  },
-  {
-    "type": "delta",
-    "content": "评测"
-  },
-  {
-    "type": "delta",
-    "content": "综述"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "建议"
-  },
-  {
-    "type": "delta",
-    "content": "补充"
-  },
-  {
-    "type": "delta",
-    "content": "检索"
-  },
-  {
-    "type": "delta",
-    "content": "关键词"
-  },
-  {
-    "type": "delta",
-    "content": "如"
-  },
-  {
-    "type": "delta",
-    "content": " “"
-  },
-  {
-    "type": "delta",
-    "content": "LL"
-  },
-  {
-    "type": "delta",
-    "content": "M"
-  },
-  {
-    "type": "delta",
-    "content": " agent"
-  },
-  {
-    "type": "delta",
-    "content": " memory"
-  },
-  {
-    "type": "delta",
-    "content": "”、“"
-  },
-  {
-    "type": "delta",
-    "content": "agent"
-  },
-  {
-    "type": "delta",
-    "content": " benchmark"
-  },
-  {
-    "type": "delta",
-    "content": "”、“"
-  },
-  {
-    "type": "delta",
-    "content": "memory"
-  },
-  {
-    "type": "delta",
-    "content": " retrieval"
-  },
-  {
-    "type": "delta",
-    "content": " evaluation"
-  },
-  {
-    "type": "delta",
-    "content": "”"
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "等"
-  },
-  {
-    "type": "delta",
-    "content": "，"
-  },
-  {
-    "type": "delta",
-    "content": "并"
-  },
-  {
-    "type": "delta",
-    "content": "获取"
-  },
-  {
-    "type": "delta",
-    "content": "相应"
+    "content": "篇"
   },
   {
     "type": "delta",
     "content": "文献"
-  },
-  {
-    "type": "delta",
-    "content": "片段"
-  },
-  {
-    "type": "delta",
-    "content": "后再"
-  },
-  {
-    "type": "delta",
-    "content": "行"
-  },
-  {
-    "type": "delta",
-    "content": "综述"
-  },
-  {
-    "type": "delta",
-    "content": "。\n"
-  },
-  {
-    "type": "delta",
-    "content": "3"
-  },
-  {
-    "type": "delta",
-    "content": "."
-  },
-  {
-    "type": "delta",
-    "content": " "
-  },
-  {
-    "type": "delta",
-    "content": "若"
-  },
-  {
-    "type": "delta",
-    "content": "需"
-  },
-  {
-    "type": "delta",
-    "content": "保留"
-  },
-  {
-    "type": "delta",
-    "content": "因果"
-  },
-  {
-    "type": "delta",
-    "content": "推断"
-  },
-  {
-    "type": "delta",
-    "content": "主题"
   },
   {
     "type": "delta",
@@ -3920,7 +4156,7 @@
   },
   {
     "type": "delta",
-    "content": "问题"
+    "content": "主题"
   },
   {
     "type": "delta",
@@ -3932,14 +4168,6 @@
   },
   {
     "type": "delta",
-    "content": "三"
-  },
-  {
-    "type": "delta",
-    "content": "篇"
-  },
-  {
-    "type": "delta",
     "content": "因果"
   },
   {
@@ -3948,27 +4176,43 @@
   },
   {
     "type": "delta",
-    "content": "论文"
+    "content": "中的"
   },
   {
     "type": "delta",
-    "content": "在"
+    "content": "可"
   },
   {
     "type": "delta",
-    "content": "方法与"
+    "content": "处理"
   },
   {
     "type": "delta",
-    "content": "推断"
+    "content": "性"
   },
   {
     "type": "delta",
-    "content": "目标"
+    "content": "、"
   },
   {
     "type": "delta",
-    "content": "上的"
+    "content": "可"
+  },
+  {
+    "type": "delta",
+    "content": "识别"
+  },
+  {
+    "type": "delta",
+    "content": "性与"
+  },
+  {
+    "type": "delta",
+    "content": "总体"
+  },
+  {
+    "type": "delta",
+    "content": "视角"
   },
   {
     "type": "delta",
@@ -3984,14 +4228,6 @@
   },
   {
     "type": "delta",
-    "content": "可"
-  },
-  {
-    "type": "delta",
-    "content": "基于"
-  },
-  {
-    "type": "delta",
     "content": " P"
   },
   {
@@ -4000,7 +4236,43 @@
   },
   {
     "type": "delta",
-    "content": "（"
+    "content": "/P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": "/P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "可"
+  },
+  {
+    "type": "delta",
+    "content": "形成"
+  },
+  {
+    "type": "delta",
+    "content": "“"
+  },
+  {
+    "type": "delta",
+    "content": "表示"
+  },
+  {
+    "type": "delta",
+    "content": "与"
   },
   {
     "type": "delta",
@@ -4012,31 +4284,11 @@
   },
   {
     "type": "delta",
-    "content": "电路"
+    "content": "性"
   },
   {
     "type": "delta",
-    "content": "）、"
-  },
-  {
-    "type": "delta",
-    "content": "P"
-  },
-  {
-    "type": "delta",
-    "content": "2"
-  },
-  {
-    "type": "delta",
-    "content": "（"
-  },
-  {
-    "type": "delta",
-    "content": "代数"
-  },
-  {
-    "type": "delta",
-    "content": "几何"
+    "content": "—"
   },
   {
     "type": "delta",
@@ -4044,39 +4296,27 @@
   },
   {
     "type": "delta",
+    "content": "可"
+  },
+  {
+    "type": "delta",
     "content": "识别"
   },
   {
     "type": "delta",
-    "content": "）、"
+    "content": "性"
   },
   {
     "type": "delta",
-    "content": "P"
+    "content": "—"
   },
   {
     "type": "delta",
-    "content": "3"
+    "content": "统计"
   },
   {
     "type": "delta",
-    "content": "（"
-  },
-  {
-    "type": "delta",
-    "content": "有限"
-  },
-  {
-    "type": "delta",
-    "content": "/"
-  },
-  {
-    "type": "delta",
-    "content": "超"
-  },
-  {
-    "type": "delta",
-    "content": "总体"
+    "content": "视角"
   },
   {
     "type": "delta",
@@ -4088,15 +4328,19 @@
   },
   {
     "type": "delta",
-    "content": "）"
+    "content": "”"
   },
   {
     "type": "delta",
-    "content": "进行"
+    "content": "的"
   },
   {
     "type": "delta",
     "content": "对比"
+  },
+  {
+    "type": "delta",
+    "content": "框架"
   },
   {
     "type": "delta",
@@ -4136,12 +4380,304 @@
   },
   {
     "type": "delta",
-    "content": "]。"
+    "content": "]"
+  },
+  {
+    "type": "delta",
+    "content": "。\n"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": "."
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "验证"
+  },
+  {
+    "type": "delta",
+    "content": " P"
+  },
+  {
+    "type": "delta",
+    "content": "1"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "所述"
+  },
+  {
+    "type": "delta",
+    "content": "“"
+  },
+  {
+    "type": "delta",
+    "content": "电路"
+  },
+  {
+    "type": "delta",
+    "content": "规模"
+  },
+  {
+    "type": "delta",
+    "content": "有"
+  },
+  {
+    "type": "delta",
+    "content": "界"
+  },
+  {
+    "type": "delta",
+    "content": "而"
+  },
+  {
+    "type": "delta",
+    "content": "树"
+  },
+  {
+    "type": "delta",
+    "content": "宽"
+  },
+  {
+    "type": "delta",
+    "content": "无"
+  },
+  {
+    "type": "delta",
+    "content": "界"
+  },
+  {
+    "type": "delta",
+    "content": "”"
+  },
+  {
+    "type": "delta",
+    "content": "的具体"
+  },
+  {
+    "type": "delta",
+    "content": "条件"
+  },
+  {
+    "type": "delta",
+    "content": "与"
+  },
+  {
+    "type": "delta",
+    "content": "证明"
+  },
+  {
+    "type": "delta",
+    "content": "出处"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "验证"
+  },
+  {
+    "type": "delta",
+    "content": " P"
+  },
+  {
+    "type": "delta",
+    "content": "2"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "观测"
+  },
+  {
+    "type": "delta",
+    "content": "等价"
+  },
+  {
+    "type": "delta",
+    "content": "类"
+  },
+  {
+    "type": "delta",
+    "content": "分类"
+  },
+  {
+    "type": "delta",
+    "content": "在"
+  },
+  {
+    "type": "delta",
+    "content": "更多"
+  },
+  {
+    "type": "delta",
+    "content": "变量"
+  },
+  {
+    "type": "delta",
+    "content": "下的"
+  },
+  {
+    "type": "delta",
+    "content": "扩展"
+  },
+  {
+    "type": "delta",
+    "content": "性"
+  },
+  {
+    "type": "delta",
+    "content": "；"
+  },
+  {
+    "type": "delta",
+    "content": "验证"
+  },
+  {
+    "type": "delta",
+    "content": " P"
+  },
+  {
+    "type": "delta",
+    "content": "3"
+  },
+  {
+    "type": "delta",
+    "content": " "
+  },
+  {
+    "type": "delta",
+    "content": "的"
+  },
+  {
+    "type": "delta",
+    "content": "桥"
+  },
+  {
+    "type": "delta",
+    "content": "接"
+  },
+  {
+    "type": "delta",
+    "content": "结论"
+  },
+  {
+    "type": "delta",
+    "content": "在"
+  },
+  {
+    "type": "delta",
+    "content": "非"
+  },
+  {
+    "type": "delta",
+    "content": "完全"
+  },
+  {
+    "type": "delta",
+    "content": "随机"
+  },
+  {
+    "type": "delta",
+    "content": "设计"
+  },
+  {
+    "type": "delta",
+    "content": "下"
+  },
+  {
+    "type": "delta",
+    "content": "是否"
+  },
+  {
+    "type": "delta",
+    "content": "成立"
+  },
+  {
+    "type": "delta",
+    "content": "——"
+  },
+  {
+    "type": "delta",
+    "content": "这些"
+  },
+  {
+    "type": "delta",
+    "content": "在"
+  },
+  {
+    "type": "delta",
+    "content": "片段"
+  },
+  {
+    "type": "delta",
+    "content": "中"
+  },
+  {
+    "type": "delta",
+    "content": "均"
+  },
+  {
+    "type": "delta",
+    "content": "“"
+  },
+  {
+    "type": "delta",
+    "content": "文献"
+  },
+  {
+    "type": "delta",
+    "content": "中"
+  },
+  {
+    "type": "delta",
+    "content": "未"
+  },
+  {
+    "type": "delta",
+    "content": "提供"
+  },
+  {
+    "type": "delta",
+    "content": "”"
+  },
+  {
+    "type": "delta",
+    "content": "充分"
+  },
+  {
+    "type": "delta",
+    "content": "细节"
+  },
+  {
+    "type": "delta",
+    "content": "。"
   },
   {
     "type": "done",
-    "latency_ms": 6963,
-    "chars": 1825,
+    "latency_ms": 8389,
+    "chars": 1953,
     "invalid_citations": []
   }
 ]
