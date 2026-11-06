@@ -1,0 +1,9 @@
+{
+  "project_id": "demo",
+  "papers_total": 20,
+  "chunks_total": 40,
+  "added_now": 20,
+  "skipped_now": 0,
+  "warnings": [],
+  "embedding": "local:all-MiniLM-L6-v2"
+}

@@ -1,0 +1,106 @@
+{
+  "papers": 20,
+  "events": [
+    {
+      "action": "seed",
+      "count": 1,
+      "avg_latency_ms": "0.0000"
+    },
+    {
+      "action": "search",
+      "count": 30,
+      "avg_latency_ms": "515.5333"
+    },
+    {
+      "action": "memory_remember",
+      "count": 6,
+      "avg_latency_ms": "0.0000"
+    },
+    {
+      "action": "synthesize",
+      "count": 16,
+      "avg_latency_ms": "1826.5000"
+    },
+    {
+      "action": "memory_forget",
+      "count": 6,
+      "avg_latency_ms": "0.0000"
+    }
+  ],
+  "feedback": {
+    "count": 0,
+    "avg_rating": null
+  },
+  "recent_events": [
+    {
+      "action": "synthesize",
+      "query": "Compare these papers on method, experiments and limitations. Give follow-up reading advice.",
+      "latency_ms": 8806,
+      "result_count": 3,
+      "created_at": "2026-11-06T01:51:11"
+    },
+    {
+      "action": "synthesize",
+      "query": "用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。",
+      "latency_ms": 6963,
+      "result_count": 3,
+      "created_at": "2026-11-06T01:50:53"
+    },
+    {
+      "action": "memory_forget",
+      "query": "",
+      "latency_ms": 0,
+      "result_count": 1,
+      "created_at": "2026-11-06T01:50:46"
+    },
+    {
+      "action": "search",
+      "query": "agent memory survey cite sources",
+      "latency_ms": 124,
+      "result_count": 3,
+      "created_at": "2026-11-06T01:50:46"
+    },
+    {
+      "action": "memory_remember",
+      "query": "Preference: when searching agent memory topics, prefer survey papers and always cite sources.",
+      "latency_ms": 0,
+      "result_count": 1,
+      "created_at": "2026-11-06T01:50:45"
+    },
+    {
+      "action": "search",
+      "query": "agent memory long-term",
+      "latency_ms": 160,
+      "result_count": 6,
+      "created_at": "2026-11-06T01:50:45"
+    },
+    {
+      "action": "search",
+      "query": "How do LLM agents remember, plan and evaluate their work?",
+      "latency_ms": 465,
+      "result_count": 7,
+      "created_at": "2026-11-06T01:50:45"
+    },
+    {
+      "action": "synthesize",
+      "query": "比较这些论文在方法、实验与局限性上的差异，并给出后续阅读建议。",
+      "latency_ms": 13071,
+      "result_count": 3,
+      "created_at": "2026-11-06T01:50:40"
+    },
+    {
+      "action": "synthesize",
+      "query": "比较这些论文在方法、实验设计与局限性上的差异，并给出后续阅读建议。",
+      "latency_ms": 39,
+      "result_count": 3,
+      "created_at": "2026-11-06T01:48:12"
+    },
+    {
+      "action": "synthesize",
+      "query": "简述这些文献的方法与局限。",
+      "latency_ms": 1,
+      "result_count": 2,
+      "created_at": "2026-11-06T01:48:00"
+    }
+  ]
+}
