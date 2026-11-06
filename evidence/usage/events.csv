@@ -58,3 +58,9 @@
 6000006,demo,anonymous,memory_forget,,0,1,2026-11-06T01:50:46
 6000007,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,6963,3,2026-11-06T01:50:53
 6000008,demo,anonymous,synthesize,"Compare these papers on method, experiments and limitations. Give follow-up reading advice.",8806,3,2026-11-06T01:51:11
+6000009,demo,anonymous,synthesize,How do LLM agent papers handle long-term memory and method comparison? What are their limitations?,5786,3,2026-11-06T02:16:46
+6000010,demo,anonymous,synthesize,How do LLM agent papers handle long-term memory and method comparison? What are their limitations?,5780,3,2026-11-06T02:16:55
+6000011,demo,anonymous,synthesize,比较这些文献在方法、实验设计与局限性上的差异，并给出后续阅读建议。,10851,3,2026-11-06T02:17:08
+6000012,demo,anonymous,synthesize,How do LLM agent papers handle long-term memory and method comparison? What are their limitations?,9965,3,2026-11-06T02:17:58
+6000013,demo,anonymous,synthesize,How do LLM agent papers handle long-term memory and method comparison? What are their limitations?,12824,3,2026-11-06T02:18:14
+6000014,demo,anonymous,synthesize,比较这些文献在方法、实验设计与局限性上的差异，并给出后续阅读建议。,12784,3,2026-11-06T02:18:29
