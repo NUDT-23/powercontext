@@ -1,0 +1,10 @@
+.env
+powercontext.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.seekdb/
+artifacts/seekdb/
+artifacts/run/verify/seekdb/
+.powercontext/

@@ -1,0 +1,53 @@
+{
+  "description": "A task checkpoint was written to PowerContext, the PowerContext server process was stopped and started again, then the checkpoint was read back and the context rebuilt in a fresh Python process.",
+  "generated_at": "2026-11-06T00:40:48Z",
+  "pass": true,
+  "resumed": {
+    "artifact_id": "art_3ead55984be6450d86b9467a3691403e",
+    "completed": [
+      "ingest",
+      "retrieve"
+    ],
+    "context_hash_match": true,
+    "counts": {
+      "code": 4,
+      "specs": 6,
+      "tests": 6
+    },
+    "current_context_hash": "b63716ce5d19f1cf00810c3ce70f3aa6e976b3895dae5df91f72247318c0e004",
+    "db_query_count": 42,
+    "pending": [
+      "generate_patch",
+      "apply_patch",
+      "run_tests",
+      "verify"
+    ],
+    "phase": "context_ready",
+    "process_exit_code": 0,
+    "revision": 1,
+    "saved_context_hash": "b63716ce5d19f1cf00810c3ce70f3aa6e976b3895dae5df91f72247318c0e004",
+    "state_version": 0
+  },
+  "same_artifact": true,
+  "saved": {
+    "artifact_id": "art_3ead55984be6450d86b9467a3691403e",
+    "context_hash": "b63716ce5d19f1cf00810c3ce70f3aa6e976b3895dae5df91f72247318c0e004",
+    "counts": {
+      "code": 4,
+      "specs": 6,
+      "tests": 6
+    },
+    "db_query_count": 42,
+    "revision": 1,
+    "scope_id": "scp_1rbza2bv7zhsb48skdp3fa6fva",
+    "state_version": 0
+  },
+  "server": {
+    "health_after_restart": "ok",
+    "health_after_stop": "down",
+    "new_pid": 5960,
+    "old_pid": 2220,
+    "url": "http://127.0.0.1:18080"
+  },
+  "task_id": "restart-check-20261106"
+}

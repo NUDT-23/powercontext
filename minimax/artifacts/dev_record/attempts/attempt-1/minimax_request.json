@@ -1,0 +1,288 @@
+{
+  "context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460",
+  "generated_at": "2026-11-06T11:08:36Z",
+  "messages": [
+    {
+      "content": "You are a senior Python engineer working in a spec-driven development workflow. You receive the task, the relevant specification sections, the current implementation, and the target tests. Implement the specification exactly and preserve existing behavior. Return one JSON object and nothing else, with exactly these keys: \"analysis\" (string), \"changes\" (array of strings), \"updated_file\" (string with the complete new file content), \"confidence\" (number between 0 and 1). Do not wrap updated_file in markdown fences.",
+      "role": "system"
+    },
+    {
+      "content": "TASK:\nImplement tag filtering and limit validation in search_books per R2-R5\n\nSPECIFICATIONS:\n--- search-requirements.md ---\n# BookVault 搜索规格\n\n本规格是 `bookvault.search.search_books` 的唯一行为依据。实现必须逐条满足 R1-R6，并保持 C1-C3 兼容。\n\n## R1 查询过滤\n\n`search_books` 按 `query` 对图书的 `title` 和 `author` 做不区分大小写的子串匹配；`query` 为空时不做查询过滤。\n\n## R2 多标签 AND 过滤\n\n`tags` 参数用于筛选图书。多个标签之间采用 AND 语义：图书必须同时包含所有有效标签才算匹配。\n\n## R3 空白标签忽略\n\n每个标签先去除两端空白；去除后为空的标签不参与匹配。`tags` 为 `None` 或空列表时不启用标签过滤。\n\n## R4 标签大小写不敏感\n\n标签匹配不区分大小写，例如 `PROGRAMMING` 与 `programming` 等价。\n\n## R5 limit 边界校验\n\n`limit` 必须是 1 到 100（含）之间的整数。`limit` 小于 1 或大于 100 时必须抛出 `ValueError`。\n\n## R6 结果排序\n\n过滤完成后按 `rating` 降序、`id` 升序排列，再按 `limit` 截断。\n\n\n--- compatibility.md ---\n# BookVault 搜索兼容性约束\n\n以下行为在本次修改前后必须保持一致，由回归测试验证。\n\n## C1 原有查询行为\n\n只使用 `query` 调用 `search_books` 时必须保持原有行为：`query` 匹配 `title` 或 `author`，不区分大小写。\n\n## C2 排序稳定\n\n`rating` 相同时按 `id` 升序排列。标签过滤不得改变剩余图书的相对顺序。\n\n## C3 limit 截断\n\n合法的 `limit` 必须作用于排序后的搜索结果，返回条数不得超过 `limit`，不得提前截断或改变排序。\n\n\nTESTS (must pass after your change):\n--- test_search_target.py ---\n\"\"\"Target tests for R2-R5. They must fail before the change and pass after it.\"\"\"\n\nfrom bookvault.data import BOOKS\nfrom bookvault.search import search_books\n\n\ndef ids(books):\n    return [book.id for book in books]\n\n\ndef test_filter_by_single_tag():\n    \"\"\"R2: a single tag filters the catalog.\"\"\"\n    assert ids(search_books(BOOKS, tags=[\"programming\"])) == [2, 1, 3]\n\n\ndef test_multiple_tags_use_and_semantics():\n    \"\"\"R2: multiple tags use AND semantics.\"\"\"\n    assert ids(search_books(BOOKS, tags=[\"programming\", \"design\"])) == [3]\n\n\ndef test_blank_tags_are_ignored():\n    \"\"\"R3: blank and whitespace-only tags are ignored.\"\"\"\n    assert ids(search_books(BOOKS, tags=[\"\", \"   \", \"programming\"])) == [2, 1, 3]\n\n\ndef test_tag_matching_is_case_insensitive():\n    \"\"\"R4: tag matching is case-insensitive.\"\"\"\n    assert ids(search_books(BOOKS, tags=[\"PROGRAMMING\"])) == [2, 1, 3]\n\n\ndef test_unknown_tag_returns_empty():\n    \"\"\"R2: an unknown tag matches no books.\"\"\"\n    assert search_books(BOOKS, tags=[\"nonexistent\"]) == []\n\n\ndef test_limit_out_of_range_raises():\n    \"\"\"R5: limit outside 1..100 raises ValueError.\"\"\"\n    for bad in (0, -1, 101):\n        try:\n            search_books(BOOKS, limit=bad)\n        except ValueError:\n            continue\n        raise AssertionError(f\"limit={bad} should raise ValueError\")\n\n\ndef test_limit_boundary_values_are_accepted():\n    \"\"\"R5: limit 1 and 100 are accepted.\"\"\"\n    assert len(search_books(BOOKS, limit=1)) == 1\n    assert len(search_books(BOOKS, limit=100)) == len(BOOKS)\n\n\n--- test_search_regression.py ---\n\"\"\"Regression tests for C1-C3. They must pass before and after the change.\"\"\"\n\nfrom bookvault.data import BOOKS\nfrom bookvault.search import search_books\n\n\ndef ids(books):\n    return [book.id for book in books]\n\n\ndef test_query_matches_title():\n    \"\"\"C1: query matches title.\"\"\"\n    assert ids(search_books(BOOKS, query=\"python\")) == [5]\n\n\ndef test_query_matches_author_case_insensitive():\n    \"\"\"C1: query matches author case-insensitively.\"\"\"\n    assert ids(search_books(BOOKS, query=\"MARTIN\")) == [1, 3]\n\n\ndef test_empty_query_returns_all():\n    \"\"\"C1: empty query returns all books.\"\"\"\n    assert ids(search_books(BOOKS)) == [2, 1, 3, 4, 5]\n\n\ndef test_results_sorted_by_rating_then_id():\n    \"\"\"C2: rating descending, id ascending.\"\"\"\n    assert ids(search_books(BOOKS, limit=100)) == [2, 1, 3, 4, 5]\n\n\ndef test_limit_truncates_after_sorting():\n    \"\"\"C3: limit truncates after sorting.\"\"\"\n    assert ids(search_books(BOOKS, limit=3)) == [2, 1, 3]\n\n\ndef test_query_and_limit_combined():\n    \"\"\"C1/C3: query and limit combine.\"\"\"\n    assert ids(search_books(BOOKS, query=\"martin\", limit=1)) == [1]\n\n\nRELATED CODE:\n--- __init__.py ---\n\"\"\"BookVault: a small library catalog used as the competition demo project.\"\"\"\n\nfrom .models import Book\nfrom .data import BOOKS\nfrom .search import search_books\n\n__all__ = [\"Book\", \"BOOKS\", \"search_books\"]\n\n\n--- models.py ---\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass Book:\n    id: int\n    title: str\n    author: str\n    tags: tuple[str, ...]\n    year: int\n    rating: float\n\n\nCURRENT FILE (bookvault/search.py):\n```python\n\"\"\"Book search entry point.\n\nSpecs: specs/search-requirements.md (R1-R6), specs/compatibility.md (C1-C3).\n\"\"\"\n\nfrom .models import Book\n\n\ndef search_books(\n    books: list[Book],\n    query: str = \"\",\n    tags: list[str] | None = None,\n    limit: int = 10,\n) -> list[Book]:\n    \"\"\"Return books matching ``query``, sorted by rating then id.\n\n    ``tags`` is part of the public signature so callers can pass filters;\n    tag filtering is implemented by the pending change described in R2-R5.\n    \"\"\"\n    q = (query or \"\").strip().lower()\n    matched: list[Book] = []\n    for book in books:\n        haystack = f\"{book.title} {book.author}\".lower()\n        if q and q not in haystack:\n            continue\n        matched.append(book)\n    matched.sort(key=lambda book: (-book.rating, book.id))\n    return matched[:limit]\n\n```\n\nImplement the task in CURRENT FILE. Keep imports valid, keep the module importable, and do not modify tests. Return the JSON object described in the system instructions.",
+      "role": "user"
+    }
+  ],
+  "model": "MiniMax-M2.5",
+  "sources": [
+    {
+      "kind": "spec",
+      "lines": [
+        21,
+        25
+      ],
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:R5",
+        "keyword:limit",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 10.0,
+      "symbol": "R5 limit 边界校验"
+    },
+    {
+      "kind": "spec",
+      "lines": [
+        9,
+        13
+      ],
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:R2",
+        "keyword:and",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 9.5,
+      "symbol": "R2 多标签 AND 过滤"
+    },
+    {
+      "kind": "spec",
+      "lines": [
+        13,
+        16
+      ],
+      "path": "specs/compatibility.md",
+      "reasons": [
+        "keyword:limit",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.333,
+      "symbol": "C3 limit 截断"
+    },
+    {
+      "kind": "spec",
+      "lines": [
+        5,
+        9
+      ],
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.25,
+      "symbol": "R1 查询过滤"
+    },
+    {
+      "kind": "spec",
+      "lines": [
+        5,
+        9
+      ],
+      "path": "specs/compatibility.md",
+      "reasons": [
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.2,
+      "symbol": "C1 原有查询行为"
+    },
+    {
+      "kind": "spec",
+      "lines": [
+        13,
+        17
+      ],
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "vector",
+        "component:search"
+      ],
+      "score": 2.167,
+      "symbol": "R3 空白标签忽略"
+    },
+    {
+      "kind": "code",
+      "lines": [
+        9,
+        28
+      ],
+      "path": "bookvault/search.py",
+      "reasons": [
+        "keyword:tag",
+        "keyword:filtering",
+        "keyword:and",
+        "keyword:limit",
+        "keyword:in",
+        "keyword:search_books",
+        "vector",
+        "component:search",
+        "requirement:R2,R5"
+      ],
+      "score": 16.0,
+      "symbol": "search_books"
+    },
+    {
+      "kind": "code",
+      "lines": [
+        1,
+        28
+      ],
+      "path": "bookvault/search.py",
+      "reasons": [
+        "vector",
+        "component:search"
+      ],
+      "score": 2.25,
+      "symbol": "<module>"
+    },
+    {
+      "kind": "code",
+      "lines": [
+        1,
+        7
+      ],
+      "path": "bookvault/__init__.py",
+      "reasons": [
+        "vector"
+      ],
+      "score": 0.5,
+      "symbol": "<module>"
+    },
+    {
+      "kind": "code",
+      "lines": [
+        5,
+        11
+      ],
+      "path": "bookvault/models.py",
+      "reasons": [
+        "vector"
+      ],
+      "score": 0.333,
+      "symbol": "Book"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        46,
+        49
+      ],
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R5",
+        "keyword:and",
+        "keyword:limit",
+        "keyword:search_books",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 13.5,
+      "symbol": "test_limit_boundary_values_are_accepted"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        36,
+        43
+      ],
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R5",
+        "keyword:limit",
+        "keyword:in",
+        "keyword:search_books",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 13.25,
+      "symbol": "test_limit_out_of_range_raises"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        16,
+        18
+      ],
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:and",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 12.0,
+      "symbol": "test_multiple_tags_use_and_semantics"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        31,
+        33
+      ],
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:tag",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 11.2,
+      "symbol": "test_unknown_tag_returns_empty"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        11,
+        13
+      ],
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:tag",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 11.167,
+      "symbol": "test_filter_by_single_tag"
+    },
+    {
+      "kind": "test",
+      "lines": [
+        36,
+        38
+      ],
+      "path": "tests/test_search_regression.py",
+      "reasons": [
+        "keyword:and",
+        "keyword:limit",
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 6.143,
+      "symbol": "test_query_and_limit_combined"
+    }
+  ],
+  "temperature": 0.2
+}

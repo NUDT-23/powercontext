@@ -1,0 +1,318 @@
+{
+  "bundle": {
+    "context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460",
+    "counts": {
+      "code": 4,
+      "specs": 6,
+      "tests": 6
+    },
+    "db_query_count": 42,
+    "generated_at": "2026-11-06T11:08:25Z",
+    "sources": [
+      {
+        "kind": "spec",
+        "lines": [
+          21,
+          25
+        ],
+        "path": "specs/search-requirements.md",
+        "reasons": [
+          "keyword:R5",
+          "keyword:limit",
+          "keyword:r5",
+          "vector",
+          "component:search",
+          "requirement:R5"
+        ],
+        "score": 10.0,
+        "symbol": "R5 limit 边界校验"
+      },
+      {
+        "kind": "spec",
+        "lines": [
+          9,
+          13
+        ],
+        "path": "specs/search-requirements.md",
+        "reasons": [
+          "keyword:R2",
+          "keyword:and",
+          "keyword:r2",
+          "vector",
+          "component:search",
+          "requirement:R2"
+        ],
+        "score": 9.5,
+        "symbol": "R2 多标签 AND 过滤"
+      },
+      {
+        "kind": "spec",
+        "lines": [
+          13,
+          16
+        ],
+        "path": "specs/compatibility.md",
+        "reasons": [
+          "keyword:limit",
+          "vector",
+          "component:search"
+        ],
+        "score": 2.333,
+        "symbol": "C3 limit 截断"
+      },
+      {
+        "kind": "spec",
+        "lines": [
+          5,
+          9
+        ],
+        "path": "specs/search-requirements.md",
+        "reasons": [
+          "keyword:search_books",
+          "vector",
+          "component:search"
+        ],
+        "score": 2.25,
+        "symbol": "R1 查询过滤"
+      },
+      {
+        "kind": "spec",
+        "lines": [
+          5,
+          9
+        ],
+        "path": "specs/compatibility.md",
+        "reasons": [
+          "keyword:search_books",
+          "vector",
+          "component:search"
+        ],
+        "score": 2.2,
+        "symbol": "C1 原有查询行为"
+      },
+      {
+        "kind": "spec",
+        "lines": [
+          13,
+          17
+        ],
+        "path": "specs/search-requirements.md",
+        "reasons": [
+          "vector",
+          "component:search"
+        ],
+        "score": 2.167,
+        "symbol": "R3 空白标签忽略"
+      },
+      {
+        "kind": "code",
+        "lines": [
+          9,
+          28
+        ],
+        "path": "bookvault/search.py",
+        "reasons": [
+          "keyword:tag",
+          "keyword:filtering",
+          "keyword:and",
+          "keyword:limit",
+          "keyword:in",
+          "keyword:search_books",
+          "vector",
+          "component:search",
+          "requirement:R2,R5"
+        ],
+        "score": 16.0,
+        "symbol": "search_books"
+      },
+      {
+        "kind": "code",
+        "lines": [
+          1,
+          28
+        ],
+        "path": "bookvault/search.py",
+        "reasons": [
+          "vector",
+          "component:search"
+        ],
+        "score": 2.25,
+        "symbol": "<module>"
+      },
+      {
+        "kind": "code",
+        "lines": [
+          1,
+          7
+        ],
+        "path": "bookvault/__init__.py",
+        "reasons": [
+          "vector"
+        ],
+        "score": 0.5,
+        "symbol": "<module>"
+      },
+      {
+        "kind": "code",
+        "lines": [
+          5,
+          11
+        ],
+        "path": "bookvault/models.py",
+        "reasons": [
+          "vector"
+        ],
+        "score": 0.333,
+        "symbol": "Book"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          46,
+          49
+        ],
+        "path": "tests/test_search_target.py",
+        "reasons": [
+          "keyword:R5",
+          "keyword:and",
+          "keyword:limit",
+          "keyword:search_books",
+          "keyword:r5",
+          "vector",
+          "component:search",
+          "requirement:R5"
+        ],
+        "score": 13.5,
+        "symbol": "test_limit_boundary_values_are_accepted"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          36,
+          43
+        ],
+        "path": "tests/test_search_target.py",
+        "reasons": [
+          "keyword:R5",
+          "keyword:limit",
+          "keyword:in",
+          "keyword:search_books",
+          "keyword:r5",
+          "vector",
+          "component:search",
+          "requirement:R5"
+        ],
+        "score": 13.25,
+        "symbol": "test_limit_out_of_range_raises"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          16,
+          18
+        ],
+        "path": "tests/test_search_target.py",
+        "reasons": [
+          "keyword:R2",
+          "keyword:and",
+          "keyword:search_books",
+          "keyword:r2",
+          "vector",
+          "component:search",
+          "requirement:R2"
+        ],
+        "score": 12.0,
+        "symbol": "test_multiple_tags_use_and_semantics"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          31,
+          33
+        ],
+        "path": "tests/test_search_target.py",
+        "reasons": [
+          "keyword:R2",
+          "keyword:tag",
+          "keyword:search_books",
+          "keyword:r2",
+          "vector",
+          "component:search",
+          "requirement:R2"
+        ],
+        "score": 11.2,
+        "symbol": "test_unknown_tag_returns_empty"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          11,
+          13
+        ],
+        "path": "tests/test_search_target.py",
+        "reasons": [
+          "keyword:R2",
+          "keyword:tag",
+          "keyword:search_books",
+          "keyword:r2",
+          "vector",
+          "component:search",
+          "requirement:R2"
+        ],
+        "score": 11.167,
+        "symbol": "test_filter_by_single_tag"
+      },
+      {
+        "kind": "test",
+        "lines": [
+          36,
+          38
+        ],
+        "path": "tests/test_search_regression.py",
+        "reasons": [
+          "keyword:and",
+          "keyword:limit",
+          "keyword:search_books",
+          "vector",
+          "component:search"
+        ],
+        "score": 6.143,
+        "symbol": "test_query_and_limit_combined"
+      }
+    ],
+    "state_reused": true,
+    "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+    "task_id": "verify-8e47ffd7"
+  },
+  "context_hash_match": true,
+  "current_context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460",
+  "resumed_at": "2026-11-06T11:08:25Z",
+  "saved_context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460",
+  "scope_id": "scp_1rbza2bv7zhsb48skdp3fa6fva",
+  "state": {
+    "completed": [
+      "ingest",
+      "retrieve"
+    ],
+    "context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460",
+    "extra": {},
+    "pending": [
+      "generate_patch",
+      "apply_patch",
+      "run_tests"
+    ],
+    "phase": "context_ready",
+    "saved_at": "2026-11-06T11:08:19Z",
+    "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+    "task_id": "verify-8e47ffd7",
+    "verification": {
+      "context_hash": "2ea03be7a35c3dbfe6875916b3278504ea0f87060de7958741200a3d74ee7460"
+    }
+  },
+  "state_record": {
+    "artifact_id": "art_bb66e8c48b2c482e9c80d552ca2775af",
+    "revision": 1,
+    "state": "active",
+    "state_version": 0
+  }
+}

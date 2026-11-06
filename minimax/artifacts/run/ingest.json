@@ -1,0 +1,298 @@
+{
+  "by_kind": {
+    "code": 4,
+    "spec": 11,
+    "test": 15
+  },
+  "collection": "sdd_documents",
+  "database": "sdd_context",
+  "db_path": "/root/.sdd_context/seekdb",
+  "documents": 30,
+  "generated_at": "2026-11-06T11:10:00Z",
+  "project_dir": "/mnt/z/osbase/MiniMax/minimax/demo_project",
+  "pruned": 0,
+  "sources": [
+    {
+      "content_hash": "c2096900ec7da8dcbc57adb3f5690cbde18e9b681b28bafaf209a9ed55628627",
+      "id": "spec:specs/compatibility.md:preamble",
+      "kind": "spec",
+      "line_end": 5,
+      "line_start": 1,
+      "path": "specs/compatibility.md",
+      "symbol": "preamble"
+    },
+    {
+      "content_hash": "591c2aebda817cbb7e2fead007375ee7a13964661b387fc55a97319c05e927d4",
+      "id": "spec:specs/compatibility.md:C1",
+      "kind": "spec",
+      "line_end": 9,
+      "line_start": 5,
+      "path": "specs/compatibility.md",
+      "symbol": "C1 原有查询行为"
+    },
+    {
+      "content_hash": "49aa9c434bafc9145dc72452739594f1e01ae8b78203925a1f8da127e738e0bd",
+      "id": "spec:specs/compatibility.md:C2",
+      "kind": "spec",
+      "line_end": 13,
+      "line_start": 9,
+      "path": "specs/compatibility.md",
+      "symbol": "C2 排序稳定"
+    },
+    {
+      "content_hash": "73ff864d7ea13b2f68bc192786133c18cd8085ffb275b2b2f7d171e58f4dc410",
+      "id": "spec:specs/compatibility.md:C3",
+      "kind": "spec",
+      "line_end": 16,
+      "line_start": 13,
+      "path": "specs/compatibility.md",
+      "symbol": "C3 limit 截断"
+    },
+    {
+      "content_hash": "ca83138224633cde73f0cbd3b22848852badd5e758f96915c4dec861bfca5088",
+      "id": "spec:specs/search-requirements.md:C1",
+      "kind": "spec",
+      "line_end": 5,
+      "line_start": 1,
+      "path": "specs/search-requirements.md",
+      "symbol": "preamble"
+    },
+    {
+      "content_hash": "e458c816ce6ee134ce8b715cad92635ea5f19e710f46b4dbec5ab6b386774c0a",
+      "id": "spec:specs/search-requirements.md:R1",
+      "kind": "spec",
+      "line_end": 9,
+      "line_start": 5,
+      "path": "specs/search-requirements.md",
+      "symbol": "R1 查询过滤"
+    },
+    {
+      "content_hash": "7cd37deff51d62940bd00e11eb1127bcbc3f6eb2f07e7143cb7fce2ff782b8ef",
+      "id": "spec:specs/search-requirements.md:R2",
+      "kind": "spec",
+      "line_end": 13,
+      "line_start": 9,
+      "path": "specs/search-requirements.md",
+      "symbol": "R2 多标签 AND 过滤"
+    },
+    {
+      "content_hash": "f168f400a5d967fc77cec37b7509235f06904b60ac4fab4e91af54f915c88739",
+      "id": "spec:specs/search-requirements.md:R3",
+      "kind": "spec",
+      "line_end": 17,
+      "line_start": 13,
+      "path": "specs/search-requirements.md",
+      "symbol": "R3 空白标签忽略"
+    },
+    {
+      "content_hash": "04d67d5dde8b2d43df52729416288819c5d4cfdf136ef2756f3654b826286b1e",
+      "id": "spec:specs/search-requirements.md:R4",
+      "kind": "spec",
+      "line_end": 21,
+      "line_start": 17,
+      "path": "specs/search-requirements.md",
+      "symbol": "R4 标签大小写不敏感"
+    },
+    {
+      "content_hash": "3b288a8cc25cb5e1669f0ee6bacc68f9c82c4f11d30e1ed3e99e36a62daa67f0",
+      "id": "spec:specs/search-requirements.md:R5",
+      "kind": "spec",
+      "line_end": 25,
+      "line_start": 21,
+      "path": "specs/search-requirements.md",
+      "symbol": "R5 limit 边界校验"
+    },
+    {
+      "content_hash": "e0387f4ea84eb048fd95f5fbeb64530b42116a142e448afb5c86d00a63b53248",
+      "id": "spec:specs/search-requirements.md:R6",
+      "kind": "spec",
+      "line_end": 28,
+      "line_start": 25,
+      "path": "specs/search-requirements.md",
+      "symbol": "R6 结果排序"
+    },
+    {
+      "content_hash": "99aa6424124d12232f8b75fb396bf8f485f21f235149ca5a69f06c3ca1b2e4ad",
+      "id": "code:bookvault/__init__.py:<module>",
+      "kind": "code",
+      "line_end": 7,
+      "line_start": 1,
+      "path": "bookvault/__init__.py",
+      "symbol": "<module>"
+    },
+    {
+      "content_hash": "f103ca855eb1b861629a52a157f4438e3e553385e2bbb09e337bba847bc733ac",
+      "id": "code:bookvault/models.py:Book",
+      "kind": "code",
+      "line_end": 11,
+      "line_start": 5,
+      "path": "bookvault/models.py",
+      "symbol": "Book"
+    },
+    {
+      "content_hash": "939b3778ac8eabc8fc04f9b4c89f78ebff8c40eeb353bd22a65c61054bac03d2",
+      "id": "code:bookvault/search.py:<module>",
+      "kind": "code",
+      "line_end": 44,
+      "line_start": 1,
+      "path": "bookvault/search.py",
+      "symbol": "<module>"
+    },
+    {
+      "content_hash": "e9559ca2a510aaa60e180b05573171e9d4608696a75dbf3e7f66610a8bd861ae",
+      "id": "code:bookvault/search.py:search_books",
+      "kind": "code",
+      "line_end": 44,
+      "line_start": 9,
+      "path": "bookvault/search.py",
+      "symbol": "search_books"
+    },
+    {
+      "content_hash": "466482ed6e495ffcc649f102b9d45b1f053777aa3562b73411fb72c1ddf85e7e",
+      "id": "test:tests/test_search_regression.py:<module>",
+      "kind": "test",
+      "line_end": 38,
+      "line_start": 1,
+      "path": "tests/test_search_regression.py",
+      "symbol": "<module>"
+    },
+    {
+      "content_hash": "e4aa21742caa5b0c30b1f9c8546fa0d65637342f084aef5356e599bfebbca94a",
+      "id": "test:tests/test_search_regression.py:test_query_matches_title",
+      "kind": "test",
+      "line_end": 13,
+      "line_start": 11,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_query_matches_title"
+    },
+    {
+      "content_hash": "d4df0d9580a160715912517c1420082231175170f60fce478fb00b0e14a99214",
+      "id": "test:tests/test_search_regression.py:test_query_matches_author_case_insensitive",
+      "kind": "test",
+      "line_end": 18,
+      "line_start": 16,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_query_matches_author_case_insensitive"
+    },
+    {
+      "content_hash": "bcf1e85a2f4f58af4d93fe035f3405f9eef47cf5c0bb15ebe78860f2756cbb1a",
+      "id": "test:tests/test_search_regression.py:test_empty_query_returns_all",
+      "kind": "test",
+      "line_end": 23,
+      "line_start": 21,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_empty_query_returns_all"
+    },
+    {
+      "content_hash": "072f9c2fe35096b7e8dc6622af4d8ace605ff351b720e61e5d1e1ef1f3996ced",
+      "id": "test:tests/test_search_regression.py:test_results_sorted_by_rating_then_id",
+      "kind": "test",
+      "line_end": 28,
+      "line_start": 26,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_results_sorted_by_rating_then_id"
+    },
+    {
+      "content_hash": "da5bba25bb51984ec1620c9883c55d8823f3a64fdb9df3191171f71b11846b50",
+      "id": "test:tests/test_search_regression.py:test_limit_truncates_after_sorting",
+      "kind": "test",
+      "line_end": 33,
+      "line_start": 31,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_limit_truncates_after_sorting"
+    },
+    {
+      "content_hash": "4926ea82b9cf79a7a5f50c34ddce0f736eb947126ab73c54ca18750574e5c341",
+      "id": "test:tests/test_search_regression.py:test_query_and_limit_combined",
+      "kind": "test",
+      "line_end": 38,
+      "line_start": 36,
+      "path": "tests/test_search_regression.py",
+      "symbol": "test_query_and_limit_combined"
+    },
+    {
+      "content_hash": "8e5af2faa6c8f96aa9dc7ef3512bb780db6cae287788cd1e8ab4286298d208b1",
+      "id": "test:tests/test_search_target.py:<module>",
+      "kind": "test",
+      "line_end": 49,
+      "line_start": 1,
+      "path": "tests/test_search_target.py",
+      "symbol": "<module>"
+    },
+    {
+      "content_hash": "1aa1b95ac2a2b553f1704bffddb5645485a13d75059c3a90186b637f7cf511c9",
+      "id": "test:tests/test_search_target.py:test_filter_by_single_tag",
+      "kind": "test",
+      "line_end": 13,
+      "line_start": 11,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_filter_by_single_tag"
+    },
+    {
+      "content_hash": "4740c7e083432a4aa1165d35142379b1b4f5b9bc8595bcbedc35001eefcda690",
+      "id": "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+      "kind": "test",
+      "line_end": 18,
+      "line_start": 16,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_multiple_tags_use_and_semantics"
+    },
+    {
+      "content_hash": "91bdd7f63387a68ee3a36d1f6217083fb4095fe3475c1ed76bbcf18fc5fe9f03",
+      "id": "test:tests/test_search_target.py:test_blank_tags_are_ignored",
+      "kind": "test",
+      "line_end": 23,
+      "line_start": 21,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_blank_tags_are_ignored"
+    },
+    {
+      "content_hash": "ae8b3a6afa582482df35cb3153820043224fe2e2900003d616ee93dcc1f54133",
+      "id": "test:tests/test_search_target.py:test_tag_matching_is_case_insensitive",
+      "kind": "test",
+      "line_end": 28,
+      "line_start": 26,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_tag_matching_is_case_insensitive"
+    },
+    {
+      "content_hash": "0e4daaea084949117666deab47e31df002dde60a58b28fae54ae21b9f7c0bc13",
+      "id": "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+      "kind": "test",
+      "line_end": 33,
+      "line_start": 31,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_unknown_tag_returns_empty"
+    },
+    {
+      "content_hash": "5053e03896e71a06f8303d503992d10feba8a8d156b72dc644ebff6619489158",
+      "id": "test:tests/test_search_target.py:test_limit_out_of_range_raises",
+      "kind": "test",
+      "line_end": 43,
+      "line_start": 36,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_limit_out_of_range_raises"
+    },
+    {
+      "content_hash": "f2db729bb02332997dfba5c52488854e3b0baff21e145dde3272498a748af51d",
+      "id": "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+      "kind": "test",
+      "line_end": 49,
+      "line_start": 46,
+      "path": "tests/test_search_target.py",
+      "symbol": "test_limit_boundary_values_are_accepted"
+    }
+  ],
+  "stats": {
+    "by_kind": {
+      "code": 4,
+      "spec": 11,
+      "test": 15
+    },
+    "collection": "sdd_documents",
+    "database": "sdd_context",
+    "db_path": "/root/.sdd_context/seekdb",
+    "total": 30
+  },
+  "upserted": 30
+}

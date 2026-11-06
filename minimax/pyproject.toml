@@ -1,0 +1,24 @@
+[project]
+name = "sdd-context"
+version = "0.1.0"
+description = "Spec-driven development context module for the MiniMax x OceanBase competition"
+requires-python = ">=3.11,<4"
+dependencies = [
+    "pyseekdb>=1.4.0,<2",
+    "httpx>=0.27,<1",
+    "openai>=1.40,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[project.scripts]
+sdd-context = "sdd_context.cli:main"
+sdd-verify = "sdd_context.verify:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sdd_context"]

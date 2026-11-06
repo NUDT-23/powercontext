@@ -1,0 +1,27 @@
+{
+  "base_sha256": "e72d7c8cbd5ed5eaa169ec58c37b6fb215d0ed4ef70143e3b39fbdf4ea1987d2",
+  "confidence": 0.99,
+  "generated_at": "2026-11-06T11:08:36Z",
+  "model": "MiniMax-M2.5",
+  "patch_sha256": "b23b39ec4b8b1fc8cc3b4f8d2984d1bda4a2d8897a58641413c568f319d62023",
+  "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+  "task_id": "verify-8e47ffd7",
+  "updated_sha256": "8b29dd2b602bd1d7a1208acafb89bde3905093207abfd14df8a34def913d8334",
+  "usage": {
+    "completion_tokens": 906,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 401,
+      "rejected_prediction_tokens": null
+    },
+    "prompt_tokens": 1825,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 128
+    },
+    "total_characters": 0,
+    "total_tokens": 2731
+  }
+}

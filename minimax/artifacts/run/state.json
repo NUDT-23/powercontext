@@ -1,0 +1,29 @@
+{
+  "completed": [
+    "ingest",
+    "retrieve"
+  ],
+  "context_hash": "6d5643fa86e2d1dce762c9f94044bec7ba1266328b882fc60e33ce643bb20cee",
+  "extra": {},
+  "pending": [
+    "generate_patch",
+    "apply_patch",
+    "run_tests",
+    "verify"
+  ],
+  "phase": "context_ready",
+  "saved_at": "2026-11-06T11:10:00Z",
+  "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+  "task_id": "demo-task",
+  "verification": {
+    "ingest": {
+      "by_kind": {
+        "code": 4,
+        "spec": 11,
+        "test": 15
+      },
+      "documents": 30,
+      "total_in_db": 30
+    }
+  }
+}

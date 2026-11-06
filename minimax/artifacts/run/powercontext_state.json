@@ -1,0 +1,10 @@
+{
+  "artifact": {
+    "artifact_id": "art_9f4d7a082e4f45e9813e96150fedb605",
+    "family": "atomic-memory",
+    "revision": 1
+  },
+  "changed": true,
+  "scope_id": "scp_1rbza2bv7zhsb48skdp3fa6fva",
+  "state_version": 0
+}

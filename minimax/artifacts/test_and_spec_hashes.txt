@@ -1,0 +1,25 @@
+# SHA-256 evidence
+
+## Test files (before / after MiniMax change)
+tests/conftest.py
+  before: 95adff6357f38e70944d173b4ccbf31692145b1b61314192ee10add76f7e3d8c
+  after:  95adff6357f38e70944d173b4ccbf31692145b1b61314192ee10add76f7e3d8c
+  unchanged: True
+tests/test_search_regression.py
+  before: ed4666941c301fde43d7cf3c10fa18466b02572ccfd39911ec919f7f7d4e82b5
+  after:  ed4666941c301fde43d7cf3c10fa18466b02572ccfd39911ec919f7f7d4e82b5
+  unchanged: True
+tests/test_search_target.py
+  before: f8382b3593d931f35e35d5cafc70e9cf0b8f4e6604d19baee93fc072ec6d8c4e
+  after:  f8382b3593d931f35e35d5cafc70e9cf0b8f4e6604d19baee93fc072ec6d8c4e
+  unchanged: True
+
+## Spec files (before / after re-ingest experiment)
+specs/compatibility.md
+  before: a33165898668982a50786598bd8f06b9471c96e57d23782e9b7ad482c873cfed
+  after:  a33165898668982a50786598bd8f06b9471c96e57d23782e9b7ad482c873cfed
+  restored: True
+specs/search-requirements.md
+  before: 7dd3d17f1c6000e8889db140c9f395a36239471f5963904a1625bc2bd4bd4bff
+  after:  7dd3d17f1c6000e8889db140c9f395a36239471f5963904a1625bc2bd4bd4bff
+  restored: True

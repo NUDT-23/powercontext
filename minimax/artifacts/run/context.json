@@ -1,0 +1,1190 @@
+{
+  "code": [
+    {
+      "excerpt": "[code] bookvault/search.py :: bookvault/search.py:search_books def search_books(     books: list[Book],     query: str = \"\",     tags: list[str] | None = None,     limit: int = 10, ) -> list[Book]:     \"\"\"Return books matching ``query`` and ``tags``, sorted by rating then id.\"\"\"     if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <",
+      "heading": "bookvault/search.py:search_books",
+      "id": "code:bookvault/search.py:search_books",
+      "kind": "code",
+      "line_end": 44,
+      "line_start": 9,
+      "metadata": {
+        "component": "search",
+        "content_hash": "e9559ca2a510aaa60e180b05573171e9d4608696a75dbf3e7f66610a8bd861ae",
+        "heading": "bookvault/search.py:search_books",
+        "kind": "code",
+        "line_end": 44,
+        "line_start": 9,
+        "path": "bookvault/search.py",
+        "requirement_ids": "",
+        "symbol": "search_books"
+      },
+      "path": "bookvault/search.py",
+      "reasons": [
+        "keyword:tag",
+        "keyword:and",
+        "keyword:limit",
+        "keyword:in",
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 11.0,
+      "symbol": "search_books"
+    },
+    {
+      "excerpt": "[code] bookvault/search.py :: bookvault/search.py:module Book search entry point.  Specs: specs/search-requirements.md (R1-R6), specs/compatibility.md (C1-C3).",
+      "heading": "bookvault/search.py:module",
+      "id": "code:bookvault/search.py:<module>",
+      "kind": "code",
+      "line_end": 44,
+      "line_start": 1,
+      "metadata": {
+        "component": "search",
+        "content_hash": "939b3778ac8eabc8fc04f9b4c89f78ebff8c40eeb353bd22a65c61054bac03d2",
+        "heading": "bookvault/search.py:module",
+        "kind": "code",
+        "line_end": 44,
+        "line_start": 1,
+        "path": "bookvault/search.py",
+        "symbol": "<module>"
+      },
+      "path": "bookvault/search.py",
+      "reasons": [
+        "vector",
+        "component:search"
+      ],
+      "score": 2.25,
+      "symbol": "<module>"
+    },
+    {
+      "excerpt": "[code] bookvault/__init__.py :: bookvault/__init__.py:module BookVault: a small library catalog used as the competition demo project.",
+      "heading": "bookvault/__init__.py:module",
+      "id": "code:bookvault/__init__.py:<module>",
+      "kind": "code",
+      "line_end": 7,
+      "line_start": 1,
+      "metadata": {
+        "component": "general",
+        "content_hash": "99aa6424124d12232f8b75fb396bf8f485f21f235149ca5a69f06c3ca1b2e4ad",
+        "heading": "bookvault/__init__.py:module",
+        "kind": "code",
+        "line_end": 7,
+        "line_start": 1,
+        "path": "bookvault/__init__.py",
+        "symbol": "<module>"
+      },
+      "path": "bookvault/__init__.py",
+      "reasons": [
+        "vector"
+      ],
+      "score": 0.5,
+      "symbol": "<module>"
+    },
+    {
+      "excerpt": "[code] bookvault/models.py :: bookvault/models.py:Book class Book:     id: int     title: str     author: str     tags: tuple[str, ...]     year: int     rating: float",
+      "heading": "bookvault/models.py:Book",
+      "id": "code:bookvault/models.py:Book",
+      "kind": "code",
+      "line_end": 11,
+      "line_start": 5,
+      "metadata": {
+        "component": "auth",
+        "content_hash": "f103ca855eb1b861629a52a157f4438e3e553385e2bbb09e337bba847bc733ac",
+        "heading": "bookvault/models.py:Book",
+        "kind": "code",
+        "line_end": 11,
+        "line_start": 5,
+        "path": "bookvault/models.py",
+        "requirement_ids": "",
+        "symbol": "Book"
+      },
+      "path": "bookvault/models.py",
+      "reasons": [
+        "vector"
+      ],
+      "score": 0.333,
+      "symbol": "Book"
+    }
+  ],
+  "context_hash": "6d5643fa86e2d1dce762c9f94044bec7ba1266328b882fc60e33ce643bb20cee",
+  "db_queries": [
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "R2"
+        }
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R2"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "R5"
+        }
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R5"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "implement"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "tag"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "filtering"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "and"
+        }
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R2"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "limit"
+        }
+      },
+      "result_ids": [
+        "spec:specs/compatibility.md:C3",
+        "spec:specs/search-requirements.md:R5",
+        "spec:specs/search-requirements.md:R6"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "validation"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "in"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "search_books"
+        }
+      },
+      "result_ids": [
+        "spec:specs/compatibility.md:C1",
+        "spec:specs/search-requirements.md:R1"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "per"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "r2"
+        }
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R2"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "spec"
+        },
+        "where_document": {
+          "$contains": "r5"
+        }
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R5"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "spec",
+      "method": "query",
+      "params": {
+        "n_results": 18,
+        "query_text": "R2 R5 implement tag filtering and limit validation in search_books per r2 r5"
+      },
+      "result_ids": [
+        "spec:specs/search-requirements.md:R5",
+        "spec:specs/search-requirements.md:R2",
+        "spec:specs/compatibility.md:C3",
+        "spec:specs/search-requirements.md:R1",
+        "spec:specs/compatibility.md:C1",
+        "spec:specs/search-requirements.md:R3",
+        "spec:specs/search-requirements.md:R6",
+        "spec:specs/search-requirements.md:C1",
+        "spec:specs/search-requirements.md:R4",
+        "spec:specs/compatibility.md:C2",
+        "spec:specs/compatibility.md:preamble"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "R2"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "R5"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "implement"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "tag"
+        }
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "filtering"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "and"
+        }
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "limit"
+        }
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "validation"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "in"
+        }
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "search_books"
+        }
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "per"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "r2"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "code"
+        },
+        "where_document": {
+          "$contains": "r5"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "code",
+      "method": "query",
+      "params": {
+        "n_results": 18,
+        "query_text": "R2 R5 implement tag filtering and limit validation in search_books per r2 r5"
+      },
+      "result_ids": [
+        "code:bookvault/search.py:search_books",
+        "code:bookvault/__init__.py:<module>",
+        "code:bookvault/models.py:Book",
+        "code:bookvault/search.py:<module>"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "R2"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "test:tests/test_search_target.py:test_filter_by_single_tag"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "R5"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "implement"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "tag"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "test:tests/test_search_target.py:test_tag_matching_is_case_insensitive",
+        "test:tests/test_search_target.py:test_filter_by_single_tag"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "filtering"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "and"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_regression.py:<module>",
+        "test:tests/test_search_target.py:<module>",
+        "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "test:tests/test_search_regression.py:test_query_and_limit_combined",
+        "test:tests/test_search_target.py:test_blank_tags_are_ignored",
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "limit"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "test:tests/test_search_regression.py:test_limit_truncates_after_sorting",
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises",
+        "test:tests/test_search_regression.py:test_query_and_limit_combined",
+        "test:tests/test_search_regression.py:test_results_sorted_by_rating_then_id"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "validation"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "in"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "search_books"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "test:tests/test_search_regression.py:test_query_matches_title",
+        "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "test:tests/test_search_regression.py:test_query_matches_author_case_insensitive",
+        "test:tests/test_search_regression.py:test_limit_truncates_after_sorting",
+        "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "test:tests/test_search_target.py:test_tag_matching_is_case_insensitive",
+        "test:tests/test_search_regression.py:test_empty_query_returns_all",
+        "test:tests/test_search_regression.py:test_query_and_limit_combined",
+        "test:tests/test_search_target.py:test_blank_tags_are_ignored",
+        "test:tests/test_search_regression.py:test_results_sorted_by_rating_then_id",
+        "test:tests/test_search_target.py:test_filter_by_single_tag",
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "per"
+        }
+      },
+      "result_ids": [],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "r2"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "test:tests/test_search_target.py:test_filter_by_single_tag"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "get",
+      "params": {
+        "where": {
+          "kind": "test"
+        },
+        "where_document": {
+          "$contains": "r5"
+        }
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    },
+    {
+      "kind": "test",
+      "method": "query",
+      "params": {
+        "n_results": 18,
+        "query_text": "R2 R5 implement tag filtering and limit validation in search_books per r2 r5"
+      },
+      "result_ids": [
+        "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "test:tests/test_search_target.py:<module>",
+        "test:tests/test_search_target.py:test_limit_out_of_range_raises",
+        "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "test:tests/test_search_target.py:test_filter_by_single_tag",
+        "test:tests/test_search_regression.py:test_query_and_limit_combined",
+        "test:tests/test_search_regression.py:test_limit_truncates_after_sorting",
+        "test:tests/test_search_target.py:test_tag_matching_is_case_insensitive",
+        "test:tests/test_search_regression.py:test_results_sorted_by_rating_then_id",
+        "test:tests/test_search_regression.py:<module>",
+        "test:tests/test_search_regression.py:test_query_matches_title",
+        "test:tests/test_search_regression.py:test_query_matches_author_case_insensitive",
+        "test:tests/test_search_regression.py:test_empty_query_returns_all",
+        "test:tests/test_search_target.py:test_blank_tags_are_ignored"
+      ],
+      "ts": "2026-11-06T11:10:00Z"
+    }
+  ],
+  "generated_at": "2026-11-06T11:10:00Z",
+  "specs": [
+    {
+      "excerpt": "[spec] specs/search-requirements.md :: R5 limit 边界校验 ## R5 limit 边界校验  `limit` 必须是 1 到 100（含）之间的整数。`limit` 小于 1 或大于 100 时必须抛出 `ValueError`。",
+      "heading": "R5 limit 边界校验",
+      "id": "spec:specs/search-requirements.md:R5",
+      "kind": "spec",
+      "line_end": 25,
+      "line_start": 21,
+      "metadata": {
+        "component": "search",
+        "content_hash": "3b288a8cc25cb5e1669f0ee6bacc68f9c82c4f11d30e1ed3e99e36a62daa67f0",
+        "heading": "R5 limit 边界校验",
+        "kind": "spec",
+        "line_end": 25,
+        "line_start": 21,
+        "path": "specs/search-requirements.md",
+        "requirement_ids": "R5",
+        "symbol": "R5 limit 边界校验"
+      },
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:R5",
+        "keyword:limit",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 10.0,
+      "symbol": "R5 limit 边界校验"
+    },
+    {
+      "excerpt": "[spec] specs/search-requirements.md :: R2 多标签 AND 过滤 ## R2 多标签 AND 过滤  `tags` 参数用于筛选图书。多个标签之间采用 AND 语义：图书必须同时包含所有有效标签才算匹配。",
+      "heading": "R2 多标签 AND 过滤",
+      "id": "spec:specs/search-requirements.md:R2",
+      "kind": "spec",
+      "line_end": 13,
+      "line_start": 9,
+      "metadata": {
+        "component": "search",
+        "content_hash": "7cd37deff51d62940bd00e11eb1127bcbc3f6eb2f07e7143cb7fce2ff782b8ef",
+        "heading": "R2 多标签 AND 过滤",
+        "kind": "spec",
+        "line_end": 13,
+        "line_start": 9,
+        "path": "specs/search-requirements.md",
+        "requirement_ids": "R2",
+        "symbol": "R2 多标签 AND 过滤"
+      },
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:R2",
+        "keyword:and",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 9.5,
+      "symbol": "R2 多标签 AND 过滤"
+    },
+    {
+      "excerpt": "[spec] specs/compatibility.md :: C3 limit 截断 ## C3 limit 截断  合法的 `limit` 必须作用于排序后的搜索结果，返回条数不得超过 `limit`，不得提前截断或改变排序。",
+      "heading": "C3 limit 截断",
+      "id": "spec:specs/compatibility.md:C3",
+      "kind": "spec",
+      "line_end": 16,
+      "line_start": 13,
+      "metadata": {
+        "component": "search",
+        "content_hash": "73ff864d7ea13b2f68bc192786133c18cd8085ffb275b2b2f7d171e58f4dc410",
+        "heading": "C3 limit 截断",
+        "kind": "spec",
+        "line_end": 16,
+        "line_start": 13,
+        "path": "specs/compatibility.md",
+        "requirement_ids": "C3",
+        "symbol": "C3 limit 截断"
+      },
+      "path": "specs/compatibility.md",
+      "reasons": [
+        "keyword:limit",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.333,
+      "symbol": "C3 limit 截断"
+    },
+    {
+      "excerpt": "[spec] specs/search-requirements.md :: R1 查询过滤 ## R1 查询过滤  `search_books` 按 `query` 对图书的 `title` 和 `author` 做不区分大小写的子串匹配；`query` 为空时不做查询过滤。",
+      "heading": "R1 查询过滤",
+      "id": "spec:specs/search-requirements.md:R1",
+      "kind": "spec",
+      "line_end": 9,
+      "line_start": 5,
+      "metadata": {
+        "component": "search",
+        "content_hash": "e458c816ce6ee134ce8b715cad92635ea5f19e710f46b4dbec5ab6b386774c0a",
+        "heading": "R1 查询过滤",
+        "kind": "spec",
+        "line_end": 9,
+        "line_start": 5,
+        "path": "specs/search-requirements.md",
+        "requirement_ids": "R1",
+        "symbol": "R1 查询过滤"
+      },
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.25,
+      "symbol": "R1 查询过滤"
+    },
+    {
+      "excerpt": "[spec] specs/compatibility.md :: C1 原有查询行为 ## C1 原有查询行为  只使用 `query` 调用 `search_books` 时必须保持原有行为：`query` 匹配 `title` 或 `author`，不区分大小写。",
+      "heading": "C1 原有查询行为",
+      "id": "spec:specs/compatibility.md:C1",
+      "kind": "spec",
+      "line_end": 9,
+      "line_start": 5,
+      "metadata": {
+        "component": "search",
+        "content_hash": "591c2aebda817cbb7e2fead007375ee7a13964661b387fc55a97319c05e927d4",
+        "heading": "C1 原有查询行为",
+        "kind": "spec",
+        "line_end": 9,
+        "line_start": 5,
+        "path": "specs/compatibility.md",
+        "requirement_ids": "C1",
+        "symbol": "C1 原有查询行为"
+      },
+      "path": "specs/compatibility.md",
+      "reasons": [
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 2.2,
+      "symbol": "C1 原有查询行为"
+    },
+    {
+      "excerpt": "[spec] specs/search-requirements.md :: R3 空白标签忽略 ## R3 空白标签忽略  每个标签先去除两端空白；去除后为空的标签不参与匹配。`tags` 为 `None` 或空列表时不启用标签过滤。",
+      "heading": "R3 空白标签忽略",
+      "id": "spec:specs/search-requirements.md:R3",
+      "kind": "spec",
+      "line_end": 17,
+      "line_start": 13,
+      "metadata": {
+        "component": "search",
+        "content_hash": "f168f400a5d967fc77cec37b7509235f06904b60ac4fab4e91af54f915c88739",
+        "heading": "R3 空白标签忽略",
+        "kind": "spec",
+        "line_end": 17,
+        "line_start": 13,
+        "path": "specs/search-requirements.md",
+        "requirement_ids": "R3",
+        "symbol": "R3 空白标签忽略"
+      },
+      "path": "specs/search-requirements.md",
+      "reasons": [
+        "vector",
+        "component:search"
+      ],
+      "score": 2.167,
+      "symbol": "R3 空白标签忽略"
+    }
+  ],
+  "state": {
+    "completed": [
+      "ingest",
+      "retrieve"
+    ],
+    "context_hash": "6d5643fa86e2d1dce762c9f94044bec7ba1266328b882fc60e33ce643bb20cee",
+    "extra": {},
+    "pending": [
+      "generate_patch",
+      "apply_patch",
+      "run_tests",
+      "verify"
+    ],
+    "phase": "context_ready",
+    "saved_at": "2026-11-06T11:10:00Z",
+    "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+    "task_id": "demo-task",
+    "verification": {
+      "ingest": {
+        "by_kind": {
+          "code": 4,
+          "spec": 11,
+          "test": 15
+        },
+        "documents": 30,
+        "total_in_db": 30
+      }
+    }
+  },
+  "task": "Implement tag filtering and limit validation in search_books per R2-R5",
+  "task_id": "demo-task",
+  "tests": [
+    {
+      "excerpt": "[test] tests/test_search_target.py :: tests/test_search_target.py:test_limit_boundary_values_are_accepted def test_limit_boundary_values_are_accepted():     \"\"\"R5: limit 1 and 100 are accepted.\"\"\"     assert len(search_books(BOOKS, limit=1)) == 1     assert len(search_books(BOOKS, limit=100)) == len(BOOKS)",
+      "heading": "tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+      "id": "test:tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+      "kind": "test",
+      "line_end": 49,
+      "line_start": 46,
+      "metadata": {
+        "component": "search",
+        "content_hash": "f2db729bb02332997dfba5c52488854e3b0baff21e145dde3272498a748af51d",
+        "covers": "R5",
+        "heading": "tests/test_search_target.py:test_limit_boundary_values_are_accepted",
+        "kind": "test",
+        "line_end": 49,
+        "line_start": 46,
+        "path": "tests/test_search_target.py",
+        "symbol": "test_limit_boundary_values_are_accepted",
+        "test_kind": "target"
+      },
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R5",
+        "keyword:and",
+        "keyword:limit",
+        "keyword:search_books",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 13.5,
+      "symbol": "test_limit_boundary_values_are_accepted"
+    },
+    {
+      "excerpt": "[test] tests/test_search_target.py :: tests/test_search_target.py:test_limit_out_of_range_raises def test_limit_out_of_range_raises():     \"\"\"R5: limit outside 1..100 raises ValueError.\"\"\"     for bad in (0, -1, 101):         try:             search_books(BOOKS, limit=bad)         except ValueError:             continue         raise AssertionError(f\"limit={",
+      "heading": "tests/test_search_target.py:test_limit_out_of_range_raises",
+      "id": "test:tests/test_search_target.py:test_limit_out_of_range_raises",
+      "kind": "test",
+      "line_end": 43,
+      "line_start": 36,
+      "metadata": {
+        "component": "search",
+        "content_hash": "5053e03896e71a06f8303d503992d10feba8a8d156b72dc644ebff6619489158",
+        "covers": "R5",
+        "heading": "tests/test_search_target.py:test_limit_out_of_range_raises",
+        "kind": "test",
+        "line_end": 43,
+        "line_start": 36,
+        "path": "tests/test_search_target.py",
+        "symbol": "test_limit_out_of_range_raises",
+        "test_kind": "target"
+      },
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R5",
+        "keyword:limit",
+        "keyword:in",
+        "keyword:search_books",
+        "keyword:r5",
+        "vector",
+        "component:search",
+        "requirement:R5"
+      ],
+      "score": 13.25,
+      "symbol": "test_limit_out_of_range_raises"
+    },
+    {
+      "excerpt": "[test] tests/test_search_target.py :: tests/test_search_target.py:test_multiple_tags_use_and_semantics def test_multiple_tags_use_and_semantics():     \"\"\"R2: multiple tags use AND semantics.\"\"\"     assert ids(search_books(BOOKS, tags=[\"programming\", \"design\"])) == [3]",
+      "heading": "tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+      "id": "test:tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+      "kind": "test",
+      "line_end": 18,
+      "line_start": 16,
+      "metadata": {
+        "component": "search",
+        "content_hash": "4740c7e083432a4aa1165d35142379b1b4f5b9bc8595bcbedc35001eefcda690",
+        "covers": "R2",
+        "heading": "tests/test_search_target.py:test_multiple_tags_use_and_semantics",
+        "kind": "test",
+        "line_end": 18,
+        "line_start": 16,
+        "path": "tests/test_search_target.py",
+        "symbol": "test_multiple_tags_use_and_semantics",
+        "test_kind": "target"
+      },
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:and",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 12.0,
+      "symbol": "test_multiple_tags_use_and_semantics"
+    },
+    {
+      "excerpt": "[test] tests/test_search_target.py :: tests/test_search_target.py:test_unknown_tag_returns_empty def test_unknown_tag_returns_empty():     \"\"\"R2: an unknown tag matches no books.\"\"\"     assert search_books(BOOKS, tags=[\"nonexistent\"]) == []",
+      "heading": "tests/test_search_target.py:test_unknown_tag_returns_empty",
+      "id": "test:tests/test_search_target.py:test_unknown_tag_returns_empty",
+      "kind": "test",
+      "line_end": 33,
+      "line_start": 31,
+      "metadata": {
+        "component": "search",
+        "content_hash": "0e4daaea084949117666deab47e31df002dde60a58b28fae54ae21b9f7c0bc13",
+        "covers": "R2",
+        "heading": "tests/test_search_target.py:test_unknown_tag_returns_empty",
+        "kind": "test",
+        "line_end": 33,
+        "line_start": 31,
+        "path": "tests/test_search_target.py",
+        "symbol": "test_unknown_tag_returns_empty",
+        "test_kind": "target"
+      },
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:tag",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 11.2,
+      "symbol": "test_unknown_tag_returns_empty"
+    },
+    {
+      "excerpt": "[test] tests/test_search_target.py :: tests/test_search_target.py:test_filter_by_single_tag def test_filter_by_single_tag():     \"\"\"R2: a single tag filters the catalog.\"\"\"     assert ids(search_books(BOOKS, tags=[\"programming\"])) == [2, 1, 3]",
+      "heading": "tests/test_search_target.py:test_filter_by_single_tag",
+      "id": "test:tests/test_search_target.py:test_filter_by_single_tag",
+      "kind": "test",
+      "line_end": 13,
+      "line_start": 11,
+      "metadata": {
+        "component": "search",
+        "content_hash": "1aa1b95ac2a2b553f1704bffddb5645485a13d75059c3a90186b637f7cf511c9",
+        "covers": "R2",
+        "heading": "tests/test_search_target.py:test_filter_by_single_tag",
+        "kind": "test",
+        "line_end": 13,
+        "line_start": 11,
+        "path": "tests/test_search_target.py",
+        "symbol": "test_filter_by_single_tag",
+        "test_kind": "target"
+      },
+      "path": "tests/test_search_target.py",
+      "reasons": [
+        "keyword:R2",
+        "keyword:tag",
+        "keyword:search_books",
+        "keyword:r2",
+        "vector",
+        "component:search",
+        "requirement:R2"
+      ],
+      "score": 11.167,
+      "symbol": "test_filter_by_single_tag"
+    },
+    {
+      "excerpt": "[test] tests/test_search_regression.py :: tests/test_search_regression.py:test_query_and_limit_combined def test_query_and_limit_combined():     \"\"\"C1/C3: query and limit combine.\"\"\"     assert ids(search_books(BOOKS, query=\"martin\", limit=1)) == [1]",
+      "heading": "tests/test_search_regression.py:test_query_and_limit_combined",
+      "id": "test:tests/test_search_regression.py:test_query_and_limit_combined",
+      "kind": "test",
+      "line_end": 38,
+      "line_start": 36,
+      "metadata": {
+        "component": "search",
+        "content_hash": "4926ea82b9cf79a7a5f50c34ddce0f736eb947126ab73c54ca18750574e5c341",
+        "covers": "C1,C3",
+        "heading": "tests/test_search_regression.py:test_query_and_limit_combined",
+        "kind": "test",
+        "line_end": 38,
+        "line_start": 36,
+        "path": "tests/test_search_regression.py",
+        "symbol": "test_query_and_limit_combined",
+        "test_kind": "regression"
+      },
+      "path": "tests/test_search_regression.py",
+      "reasons": [
+        "keyword:and",
+        "keyword:limit",
+        "keyword:search_books",
+        "vector",
+        "component:search"
+      ],
+      "score": 6.143,
+      "symbol": "test_query_and_limit_combined"
+    }
+  ]
+}

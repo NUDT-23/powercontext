@@ -1,0 +1,79 @@
+FFFFFF.                                                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_filter_by_single_tag ___________________________
+
+    def test_filter_by_single_tag():
+        """R2: a single tag filters the catalog."""
+>       assert ids(search_books(BOOKS, tags=["programming"])) == [2, 1, 3]
+E       assert [2, 1, 3, 4, 5] == [2, 1, 3]
+E         
+E         Left contains 2 more items, first extra item: 4
+E         Use -v to get more diff
+
+tests/test_search_target.py:13: AssertionError
+_____________________ test_multiple_tags_use_and_semantics _____________________
+
+    def test_multiple_tags_use_and_semantics():
+        """R2: multiple tags use AND semantics."""
+>       assert ids(search_books(BOOKS, tags=["programming", "design"])) == [3]
+E       assert [2, 1, 3, 4, 5] == [3]
+E         
+E         At index 0 diff: 2 != 3
+E         Left contains 4 more items, first extra item: 1
+E         Use -v to get more diff
+
+tests/test_search_target.py:18: AssertionError
+_________________________ test_blank_tags_are_ignored __________________________
+
+    def test_blank_tags_are_ignored():
+        """R3: blank and whitespace-only tags are ignored."""
+>       assert ids(search_books(BOOKS, tags=["", "   ", "programming"])) == [2, 1, 3]
+E       assert [2, 1, 3, 4, 5] == [2, 1, 3]
+E         
+E         Left contains 2 more items, first extra item: 4
+E         Use -v to get more diff
+
+tests/test_search_target.py:23: AssertionError
+____________________ test_tag_matching_is_case_insensitive _____________________
+
+    def test_tag_matching_is_case_insensitive():
+        """R4: tag matching is case-insensitive."""
+>       assert ids(search_books(BOOKS, tags=["PROGRAMMING"])) == [2, 1, 3]
+E       assert [2, 1, 3, 4, 5] == [2, 1, 3]
+E         
+E         Left contains 2 more items, first extra item: 4
+E         Use -v to get more diff
+
+tests/test_search_target.py:28: AssertionError
+________________________ test_unknown_tag_returns_empty ________________________
+
+    def test_unknown_tag_returns_empty():
+        """R2: an unknown tag matches no books."""
+>       assert search_books(BOOKS, tags=["nonexistent"]) == []
+E       AssertionError: assert [Book(id=2, t..., rating=4.4)] == []
+E         
+E         Left contains 5 more items, first extra item: Book(id=2, title='The Pragmatic Programmer', author='Andrew Hunt', tags=('programming', 'career'), year=1999, rating=4.8)
+E         Use -v to get more diff
+
+tests/test_search_target.py:33: AssertionError
+________________________ test_limit_out_of_range_raises ________________________
+
+    def test_limit_out_of_range_raises():
+        """R5: limit outside 1..100 raises ValueError."""
+        for bad in (0, -1, 101):
+            try:
+                search_books(BOOKS, limit=bad)
+            except ValueError:
+                continue
+>           raise AssertionError(f"limit={bad} should raise ValueError")
+E           AssertionError: limit=0 should raise ValueError
+
+tests/test_search_target.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_search_target.py::test_filter_by_single_tag - assert [2, 1,...
+FAILED tests/test_search_target.py::test_multiple_tags_use_and_semantics - as...
+FAILED tests/test_search_target.py::test_blank_tags_are_ignored - assert [2, ...
+FAILED tests/test_search_target.py::test_tag_matching_is_case_insensitive - a...
+FAILED tests/test_search_target.py::test_unknown_tag_returns_empty - Assertio...
+FAILED tests/test_search_target.py::test_limit_out_of_range_raises - Assertio...
+6 failed, 1 passed in 0.63s
