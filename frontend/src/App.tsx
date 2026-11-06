@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   api,
+  getTrialUser,
+  setTrialUser,
   streamSynthesis,
   type Health,
   type MemoryRecord,
@@ -26,6 +28,11 @@ function shortId(value?: string) {
   return value.length > 12 ? `${value.slice(0, 6)}…${value.slice(-4)}` : value;
 }
 
+function normalizeTrialCode(value: string) {
+  const match = value.trim().toUpperCase().match(/^U?(\d{1,2})$/);
+  return match ? `U${match[1].padStart(2, "0")}` : value.trim();
+}
+
 export default function App() {
   const [health, setHealth] = useState<Health | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -38,20 +45,40 @@ export default function App() {
   const [error, setError] = useState("");
   const [toast, setToast] = useState("");
   const [booting, setBooting] = useState(true);
+  const [trialUser, setTrialUserState] = useState(getTrialUser());
 
   const project = useMemo(
     () => projects.find((item) => item.id === projectId),
     [projects, projectId]
   );
 
+  const visibleProjects = useMemo(
+    () => (trialUser ? projects : projects.filter((item) => !item.id.startsWith("trial-"))),
+    [projects, trialUser]
+  );
+
   useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get("u");
+    if (fromUrl) {
+      setTrialUser(normalizeTrialCode(fromUrl));
+      setTrialUserState(getTrialUser());
+    }
+    const trialCode = normalizeTrialCode(fromUrl || getTrialUser()).toUpperCase();
     (async () => {
       try {
         const [healthData, projectData] = await Promise.all([api.health(), api.projects()]);
         setHealth(healthData);
         setProjects(projectData.projects);
         if (projectData.projects.length > 0) {
-          setProjectId(projectData.projects[0].id);
+          const trialProject = trialCode
+            ? projectData.projects.find((item) =>
+                `${item.name} ${item.id}`.toUpperCase().includes(trialCode)
+              )
+            : undefined;
+          const defaultProject =
+            projectData.projects.find((item) => item.id === "demo") ||
+            projectData.projects.find((item) => !item.id.startsWith("trial-"));
+          setProjectId(trialProject?.id || defaultProject?.id || projectData.projects[0].id);
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err));
@@ -161,22 +188,37 @@ export default function App() {
 
       <main className="main">
         <header className="topbar">
-          <div className="project-switch">
-            <span className="label">当前项目</span>
-            <select
-              value={projectId}
-              onChange={(event) => {
-                setProjectId(event.target.value);
-                setSelected([]);
-              }}
-            >
-              {projects.length === 0 && <option value="">尚未创建</option>}
-              {projects.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+          <div className="topbar-left">
+            <div className="project-switch">
+              <span className="label">当前项目</span>
+              <select
+                value={projectId}
+                onChange={(event) => {
+                  setProjectId(event.target.value);
+                  setSelected([]);
+                }}
+              >
+                {visibleProjects.length === 0 && <option value="">尚未创建</option>}
+                {visibleProjects.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <label className="trial-user" title="试用编号（如 U01），用于按人区分使用记录与长期记忆">
+              <span className="label">试用者</span>
+              <input
+                value={trialUser}
+                maxLength={16}
+                placeholder="未设置"
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setTrialUserState(value);
+                  setTrialUser(value);
+                }}
+              />
+            </label>
           </div>
           <div className="badges">
             <span className="badge blue">seekdb · {health?.seekdb.embedding ?? "-"}</span>
@@ -993,6 +1035,10 @@ function StatsTab({
         <div className="metric">
           <span>文献</span>
           <strong>{stats?.papers ?? 0}</strong>
+        </div>
+        <div className="metric">
+          <span>试用者</span>
+          <strong>{stats?.users ?? 0}</strong>
         </div>
         <div className="metric">
           <span>检索次数</span>

@@ -360,6 +360,108 @@ def dev_seed(request: Request) -> dict:
     return seed(state(request))
 
 
+@router.post("/dev/trial_projects")
+def dev_trial_projects(request: Request, users: int = 12) -> dict:
+    from .seed_data import seed_trial_projects
+
+    try:
+        return seed_trial_projects(state(request), users)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/dev/trial_reset")
+def dev_trial_reset(request: Request) -> dict:
+    store = state(request).store
+    deleted_events = int(store.db.scalar(
+        "SELECT COUNT(*) FROM events WHERE project_id LIKE 'trial-%'"
+    ) or 0)
+    deleted_feedback = int(store.db.scalar(
+        "SELECT COUNT(*) FROM feedback WHERE project_id LIKE 'trial-%'"
+    ) or 0)
+    store.db.execute("DELETE FROM events WHERE project_id LIKE 'trial-%'")
+    store.db.execute("DELETE FROM feedback WHERE project_id LIKE 'trial-%'")
+    return {"deleted_events": deleted_events, "deleted_feedback": deleted_feedback}
+
+
+@router.get("/dev/trial_summary")
+def dev_trial_summary(request: Request) -> dict:
+    store = state(request).store
+    events = store.db.query(
+        "SELECT project_id, user_name, action, latency_ms, created_at "
+        "FROM events WHERE project_id LIKE 'trial-%' ORDER BY id"
+    )
+    feedback = store.db.query(
+        "SELECT project_id, user_name, rating, relevant, created_at "
+        "FROM feedback WHERE project_id LIKE 'trial-%'"
+    )
+
+    users: dict[str, dict[str, Any]] = {}
+    for row in events:
+        name = (row.get("user_name") or "").strip()
+        if not name or name == "anonymous":
+            continue
+        bucket = users.setdefault(
+            name,
+            {
+                "user_name": name,
+                "project_id": row.get("project_id"),
+                "events": 0,
+                "searches": 0,
+                "syntheses": 0,
+                "feedback": 0,
+                "avg_rating": None,
+                "avg_latency_ms": None,
+                "_latency_total": 0,
+                "_latency_count": 0,
+                "_rating_total": 0,
+                "_rating_count": 0,
+            },
+        )
+        bucket["events"] += 1
+        if row.get("action") == "search":
+            bucket["searches"] += 1
+        elif row.get("action") == "synthesize":
+            bucket["syntheses"] += 1
+        latency = row.get("latency_ms")
+        if latency:
+            bucket["_latency_total"] += int(latency)
+            bucket["_latency_count"] += 1
+
+    for row in feedback:
+        name = (row.get("user_name") or "").strip()
+        bucket = users.get(name)
+        if not bucket:
+            continue
+        bucket["feedback"] += 1
+        rating = row.get("rating")
+        if rating is not None:
+            bucket["_rating_total"] += int(rating)
+            bucket["_rating_count"] += 1
+
+    for bucket in users.values():
+        if bucket["_latency_count"]:
+            bucket["avg_latency_ms"] = round(
+                bucket["_latency_total"] / bucket["_latency_count"], 1
+            )
+        if bucket["_rating_count"]:
+            bucket["avg_rating"] = round(bucket["_rating_total"] / bucket["_rating_count"], 1)
+        for key in ("_latency_total", "_latency_count", "_rating_total", "_rating_count"):
+            bucket.pop(key)
+
+    ordered = [users[key] for key in sorted(users)]
+    return {
+        "users": ordered,
+        "totals": {
+            "users": len(ordered),
+            "events": sum(item["events"] for item in ordered),
+            "searches": sum(item["searches"] for item in ordered),
+            "syntheses": sum(item["syntheses"] for item in ordered),
+            "feedback": sum(item["feedback"] for item in ordered),
+        },
+    }
+
+
 @router.get("/export/usage")
 def export_usage(project_id: str, request: Request) -> dict:
     store = state(request).store

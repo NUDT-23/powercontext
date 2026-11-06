@@ -378,6 +378,11 @@ class SeekDBStore:
             "FROM feedback WHERE project_id = %s",
             (project_id,),
         )
+        users = self.db.query(
+            "SELECT COUNT(DISTINCT user_name) AS users FROM events "
+            "WHERE project_id = %s AND user_name IS NOT NULL AND user_name <> 'anonymous'",
+            (project_id,),
+        )
         recent = self.db.query(
             "SELECT action, query, latency_ms, result_count, created_at "
             "FROM events WHERE project_id = %s ORDER BY id DESC LIMIT 10",
@@ -385,6 +390,7 @@ class SeekDBStore:
         )
         return {
             "papers": papers,
+            "users": int((users[0] or {}).get("users") or 0) if users else 0,
             "events": events,
             "feedback": feedback[0] if feedback else {"count": 0, "avg_rating": None},
             "recent_events": recent,

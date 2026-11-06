@@ -69,6 +69,7 @@ export type Health = {
 
 export type Stats = {
   papers: number;
+  users: number;
   events: { action: string; count: number; avg_latency_ms: number | null }[];
   feedback: { count: number; avg_rating: number | null };
   recent_events: {
@@ -107,6 +108,23 @@ function jsonOptions(method: string, body: unknown): RequestInit {
   };
 }
 
+const TRIAL_USER_KEY = "paperlens.trialUser";
+
+export function getTrialUser(): string {
+  return (window.localStorage.getItem(TRIAL_USER_KEY) || "").trim();
+}
+
+export function setTrialUser(value: string): void {
+  const clean = value.trim().slice(0, 16);
+  if (clean) window.localStorage.setItem(TRIAL_USER_KEY, clean);
+  else window.localStorage.removeItem(TRIAL_USER_KEY);
+}
+
+function withTrialUser(body: Record<string, unknown>): Record<string, unknown> {
+  const user = getTrialUser();
+  return user ? { ...body, user_name: user } : body;
+}
+
 export const api = {
   health: () => request<Health>("/api/health"),
   projects: () => request<{ projects: Project[] }>("/api/projects"),
@@ -120,7 +138,7 @@ export const api = {
   setRead: (paperId: string, readStatus: number) =>
     request<Paper>(`/api/papers/${paperId}/read`, jsonOptions("PATCH", { read_status: readStatus })),
   search: (body: Record<string, unknown>) =>
-    request<SearchResponse>("/api/search", jsonOptions("POST", body)),
+    request<SearchResponse>("/api/search", jsonOptions("POST", withTrialUser(body))),
   memory: (projectId: string) =>
     request<{ scope_id: string | null; memories: MemoryRecord[] }>(
       `/api/memory?project_id=${encodeURIComponent(projectId)}`
@@ -130,7 +148,7 @@ export const api = {
   forget: (body: Record<string, unknown>) =>
     request<Record<string, unknown>>("/api/memory/forget", jsonOptions("POST", body)),
   feedback: (body: Record<string, unknown>) =>
-    request<Record<string, unknown>>("/api/feedback", jsonOptions("POST", body)),
+    request<Record<string, unknown>>("/api/feedback", jsonOptions("POST", withTrialUser(body))),
   stats: (projectId: string) =>
     request<Stats>(`/api/stats?project_id=${encodeURIComponent(projectId)}`)
 };
@@ -152,7 +170,7 @@ export async function streamSynthesis(
   payload: Record<string, unknown>,
   onEvent: (event: SynthesisEvent) => void
 ): Promise<void> {
-  const response = await fetch("/api/synthesize", jsonOptions("POST", payload));
+  const response = await fetch("/api/synthesize", jsonOptions("POST", withTrialUser(payload)));
   if (!response.ok || !response.body) {
     throw new Error(`生成失败：HTTP ${response.status}`);
   }

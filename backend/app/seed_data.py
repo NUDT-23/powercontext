@@ -27,6 +27,65 @@ def _seed_file() -> Path:
     return path if path.exists() else FALLBACK_SEED_DIR / "papers.json"
 
 
+def seed_trial_projects(app_state, users: int = 12) -> dict:
+    if users < 1 or users > 50:
+        raise ValueError("users must be between 1 and 50")
+
+    store = app_state.store
+    powercontext = app_state.powercontext
+    papers = json.loads(_seed_file().read_text(encoding="utf-8"))
+    projects: list[dict] = []
+    warnings: list[str] = []
+
+    for index in range(1, users + 1):
+        project_id = f"trial-{index:02d}"
+        name = f"试用 U{index:02d} · LLM Agent 文献"
+        research_question = "如何比较 LLM Agent 的记忆、规划与评测方法？"
+        project = store.get_project(project_id)
+        if not project:
+            project = store.create_project(
+                name=name,
+                description="现场试用专用项目，语料与 demo 项目相同。",
+                research_question=research_question,
+                project_id=project_id,
+            )
+        if not project.get("scope_id"):
+            try:
+                scope_id = powercontext.ensure_scope(project_id, name, research_question)
+                store.set_scope(project_id, scope_id)
+                for label, value in DEMO_PREFERENCES:
+                    powercontext.remember(
+                        scope_id,
+                        text=f"{label}：{value}",
+                        kind="preference",
+                        reason="PaperLens 试用默认偏好",
+                    )
+            except Exception as exc:  # noqa: BLE001
+                warnings.append(f"{project_id}: PowerContext 不可用：{exc}")
+
+        added = 0
+        for paper in papers:
+            if store.paper_exists(project_id, paper["arxiv_id"]):
+                continue
+            text = f"Title: {paper['title']}\n\nAbstract: {paper['abstract']}"
+            chunks = chunk_text(text, max_chars=900, overlap=120, section="abstract")
+            if not chunks:
+                continue
+            store.add_paper(project_id, paper, chunks)
+            added += 1
+        projects.append(
+            {
+                "project_id": project_id,
+                "name": name,
+                "added_now": added,
+                "papers_total": store.count_papers(project_id),
+                "chunks_total": store.count_chunks(project_id),
+            }
+        )
+
+    return {"users": users, "projects": projects, "warnings": warnings}
+
+
 def seed(app_state) -> dict:
     store = app_state.store
     powercontext = app_state.powercontext
