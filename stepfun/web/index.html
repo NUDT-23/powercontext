@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>端侧知识库 · 浏览器本地向量化 + seekdb 混合检索</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">KB</div>
+        <div>
+          <h1>端侧知识库</h1>
+          <p>浏览器本地 Embedding · seekdb 向量 + 全文混合检索</p>
+        </div>
+      </div>
+      <div class="badges">
+        <span id="backend-badge" class="badge loading">模型加载中…</span>
+        <span id="seekdb-badge" class="badge">seekdb 检测中…</span>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="library">知识库</button>
+      <button class="tab" data-tab="search">检索</button>
+      <button class="tab" data-tab="bench">基准与报告</button>
+      <button class="tab" data-tab="about">技术说明</button>
+    </nav>
+
+    <main>
+      <section id="tab-library" class="panel active">
+        <div class="card">
+          <div class="card-head">
+            <h2>集合</h2>
+            <span class="hint">文档、向量与元数据全部存储在 seekdb 中</span>
+          </div>
+          <div class="row">
+            <select id="collection-select" aria-label="选择集合"></select>
+            <button id="refresh-index-btn" class="ghost">刷新索引</button>
+            <button id="delete-collection-btn" class="danger ghost">删除集合</button>
+          </div>
+          <div class="row">
+            <input id="new-collection-input" placeholder="新集合名称（字母/数字/-_）" />
+            <button id="create-collection-btn" class="ghost">创建集合</button>
+          </div>
+          <p id="collection-meta" class="meta">尚未选择集合</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>导入文档</h2>
+            <span class="hint">中文按句子切分，约 200 字/块，重叠 50 字</span>
+          </div>
+          <textarea id="import-text" rows="5" placeholder="粘贴中文文本，或选择 .txt / .md 文件"></textarea>
+          <div class="row">
+            <input id="import-file" type="file" accept=".txt,.md,.markdown,.jsonl" multiple />
+          </div>
+          <div class="row">
+            <button id="import-text-btn" class="primary">向量化并导入</button>
+            <button id="import-sample-btn" class="ghost">导入示例语料（56 篇）</button>
+            <button id="import-clear-btn" class="ghost">清空输入</button>
+          </div>
+          <div id="import-progress" class="progress hidden">
+            <div class="bar"><div id="import-progress-bar"></div></div>
+            <p id="import-status" class="meta"></p>
+          </div>
+          <div id="import-stats" class="stats hidden"></div>
+        </div>
+      </section>
+
+      <section id="tab-search" class="panel">
+        <div class="card">
+          <div class="card-head">
+            <h2>混合检索</h2>
+            <span class="hint">一次请求内由 seekdb 完成 RRF 融合，前端不拼装两路结果</span>
+          </div>
+          <div class="row">
+            <input id="search-input" placeholder="输入问题，例如：混合检索中的 RRF 是什么？" />
+            <select id="search-nresults" aria-label="返回数量">
+              <option value="3">Top 3</option>
+              <option value="5" selected>Top 5</option>
+              <option value="10">Top 10</option>
+            </select>
+            <button id="search-btn" class="primary">检索</button>
+          </div>
+          <p id="search-status" class="meta">等待查询</p>
+          <p id="search-timing" class="timing"></p>
+        </div>
+        <div id="search-results" class="results"></div>
+      </section>
+
+      <section id="tab-bench" class="panel">
+        <div class="card">
+          <div class="card-head">
+            <h2>模型与量化</h2>
+            <span class="hint">体积来自仓库内模型清单，质量指标基于人工标注 qrels</span>
+          </div>
+          <div id="model-summary" class="summary">读取模型清单…</div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <h2>基准测试</h2>
+            <span class="hint">3 次预热 + 7 次测量，另附 30 条查询的检索延迟</span>
+          </div>
+          <div class="row">
+            <button id="bench-run-btn" class="primary">运行完整基准</button>
+            <span id="bench-status" class="meta">尚未运行</span>
+          </div>
+          <div id="bench-notes" class="notes"></div>
+          <div id="bench-quality"></div>
+          <details>
+            <summary>原始结果 JSON</summary>
+            <pre id="bench-json"></pre>
+          </details>
+        </div>
+      </section>
+
+      <section id="tab-about" class="panel">
+        <div class="card prose">
+          <h2>技术说明</h2>
+          <p>
+            本应用把文档切分与 embedding 放在浏览器内完成：模型为
+            <code>Xenova/bge-small-zh-v1.5</code>（512 维，CLS pooling + L2 归一化），
+            通过 Transformers.js + ONNX Runtime Web 加载。优先使用 WebGPU + FP16，
+            不可用或初始化失败时自动降级到 WASM + INT8，并在顶栏明确展示当前后端与原因。
+          </p>
+          <p>
+            服务端只做两件事：解码浏览器上传的 Float32 向量并写入 seekdb；在检索时调用一次
+            <code>collection.hybridSearch()</code>。向量通道与全文通道（ik 分词）的融合由
+            seekdb 内的 <code>DBMS_HYBRID_SEARCH</code> 以 RRF 完成，不存在前端拼接两路结果的路径。
+          </p>
+          <ul>
+            <li>离线保证：<code>allowRemoteModels=false</code>，模型与 ORT WASM 均为同源静态文件；</li>
+            <li>增量导入：文档 ID = 来源 + 分块序号 + 文本哈希，内容未变则跳过，变化则 upsert；</li>
+            <li>索引刷新：导入完成后调用 <code>refresh_index()</code>，刷新完成前搜索保持关闭；</li>
+            <li>会话状态：localStorage 只保存集合名、计数与刷新时间，不保存文档或向量。</li>
+          </ul>
+          <p id="runtime-details" class="meta"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>OceanBase 2026 大赛 · 阶跃星辰赛道</span>
+      <span>浏览器本地推理，无云端 embedding API</span>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{"id":"q01","query":"seekdb 是什么数据库"}
+{"id":"q02","query":"seekdb 如何以嵌入式模式运行"}
+{"id":"q03","query":"seekdb 向量索引使用什么算法"}
+{"id":"q04","query":"seekdb 中文全文检索用什么分析器"}
+{"id":"q05","query":"hybridSearch 如何在数据库内融合两路结果"}
+{"id":"q06","query":"OceanBase 分布式高可用怎么实现"}
+{"id":"q07","query":"OceanBase 多租户资源隔离"}
+{"id":"q08","query":"refresh_index 增量导入后什么时候刷新索引"}
+{"id":"q09","query":"seekdb 集合 Schema 如何配置向量和全文索引"}
+{"id":"q10","query":"seekdb 和 OceanBase 有什么区别"}
+{"id":"q11","query":"seekdb JavaScript SDK 常用方法"}
+{"id":"q12","query":"embedding 如何把文本变成向量"}
+{"id":"q13","query":"余弦相似度怎么计算"}
+{"id":"q14","query":"HNSW 图索引的原理"}
+{"id":"q15","query":"IVF 和 HNSW 有什么区别"}
+{"id":"q16","query":"向量 L2 归一化为什么重要"}
+{"id":"q17","query":"Recall@K 如何评估检索召回率"}
+{"id":"q18","query":"INT8 量化原理和体积"}
+{"id":"q19","query":"FP16 半精度模型推理"}
+{"id":"q20","query":"量化以后检索质量会下降吗"}
+{"id":"q21","query":"模型体积压缩比怎么计算"}
+{"id":"q22","query":"Transformers.js 如何在浏览器运行模型"}
+{"id":"q23","query":"WebGPU 加速 embedding 推理"}
+{"id":"q24","query":"WebGPU 不可用时如何降级到 WASM"}
+{"id":"q25","query":"浏览器本地推理的隐私和离线优势"}
+{"id":"q26","query":"COOP COEP 与多线程 WASM 的关系"}
+{"id":"q27","query":"bge-small-zh-v1.5 中文嵌入模型怎么使用"}
+{"id":"q28","query":"CLS pooling 与 L2 归一化"}
+{"id":"q29","query":"RAG 检索增强生成的流程"}
+{"id":"q30","query":"中文文档如何分块并设置重叠"}

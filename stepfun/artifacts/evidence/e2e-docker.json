@@ -1,0 +1,138 @@
+{
+  "startedAt": "2026-11-06T22:39:44.633Z",
+  "base": "http://127.0.0.1:8787",
+  "collection": "e2e_1794004784633",
+  "checks": [
+    {
+      "name": "健康检查：seekdb 嵌入式服务可用",
+      "ok": true,
+      "ms": 11,
+      "value": {
+        "seekdb": {
+          "version": "1.4.0",
+          "platform": "linux-x64",
+          "database": "test"
+        },
+        "collections": 0
+      }
+    },
+    {
+      "name": "集合创建",
+      "ok": true,
+      "ms": 454,
+      "value": "e2e_1794004784633"
+    },
+    {
+      "name": "完整流程：本地向量化 → 入库 → 混合检索",
+      "ok": true,
+      "ms": 972,
+      "value": {
+        "status": "导入完成：新增 1，更新 0，跳过 0",
+        "count": 1,
+        "timing": "查询向量化 14.5 ms · seekdb 混合检索 26.23 ms · 端到端 41.2 ms · RRF 在库内执行 (k=60, analyzer=ik)",
+        "stats": "1分块1新增0更新0跳过1集合总量307.0 ms写入301.0 ms刷新索引WebGPU · FP16向量化"
+      }
+    },
+    {
+      "name": "seekdb 数据层：单次 hybridSearch + 库内 RRF",
+      "ok": true,
+      "ms": 216,
+      "value": {
+        "callDelta": 1,
+        "lastCall": {
+          "at": "2026-11-06T22:39:49.536Z",
+          "collection": "e2e_1794004784633",
+          "queryText": "向量检索与全文检索如何融合",
+          "nResults": 5,
+          "resultIds": [
+            "733650a1f13558750aefa0eff57ed01b"
+          ],
+          "scores": [
+            0.0328
+          ],
+          "durationMs": 3.5786370038986206,
+          "rank": {
+            "rankWindowSize": 40,
+            "rankConstant": 60
+          },
+          "callCount": 2
+        },
+        "count": 1,
+        "analyzer": "ik"
+      }
+    },
+    {
+      "name": "增量导入：重复内容跳过、新内容可检索",
+      "ok": true,
+      "ms": 657,
+      "value": {
+        "before": 1,
+        "after": 2,
+        "skippedStatus": "导入完成：新增 0，更新 0，跳过 1",
+        "inserted": "导入完成：新增 1，更新 0，跳过 0"
+      }
+    },
+    {
+      "name": "量化模型：本地文件 + 体积 + 压缩比",
+      "ok": true,
+      "ms": 41,
+      "value": {
+        "fp32Bytes": 94851877,
+        "fp16Bytes": 47497427,
+        "int8Bytes": 24010842,
+        "fp16Ratio": 2,
+        "int8Ratio": 3.95
+      }
+    },
+    {
+      "name": "本地推理：除本机 API/静态资源外无外部请求",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "total": 45,
+        "modelRequests": 8,
+        "ortRequests": 5
+      }
+    },
+    {
+      "name": "会话状态：刷新页面后保留集合与模型后端",
+      "ok": true,
+      "ms": 725,
+      "value": {
+        "collection": "e2e_1794004784633",
+        "stored": "{\"activeCollection\":\"e2e_1794004784633\",\"importedDocs\":{\"e2e_1794004784633\":2},\"lastRefreshAt\":{\"e2e_1794004784633\":\"202"
+      }
+    },
+    {
+      "name": "降级路径：forceWasm 时使用 WASM · INT8 且仍可检索",
+      "ok": true,
+      "ms": 1433,
+      "value": {
+        "label": "WASM · INT8",
+        "reason": "已通过 ?forceWasm=1 强制使用 WASM",
+        "hits": 2
+      }
+    },
+    {
+      "name": "自动降级：navigator.gpu 缺失时仍使用 WASM · INT8",
+      "ok": true,
+      "ms": 1328,
+      "value": {
+        "label": "WASM · INT8",
+        "reason": "当前浏览器未暴露 WebGPU (navigator.gpu)",
+        "hits": 2
+      }
+    },
+    {
+      "name": "页面运行时无 JS 错误",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "errors": 4
+      }
+    }
+  ],
+  "ok": true,
+  "backend": "WebGPU · FP16 · intel gen-12lp",
+  "finishedAt": "2026-11-06T22:39:54.127Z"
+}

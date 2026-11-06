@@ -1,0 +1,38 @@
+{
+  "repo": "Xenova/bge-small-zh-v1.5",
+  "generatedAt": "2026-11-06T15:48:55.399Z",
+  "dimension": 512,
+  "pooling": "cls",
+  "normalize": true,
+  "files": {
+    "model.onnx": {
+      "bytes": 94851877,
+      "sha256": "69a0b846f4f116b5e6aabf9546ea6754d02264f3211a13a1bd69b31b8040749a"
+    },
+    "model_fp16.onnx": {
+      "bytes": 47497427,
+      "sha256": "60d0fe5eb8d4e251d4b24dff010a2625c10a013503f0d09f625e8a9b0311315f"
+    },
+    "model_quantized.onnx": {
+      "bytes": 24010842,
+      "sha256": "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc"
+    }
+  },
+  "variants": {
+    "fp32": {
+      "bytes": 94851877,
+      "compressionRatio": 1,
+      "sha256": "69a0b846f4f116b5e6aabf9546ea6754d02264f3211a13a1bd69b31b8040749a"
+    },
+    "fp16": {
+      "bytes": 47497427,
+      "compressionRatio": 2,
+      "sha256": "60d0fe5eb8d4e251d4b24dff010a2625c10a013503f0d09f625e8a9b0311315f"
+    },
+    "int8": {
+      "bytes": 24010842,
+      "compressionRatio": 3.95,
+      "sha256": "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc"
+    }
+  }
+}

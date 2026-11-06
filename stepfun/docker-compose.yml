@@ -1,0 +1,41 @@
+services:
+  kb:
+    build:
+      context: .
+      args:
+        NPM_REGISTRY: ${NPM_REGISTRY:-https://registry.npmjs.org/}
+    image: stepfun-kb:local
+    ports:
+      - "8787:8787"
+    environment:
+      STEPFUN_DB_PATH: /data/seekdb
+      STEPFUN_STATE_PATH: /data/state.json
+      STEPFUN_DB_NAME: test
+      PORT: "8787"
+      HOST: 0.0.0.0
+    volumes:
+      - stepfun-data:/data
+    # seekdb's HNSW builder needs thread creation that the default seccomp
+    # profile rejects; a 64 MiB thread stack keeps the builder stable.
+    security_opt:
+      - seccomp:unconfined
+    ulimits:
+      stack:
+        soft: 67108864
+        hard: 67108864
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8787/api/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+volumes:
+  stepfun-data:

@@ -1,0 +1,80 @@
+{
+  "startedAt": "2026-11-06T22:40:05.226Z",
+  "runId": "20261106224005",
+  "rootDir": "Z:\\osbase\\MiniMax\\stepfun",
+  "port": 8799,
+  "steps": [
+    {
+      "name": "环境检查",
+      "ok": true,
+      "ms": 91,
+      "value": {
+        "node": "v24.14.1",
+        "platform": "win32-x64",
+        "docker": "29.7.2",
+        "edge": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+      }
+    },
+    {
+      "name": "模型与 ORT 静态资源检查",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "int8Bytes": 24010842,
+        "fp16Bytes": 47497427,
+        "fp32Bytes": 94851877,
+        "ortFiles": 6
+      }
+    },
+    {
+      "name": "单元测试（切分 + 指标）",
+      "ok": true,
+      "ms": 206,
+      "value": {
+        "ms": 206
+      }
+    },
+    {
+      "name": "seekdb 冒烟测试（中文双路 + 库内 RRF）",
+      "ok": true,
+      "ms": 67333,
+      "value": {
+        "ms": 67333
+      }
+    },
+    {
+      "name": "混合检索集成测试（单次 hybridSearch 与 HNSW 回归）",
+      "ok": true,
+      "ms": 65370,
+      "value": {
+        "ms": 65370
+      }
+    },
+    {
+      "name": "构建前端与服务端",
+      "ok": true,
+      "ms": 3897
+    },
+    {
+      "name": "启动生产服务并等待健康检查",
+      "ok": true,
+      "ms": 8089,
+      "value": {
+        "url": "http://127.0.0.1:8799"
+      }
+    },
+    {
+      "name": "浏览器端到端验收（完整流程 + 自动/强制降级）",
+      "ok": true,
+      "ms": 12431,
+      "value": {
+        "ms": 12431
+      }
+    }
+  ],
+  "notes": [
+    "FP32 基线：90.46 MiB；INT8 压缩比 3.95×，FP16 2×"
+  ],
+  "ok": true,
+  "finishedAt": "2026-11-06T22:42:43.369Z"
+}

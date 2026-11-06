@@ -1,0 +1,47 @@
+{
+  "name": "stepfun-edge-kb",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Browser-local embedding + seekdb hybrid retrieval mini knowledge base",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n web,api \"vite\" \"node scripts/run-server.mjs --dev\"",
+    "dev:web": "vite",
+    "build": "npm run prepare:ort && npm run build:web && npm run build:server",
+    "build:web": "vite build",
+    "build:server": "node scripts/build-server.mjs",
+    "prepare:ort": "node scripts/prepare-ort.mjs",
+    "start": "node scripts/run-with-seekdb.mjs dist-server/index.js",
+    "fetch-models": "node scripts/fetch-models.mjs",
+    "fetch-models:fp32": "node scripts/fetch-models.mjs --with-fp32",
+    "smoke:seekdb": "node scripts/run-with-seekdb.mjs server/scripts/smoke-seekdb.mjs",
+    "smoke:seekdb:docker": "node scripts/run-with-seekdb.mjs --docker server/scripts/smoke-seekdb.mjs",
+    "test:unit": "node --test tests/unit.test.mjs",
+    "test:hybrid": "node scripts/run-with-seekdb.mjs tests/hybrid.test.mjs",
+    "test:e2e": "node tests/e2e.spec.mjs",
+    "generate:report": "node scripts/generate-report.mjs",
+    "verify": "node scripts/verify.mjs",
+    "docker:build": "docker build -t stepfun-kb:local .",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "typecheck": "tsc -p tsconfig.json",
+    "start:native": "node dist-server/index.js"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.7.6",
+    "express": "^5.1.0",
+    "seekdb": "1.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.10.0",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.25.12",
+    "playwright-core": "^1.56.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}

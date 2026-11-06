@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-server/
+data/
+.env
+.env.local
+artifacts/run/
+web/public/models/**/onnx/model.onnx
+web/public/models/**/onnx/model_bnb4.onnx
+web/public/models/**/onnx/model_q4*.onnx
+web/public/models/**/onnx/model_uint8.onnx
+web/public/models/**/onnx/model_int8.onnx
+web/public/ort/
+*.log
+.DS_Store
+Thumbs.db

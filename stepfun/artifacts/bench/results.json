@@ -1,0 +1,240 @@
+{
+  "receivedAt": "2026-11-06T16:05:37.348Z",
+  "payload": {
+    "runAt": "2026-11-06T16:05:37.342Z",
+    "device": {
+      "backend": "WebGPU · FP16",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+      "hardwareConcurrency": 20,
+      "gpuAdapter": "intel gen-12lp",
+      "reason": null
+    },
+    "model": {
+      "id": "Xenova/bge-small-zh-v1.5",
+      "dimension": 512,
+      "files": {
+        "model.onnx": 94851877,
+        "model_fp16.onnx": 47497427,
+        "model_quantized.onnx": 24010842
+      }
+    },
+    "corpus": {
+      "docs": 56,
+      "queries": 30
+    },
+    "samples": [
+      {
+        "label": "FP32 (wasm)",
+        "backend": "WASM · FP32",
+        "batchSize": 8,
+        "docs": 56,
+        "cold": {
+          "modelLoadMs": 2176.86,
+          "firstEmbedMs": 20.34
+        },
+        "warm": {
+          "embedMs": [
+            288.16,
+            308.24,
+            250.87,
+            253.69,
+            348.95,
+            269,
+            256.46
+          ],
+          "medianMs": 269,
+          "p95Ms": 348.95,
+          "docsPerSecond": 29.74
+        },
+        "searchMs": [
+          8.74,
+          3.91,
+          3.63,
+          3.76,
+          2.81,
+          3.1,
+          3.06,
+          3.26,
+          3.4,
+          2.87,
+          2.67,
+          2.78,
+          3.05,
+          3.32,
+          3.37,
+          3.03,
+          3.15,
+          3.64,
+          3.24,
+          3.08,
+          2.85,
+          3.04,
+          2.97,
+          2.81,
+          2.77,
+          2.9,
+          2.6,
+          2.65,
+          2.66,
+          2.76
+        ],
+        "searchMedianMs": 3.04,
+        "searchP95Ms": 3.91
+      },
+      {
+        "label": "INT8 (wasm)",
+        "backend": "WASM · INT8",
+        "batchSize": 8,
+        "docs": 56,
+        "cold": {
+          "modelLoadMs": 703.09,
+          "firstEmbedMs": 19
+        },
+        "warm": {
+          "embedMs": [
+            167.81,
+            182.25,
+            155.79,
+            141.76,
+            204.02,
+            164.43,
+            168.13
+          ],
+          "medianMs": 167.81,
+          "p95Ms": 204.02,
+          "docsPerSecond": 47.67
+        },
+        "searchMs": [
+          18.25,
+          3.76,
+          3.39,
+          3.5,
+          3.12,
+          2.82,
+          2.96,
+          3.36,
+          3.4,
+          3.14,
+          3.25,
+          3.45,
+          3.17,
+          3.59,
+          3.77,
+          3.15,
+          3.04,
+          3.43,
+          3.11,
+          3.36,
+          3,
+          2.91,
+          2.82,
+          2.79,
+          3.01,
+          3.2,
+          2.84,
+          2.62,
+          2.53,
+          2.84
+        ],
+        "searchMedianMs": 3.14,
+        "searchP95Ms": 3.77
+      },
+      {
+        "label": "FP16 (webgpu)",
+        "backend": "WebGPU · FP16",
+        "batchSize": 8,
+        "docs": 56,
+        "cold": {
+          "modelLoadMs": 1383.09,
+          "firstEmbedMs": 324.98
+        },
+        "warm": {
+          "embedMs": [
+            38.15,
+            39.67,
+            39.33,
+            38.57,
+            52.52,
+            43.38,
+            42.89
+          ],
+          "medianMs": 39.67,
+          "p95Ms": 52.52,
+          "docsPerSecond": 201.66
+        },
+        "searchMs": [
+          7.93,
+          4.14,
+          3.57,
+          3.08,
+          3.12,
+          2.78,
+          2.81,
+          3.08,
+          3.86,
+          3.25,
+          3.12,
+          3.02,
+          2.95,
+          3.1,
+          3,
+          2.85,
+          3.11,
+          3.1,
+          3.38,
+          3.04,
+          2.87,
+          3.02,
+          3.85,
+          3.63,
+          3.44,
+          3.36,
+          3.2,
+          3.39,
+          3.23,
+          2.99
+        ],
+        "searchMedianMs": 3.11,
+        "searchP95Ms": 4.14
+      }
+    ],
+    "quality": [
+      {
+        "precision": "fp32",
+        "modelBytes": 94851877,
+        "compressionRatio": 1,
+        "recallAt5": 0.7111,
+        "recallAt10": 0.8556,
+        "ndcgAt5": 0.8452,
+        "ndcgAt10": 0.8789,
+        "backend": "wasm"
+      },
+      {
+        "precision": "int8",
+        "modelBytes": 24010842,
+        "compressionRatio": 3.95,
+        "recallAt5": 0.7,
+        "recallAt10": 0.8556,
+        "ndcgAt5": 0.8442,
+        "ndcgAt10": 0.88,
+        "backend": "wasm"
+      },
+      {
+        "precision": "fp16",
+        "modelBytes": 47497427,
+        "compressionRatio": 2,
+        "recallAt5": 0.7111,
+        "recallAt10": 0.8556,
+        "ndcgAt5": 0.8458,
+        "ndcgAt10": 0.879,
+        "backend": "webgpu"
+      }
+    ],
+    "search": {
+      "seekdbMedianMs": 3.11,
+      "seekdbP95Ms": 4.14,
+      "endToEndMedianMs": 13.1,
+      "endToEndP95Ms": 18.29
+    }
+  }
+}

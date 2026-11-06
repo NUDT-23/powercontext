@@ -1,0 +1,190 @@
+{
+  "startedAt": "2026-11-06T22:40:08.679Z",
+  "platform": "linux",
+  "arch": "x64",
+  "node": "v20.20.2",
+  "dbPath": "/data/verify-smoke-20261106224005",
+  "steps": [
+    {
+      "name": "connect",
+      "ok": true,
+      "ms": 0.057026,
+      "value": {
+        "connected": false
+      }
+    },
+    {
+      "name": "createCollection(ik)",
+      "ok": true,
+      "ms": 211.090849,
+      "value": {
+        "name": "smoke_docs",
+        "dimension": 512
+      }
+    },
+    {
+      "name": "warmup_refresh",
+      "ok": true,
+      "ms": 4921.938582,
+      "value": {
+        "warmed": true
+      }
+    },
+    {
+      "name": "add",
+      "ok": true,
+      "ms": 864.64781,
+      "value": {
+        "inserted": 6
+      }
+    },
+    {
+      "name": "count",
+      "ok": true,
+      "ms": 5.822616,
+      "value": 6
+    },
+    {
+      "name": "refresh_index",
+      "ok": true,
+      "ms": 302.269676,
+      "value": {
+        "refreshed": true
+      }
+    },
+    {
+      "name": "hybridSearch",
+      "ok": true,
+      "ms": 204.068782,
+      "value": {
+        "ids": [
+          [
+            "d1",
+            "d2",
+            "d4"
+          ]
+        ],
+        "distances": [
+          [
+            0.0328,
+            0.032,
+            0.032
+          ]
+        ],
+        "documents": [
+          [
+            "seekdb 是 OceanBase 推出的轻量级向量数据库，支持向量检索和全文检索。",
+            "混合检索把向量相似度和关键词匹配结合起来，常用 RRF 融合排序。",
+            "模型量化为 INT8 后体积显著降低，但可能带来少量检索质量损失。"
+          ]
+        ],
+        "metadatas": [
+          [
+            {
+              "topic": "seekdb"
+            },
+            {
+              "topic": "hybrid"
+            },
+            {
+              "topic": "quantization"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "query(vector only)",
+      "ok": true,
+      "ms": 3.597625,
+      "value": {
+        "ids": [
+          [
+            "d1",
+            "d4",
+            "d2"
+          ]
+        ],
+        "distances": [
+          [
+            0.59175167581459,
+            0.697979778051374,
+            0.753816999836296
+          ]
+        ],
+        "documents": [
+          [
+            "seekdb 是 OceanBase 推出的轻量级向量数据库，支持向量检索和全文检索。",
+            "模型量化为 INT8 后体积显著降低，但可能带来少量检索质量损失。",
+            "混合检索把向量相似度和关键词匹配结合起来，常用 RRF 融合排序。"
+          ]
+        ],
+        "metadatas": [
+          [
+            {
+              "topic": "seekdb"
+            },
+            {
+              "topic": "quantization"
+            },
+            {
+              "topic": "hybrid"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "get(fulltext only)",
+      "ok": true,
+      "ms": 32.4643,
+      "value": {
+        "ids": [
+          "d1",
+          "d2",
+          "d4"
+        ],
+        "documents": [
+          "seekdb 是 OceanBase 推出的轻量级向量数据库，支持向量检索和全文检索。",
+          "混合检索把向量相似度和关键词匹配结合起来，常用 RRF 融合排序。",
+          "模型量化为 INT8 后体积显著降低，但可能带来少量检索质量损失。"
+        ],
+        "metadatas": [
+          {
+            "topic": "seekdb"
+          },
+          {
+            "topic": "hybrid"
+          },
+          {
+            "topic": "quantization"
+          }
+        ]
+      }
+    }
+  ],
+  "ok": true,
+  "checks": {
+    "count": 6,
+    "analyzerUsed": "ik",
+    "hybridIds": [
+      "d1",
+      "d2",
+      "d4"
+    ],
+    "vectorIds": [
+      "d1",
+      "d4",
+      "d2"
+    ],
+    "fulltextIds": [
+      "d1",
+      "d2",
+      "d4"
+    ],
+    "hybridDiffersFromVector": true,
+    "hybridDiffersFromFulltext": false,
+    "hybridHasScores": true
+  },
+  "finishedAt": "2026-11-06T22:40:20.068Z"
+}
