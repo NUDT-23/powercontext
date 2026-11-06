@@ -141,7 +141,7 @@ Docker Compose：app + powercontext
 |---|---|
 | 技术结合 | `evidence/seekdb/seekdb_search_trace.jsonl`、`evidence/powercontext/powercontext_trace.jsonl` |
 | 使用效果 | `evidence/usage/events.csv`、`feedback.csv`、`stats.json`，以及应用内「使用统计」页 |
-| 完成度 | `evidence/verification/verify_report.md`、`evidence/demo/ui-*.png`（各页面截图）、演示视频 |
+| 完成度 | `evidence/verification/verify_report.md`、`evidence/verification/test_report.md`、`evidence/demo/ui-*.png`（各页面截图）、演示视频 |
 | 工程质量 | 本 README、`docker compose up` 一键启动、`make verify` 自动断言 |
 | Qoder 开发实践 | `evidence/qoder/`（对话截图、录屏、UID、commit 对应表） |
 

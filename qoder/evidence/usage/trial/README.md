@@ -2,6 +2,8 @@
 
 目标：让 10 名以上真实用户在现场或同一局域网内完成 3 个科研任务，留下可核对的使用事件、反馈、问卷与前后耗时对比，作为「使用效果」评分项的证据。
 
+配套文档：[招募与现场方案](plan.md) · [试用者一页说明](tester_brief.md) · [问卷](questionnaire.md) · [计时表](timing.csv)
+
 ## 一、准备（组织者，约 10 分钟）
 
 1. 启动应用并确认容器健康：
@@ -84,6 +86,10 @@
 
 ```bash
 make evidence
+make report
+# 无 make 时：
+# docker compose exec -T app python -m app.export_evidence
+# docker compose exec -T app python -m app.trial_report
 ```
 
 会额外生成：
@@ -91,6 +97,7 @@ make evidence
 - `evidence/usage/trial/trial_events.csv`：按试用者编号的检索/综述/反馈事件
 - `evidence/usage/trial/trial_feedback.csv`：相关/不相关反馈
 - `evidence/usage/trial/trial_summary.json`：每人事件数、检索数、综述数、反馈数、平均耗时
+- `evidence/usage/trial/trial_report.md`：三个任务的中位数、节省比例与逐人明细（读取填好的 `timing.csv`）
 
 同时保存：
 

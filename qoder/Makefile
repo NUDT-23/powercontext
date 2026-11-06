@@ -2,7 +2,7 @@ SHELL := /bin/sh
 COMPOSE := docker compose
 N ?= 12
 
-.PHONY: up up-d down logs seed trial verify evidence reset shell ps
+.PHONY: up up-d down logs seed trial report verify evidence reset shell ps
 
 up:
 	$(COMPOSE) up --build
@@ -24,6 +24,9 @@ seed:
 
 trial:
 	$(COMPOSE) exec app python -m app.seed --trials $(N)
+
+report:
+	$(COMPOSE) exec app python -m app.trial_report
 
 verify:
 	$(COMPOSE) exec app python -m app.verify
