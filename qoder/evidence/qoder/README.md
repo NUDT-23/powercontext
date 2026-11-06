@@ -43,7 +43,7 @@
 
 - Qoder 账号 UID：`nick049570947`
 - Qoder 使用版本：`桌面端（Qoder CN）`
-- Qoder Sites 站点：`<公开链接>`
+- Qoder Sites 站点：<https://paperlens-5efj7ylekjq.qoder.zone/>（未登录可访问）
 
 ## 拍摄建议
 

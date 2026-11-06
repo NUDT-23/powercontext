@@ -75,7 +75,7 @@ python -m http.server 8090 --directory site
 # 打开 http://localhost:8090
 ```
 
-站点包含项目简介、解决的痛点、核心功能、真实界面截图、seekdb / PowerContext 分工、验收数据、运行说明、Qoder 开发记录与仓库链接。发布后的公开地址填写在此处：`<待发布>`。
+站点包含项目简介、解决的痛点、核心功能、真实界面截图、seekdb / PowerContext 分工、验收数据、运行说明、Qoder 开发记录与仓库链接。已发布地址：<https://paperlens-5efj7ylekjq.qoder.zone/>。
 
 ---
 
@@ -225,6 +225,8 @@ docker tag docker.m.daocloud.io/library/node:20-slim node:20-slim
 ## 参赛信息
 
 - 赛题：OceanBase 2026「Qoder × OceanBase」
+- 项目网站（Qoder Sites）：<https://paperlens-5efj7ylekjq.qoder.zone/>
+- 代码仓库：<https://github.com/lzj161710/powercontext/tree/2026-competition-ecosystem/qoder>
 - 提交分支：`2026-competition-ecosystem`，作品目录 `qoder/`
 - 开发工具：Qoder（核心功能开发记录见 `evidence/qoder/`）
 - 技术底座：seekdb（混合检索）+ PowerContext（长期记忆）

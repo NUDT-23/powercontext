@@ -22,5 +22,5 @@
 - [ ] seekdb 检索 trace 含 query、过滤条件、结果 id、耗时
 - [ ] 至少 10 名真实用户的事件与问卷
 - [ ] 3 分钟演示视频，无断点
-- [ ] Qoder Sites 公开链接无痕窗口可访问
+- [x] Qoder Sites 公开链接无痕窗口可访问：<https://paperlens-5efj7ylekjq.qoder.zone/>
 - [ ] 仓库不含任何真实密钥
