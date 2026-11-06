@@ -1,0 +1,192 @@
+[
+  {
+    "ts": "2026-11-06T01:50:45.756246+00:00",
+    "kind": "seekdb_search",
+    "project_id": "demo",
+    "query": "How do LLM agents remember, plan and evaluate their work?",
+    "keyword": null,
+    "where": {
+      "project_id": "demo"
+    },
+    "mode": "hybrid",
+    "n_results": 8,
+    "latency_ms": 427.48,
+    "result_ids": [
+      "c75d1453a8394fb9940f6e68#0",
+      "24e4c633d6724b3f980f9084#0",
+      "3f449c624d39442d895749e6#0",
+      "edaff91fc2504d0093807f15#0",
+      "ea049bc47383407499e01c1c#0",
+      "d819b32898c344109877dfc2#0",
+      "24e4c633d6724b3f980f9084#1",
+      "59c387089e014076afadfdee#0"
+    ],
+    "results": [
+      {
+        "id": "c75d1453a8394fb9940f6e68#0",
+        "paper_id": "c75d1453a8394fb9940f6e68",
+        "title": "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering",
+        "distance": 0.0328
+      },
+      {
+        "id": "24e4c633d6724b3f980f9084#0",
+        "paper_id": "24e4c633d6724b3f980f9084",
+        "title": "Building LLM Agents by Incorporating Insights from Computer Systems",
+        "distance": 0.0325
+      },
+      {
+        "id": "3f449c624d39442d895749e6#0",
+        "paper_id": "3f449c624d39442d895749e6",
+        "title": "LLM Agents for Education: Advances and Applications",
+        "distance": 0.0323
+      },
+      {
+        "id": "edaff91fc2504d0093807f15#0",
+        "paper_id": "edaff91fc2504d0093807f15",
+        "title": "Evaluating Test-Time Scaling of General LLM Agents",
+        "distance": 0.032
+      },
+      {
+        "id": "ea049bc47383407499e01c1c#0",
+        "paper_id": "ea049bc47383407499e01c1c",
+        "title": "MIRAI: Evaluating LLM Agents for Event Forecasting",
+        "distance": 0.0318
+      },
+      {
+        "id": "d819b32898c344109877dfc2#0",
+        "paper_id": "d819b32898c344109877dfc2",
+        "title": "DeFA: Dependency-Guided Failure Attribution for LLM Agents",
+        "distance": 0.0315
+      },
+      {
+        "id": "24e4c633d6724b3f980f9084#1",
+        "paper_id": "24e4c633d6724b3f980f9084",
+        "title": "Building LLM Agents by Incorporating Insights from Computer Systems",
+        "distance": 0.0313
+      },
+      {
+        "id": "59c387089e014076afadfdee#0",
+        "paper_id": "59c387089e014076afadfdee",
+        "title": "Securing LLM Agents Need Intent-to-Execution Integrity",
+        "distance": 0.0311
+      }
+    ],
+    "error": null
+  },
+  {
+    "ts": "2026-11-06T01:50:45.924447+00:00",
+    "kind": "seekdb_search",
+    "project_id": "demo",
+    "query": "agent memory long-term",
+    "keyword": "memory",
+    "where": {
+      "project_id": "demo",
+      "year": {
+        "$gte": 2025
+      }
+    },
+    "mode": "hybrid",
+    "n_results": 8,
+    "latency_ms": 159.65,
+    "result_ids": [
+      "c75d1453a8394fb9940f6e68#0",
+      "429b9b9721ec47119236f7a2#0",
+      "c75d1453a8394fb9940f6e68#1",
+      "897c5ad11aa54db891a085fa#1",
+      "429b9b9721ec47119236f7a2#1",
+      "41e61403f353451b8e709cb9#1",
+      "24e4c633d6724b3f980f9084#0",
+      "3f449c624d39442d895749e6#0"
+    ],
+    "results": [
+      {
+        "id": "c75d1453a8394fb9940f6e68#0",
+        "paper_id": "c75d1453a8394fb9940f6e68",
+        "title": "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering",
+        "distance": 0.0325
+      },
+      {
+        "id": "429b9b9721ec47119236f7a2#0",
+        "paper_id": "429b9b9721ec47119236f7a2",
+        "title": "Securing LLM-Agent Long-Term Memory Against Poisoning: Non-Malleable, Origin-Bound Authority with Machine-Checked Guarantees",
+        "distance": 0.0325
+      },
+      {
+        "id": "c75d1453a8394fb9940f6e68#1",
+        "paper_id": "c75d1453a8394fb9940f6e68",
+        "title": "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering",
+        "distance": 0.0313
+      },
+      {
+        "id": "897c5ad11aa54db891a085fa#1",
+        "paper_id": "897c5ad11aa54db891a085fa",
+        "title": "AgentLAB: Benchmarking LLM Agents against Long-Horizon Attacks",
+        "distance": 0.0301
+      },
+      {
+        "id": "429b9b9721ec47119236f7a2#1",
+        "paper_id": "429b9b9721ec47119236f7a2",
+        "title": "Securing LLM-Agent Long-Term Memory Against Poisoning: Non-Malleable, Origin-Bound Authority with Machine-Checked Guarantees",
+        "distance": 0.03
+      },
+      {
+        "id": "41e61403f353451b8e709cb9#1",
+        "paper_id": "41e61403f353451b8e709cb9",
+        "title": "Uncertainty Decomposition for Clarification Seeking in LLM Agents",
+        "distance": 0.028
+      },
+      {
+        "id": "24e4c633d6724b3f980f9084#0",
+        "paper_id": "24e4c633d6724b3f980f9084",
+        "title": "Building LLM Agents by Incorporating Insights from Computer Systems",
+        "distance": 0.0159
+      },
+      {
+        "id": "3f449c624d39442d895749e6#0",
+        "paper_id": "3f449c624d39442d895749e6",
+        "title": "LLM Agents for Education: Advances and Applications",
+        "distance": 0.0154
+      }
+    ],
+    "error": null
+  },
+  {
+    "ts": "2026-11-06T01:50:46.109157+00:00",
+    "kind": "seekdb_search",
+    "project_id": "demo",
+    "query": "agent memory survey cite sources",
+    "keyword": null,
+    "where": {
+      "project_id": "demo"
+    },
+    "mode": "hybrid",
+    "n_results": 3,
+    "latency_ms": 69.77,
+    "result_ids": [
+      "24e4c633d6724b3f980f9084#0",
+      "429b9b9721ec47119236f7a2#0",
+      "c75d1453a8394fb9940f6e68#0"
+    ],
+    "results": [
+      {
+        "id": "24e4c633d6724b3f980f9084#0",
+        "paper_id": "24e4c633d6724b3f980f9084",
+        "title": "Building LLM Agents by Incorporating Insights from Computer Systems",
+        "distance": 0.0328
+      },
+      {
+        "id": "429b9b9721ec47119236f7a2#0",
+        "paper_id": "429b9b9721ec47119236f7a2",
+        "title": "Securing LLM-Agent Long-Term Memory Against Poisoning: Non-Malleable, Origin-Bound Authority with Machine-Checked Guarantees",
+        "distance": 0.0325
+      },
+      {
+        "id": "c75d1453a8394fb9940f6e68#0",
+        "paper_id": "c75d1453a8394fb9940f6e68",
+        "title": "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering",
+        "distance": 0.0323
+      }
+    ],
+    "error": null
+  }
+]

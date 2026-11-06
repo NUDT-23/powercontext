@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "health",
+      "passed": true,
+      "detail": "{\"status\": \"ok\", \"seekdb\": {\"papers\": 20, \"collection\": \"paper_chunks\", \"embedding\": \"local:all-MiniLM-L6-v2\"}, \"powercontext\": true, \"llm_configured\": true}",
+      "ts": "2026-11-06T01:50:45.287935+00:00"
+    },
+    {
+      "name": "seed_corpus",
+      "passed": true,
+      "detail": "papers=20",
+      "ts": "2026-11-06T01:50:45.289960+00:00"
+    },
+    {
+      "name": "hybrid_search",
+      "passed": true,
+      "detail": "results=7 latency_ms=465.88",
+      "ts": "2026-11-06T01:50:45.760734+00:00"
+    },
+    {
+      "name": "scalar_filter",
+      "passed": true,
+      "detail": "results=6 years=[2026, 2026, 2026, 2026, 2025, 2025]",
+      "ts": "2026-11-06T01:50:45.928851+00:00"
+    },
+    {
+      "name": "memory_write",
+      "passed": true,
+      "detail": "memories=5",
+      "ts": "2026-11-06T01:50:45.983280+00:00"
+    },
+    {
+      "name": "memory_recall",
+      "passed": true,
+      "detail": "used_memories=2 sample=Preference: when searching agent memory topics, prefer survey papers and always ",
+      "ts": "2026-11-06T01:50:46.116737+00:00"
+    },
+    {
+      "name": "synthesis_stream",
+      "passed": true,
+      "detail": "events=1031 chars=1825 llm=True",
+      "ts": "2026-11-06T01:50:53.167010+00:00"
+    },
+    {
+      "name": "audit_traces",
+      "passed": true,
+      "detail": "seekdb_records=30 pc_records=138 pc_ops=['capture_source', 'ensure_scope', 'forget_memory', 'list_memory', 'prepare_context', 'remember', 'search_memory']",
+      "ts": "2026-11-06T01:50:53.174114+00:00"
+    }
+  ],
+  "generated_at": "2026-11-06T01:50:53.188862+00:00"
+}
