@@ -175,10 +175,15 @@ class SeekDBStore:
             (project_id,),
         )
 
-    def get_papers_by_ids(self, paper_ids: list[str]) -> list[dict]:
+    def get_papers_by_ids(self, paper_ids: list[str], project_id: str | None = None) -> list[dict]:
         if not paper_ids:
             return []
         placeholders = ", ".join(["%s"] * len(paper_ids))
+        if project_id:
+            return self.db.query(
+                f"SELECT {self.PAPERS_COLUMNS} FROM papers WHERE id IN ({placeholders}) AND project_id = %s",
+                tuple(paper_ids) + (project_id,),
+            )
         return self.db.query(
             f"SELECT {self.PAPERS_COLUMNS} FROM papers WHERE id IN ({placeholders})",
             tuple(paper_ids),
