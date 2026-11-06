@@ -1,0 +1,32 @@
+{
+  "conversation_id": "c03b34ba-e4dd-4395-8c75-52e0b8c253e8",
+  "answer": "**格罗姆**：认得？哼，十二枚银币，跟去年冬天那只“老猫”欠的数一模一样。你上回还嘴硬说头回来，我账本每晚擦三遍都记得你。这回是还钱，还是再添一笔？\n\n**莉拉**：我的琴弦断了一根，你倒记得清楚；那声“铮”我可编进了歌里。十二银币加一根弦，押韵正好——先还账，再听我唱不唱你的糗事。\n\n> 格罗姆：怒气+1｜莉拉：琴弦旧怨未消｜欠账：12银币",
+  "elapsed_seconds": 4.16,
+  "recall_markers": [
+    "12",
+    "十二",
+    "琴",
+    "莉拉"
+  ],
+  "metadata": {
+    "annotation_reply": null,
+    "retriever_resources": [],
+    "usage": {
+      "prompt_tokens": 413,
+      "prompt_unit_price": "3",
+      "prompt_price_unit": "0.000001",
+      "prompt_price": "0.001239",
+      "completion_tokens": 353,
+      "completion_unit_price": "15",
+      "completion_price_unit": "0.000001",
+      "completion_price": "0.005295",
+      "total_tokens": 766,
+      "total_price": "0.006534",
+      "currency": "USD",
+      "latency": 3.468,
+      "time_to_first_token": 3.993,
+      "time_to_generate": 0.0
+    },
+    "reasoning": {}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-06T16:41:39.380725+00:00",
+  "finished_at": "2026-11-06T16:41:55.039937+00:00",
+  "scope_id_redacted": true,
+  "session1_conversation_id": "238c2a3a-bcba-4a93-a762-89c3896c7260",
+  "session2_conversation_id": "c03b34ba-e4dd-4395-8c75-52e0b8c253e8",
+  "memories_before": 2,
+  "memories_after": 3,
+  "new_memories": 1,
+  "recall_markers": [
+    "12",
+    "十二",
+    "琴",
+    "莉拉"
+  ],
+  "passed": true
+}

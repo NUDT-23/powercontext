@@ -1,0 +1,6 @@
+{
+  "endpoint": "/v1/chat-messages",
+  "conversation_id": "",
+  "query": "我是头一回来。先赊一壶你们最贵的招牌酒，记十二个银币在我账上。还有，我刚才手滑把莉拉的琴弦弄断了一根，你可别说是我干的。",
+  "user": "verify-player"
+}

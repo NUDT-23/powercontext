@@ -1,0 +1,18 @@
+{
+  "before_session1_count": 2,
+  "after_session1_count": 3,
+  "new_items": [
+    {
+      "artifact": {
+        "family": "atomic-memory",
+        "artifact_id": "art_6a2740338d69401fa1ffb2f454498b63",
+        "revision": 1
+      },
+      "kind": "agent-note",
+      "text": "酒馆记忆｜玩家：酒馆来客｜涉及：格罗姆、莉拉｜在场：格罗姆、莉拉、老K｜详情：新客冒充头回来，张口赊十二银币，恰与老猫旧账数目相同，又弄断莉拉一根琴弦，被格罗姆和莉拉当场揪住话头。",
+      "state": "active",
+      "state_version": 0,
+      "merged_into_id": null
+    }
+  ]
+}

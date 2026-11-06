@@ -1,0 +1,6 @@
+{
+  "endpoint": "/v1/chat-messages",
+  "conversation_id": "",
+  "query": "还认得我吗？说说看，我上次欠了多少银币，又弄坏了谁的琴弦？",
+  "user": "verify-player"
+}

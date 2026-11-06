@@ -1,0 +1,26 @@
+{
+  "conversation_id": "238c2a3a-bcba-4a93-a762-89c3896c7260",
+  "answer": "**格罗姆**：头一回来？巧了，账本上“老猫”那笔十二枚银币的热葡萄酒账还空着没划，你就张口也十二枚——这数字我这本子记得比谁都清。最贵的招牌酒十二枚可不够，再说你手滑那根琴弦的事，我耳朵可没聋。\n\n**莉拉**：手滑？我这琴弦断得可真会挑时候，正好配我刚写的新词——“新客进门赊酒钱，十二银币赖上天”。想听下半段？先赏两个铜板，不然我下一句就把“手滑”那俩字唱得满堂响。\n\n> 格罗姆：正在翻账本｜莉拉：琴弦-1，赏钱待付",
+  "elapsed_seconds": 11.08,
+  "metadata": {
+    "annotation_reply": null,
+    "retriever_resources": [],
+    "usage": {
+      "prompt_tokens": 727,
+      "prompt_unit_price": "3",
+      "prompt_price_unit": "0.000001",
+      "prompt_price": "0.002181",
+      "completion_tokens": 557,
+      "completion_unit_price": "15",
+      "completion_price_unit": "0.000001",
+      "completion_price": "0.008355",
+      "total_tokens": 1284,
+      "total_price": "0.010536",
+      "currency": "USD",
+      "latency": 5.271,
+      "time_to_first_token": 10.028,
+      "time_to_generate": 0.0
+    },
+    "reasoning": {}
+  }
+}
