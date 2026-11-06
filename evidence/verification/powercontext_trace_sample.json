@@ -1,12 +1,12 @@
 [
   {
-    "ts": "2026-11-06T02:49:39.280951+00:00",
+    "ts": "2026-11-06T11:06:42.960315+00:00",
     "kind": "powercontext",
     "op": "list_memory",
     "method": "POST",
     "path": "/v1/atomic-memory/list",
     "status": 200,
-    "latency_ms": 13.63,
+    "latency_ms": 12.76,
     "request": {
       "scope_id": "scp_33fe1rhdvv2sfa0de1hagpmb36",
       "states": [
@@ -19,11 +19,11 @@
         {
           "artifact": {
             "family": "atomic-memory",
-            "artifact_id": "art_13ca605a92e644e4983b1f1b25559fd1",
+            "artifact_id": "art_5ef0513333d94b9aa675a0e43919a006",
             "revision": 1
           },
           "kind": "preference",
-          "text": "Preference: when searching agent memory topics, prefer survey papers and always cite sources.",
+          "text": "研究关注点：Research focus: LLM agents, agent memory, long-term memory, planning and plan, evaluation and evaluate; method comparison, reproducibility, limitations；方法对比、实验可复现性与局限性",
           "state": "active",
           "state_version": 0,
           "merged_into_id": null
@@ -31,11 +31,11 @@
         {
           "artifact": {
             "family": "atomic-memory",
-            "artifact_id": "art_5ef0513333d94b9aa675a0e43919a006",
+            "artifact_id": "art_c4d62a815a6b4547844993f689a3f7c5",
             "revision": 1
           },
-          "kind": "preference",
-          "text": "研究关注点：Research focus: LLM agents, agent memory, long-term memory, planning and plan, evaluation and evaluate; method comparison, reproducibility, limitations；方法对比、实验可复现性与局限性",
+          "kind": "feedback",
+          "text": "用户认为该结果相关；反馈：对比表清晰，引用可追溯，希望补充数据集规模对比",
           "state": "active",
           "state_version": 0,
           "merged_into_id": null
@@ -67,6 +67,18 @@
         {
           "artifact": {
             "family": "atomic-memory",
+            "artifact_id": "art_ed9525de7e27497bb84b923ac7026071",
+            "revision": 1
+          },
+          "kind": "preference",
+          "text": "Preference: when searching agent memory topics, prefer survey papers and always cite sources.",
+          "state": "active",
+          "state_version": 0,
+          "merged_into_id": null
+        },
+        {
+          "artifact": {
+            "family": "atomic-memory",
             "artifact_id": "art_f1359dd92ea64763875ec1c7ccdb45e9",
             "revision": 1
           },
@@ -82,19 +94,19 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:39.311709+00:00",
+    "ts": "2026-11-06T11:06:42.983383+00:00",
     "kind": "powercontext",
     "op": "forget_memory",
     "method": "POST",
     "path": "/v1/atomic-memory/lifecycle",
     "status": 200,
-    "latency_ms": 28.31,
+    "latency_ms": 21.09,
     "request": {
       "scope_id": "scp_33fe1rhdvv2sfa0de1hagpmb36",
       "target": {
         "artifact": {
           "family": "atomic-memory",
-          "artifact_id": "art_13ca605a92e644e4983b1f1b25559fd1",
+          "artifact_id": "art_ed9525de7e27497bb84b923ac7026071",
           "revision": 1
         },
         "state_version": 0
@@ -107,7 +119,7 @@
         {
           "artifact": {
             "family": "atomic-memory",
-            "artifact_id": "art_13ca605a92e644e4983b1f1b25559fd1",
+            "artifact_id": "art_ed9525de7e27497bb84b923ac7026071",
             "revision": 1
           },
           "kind": "preference",
@@ -121,13 +133,13 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:39.332624+00:00",
+    "ts": "2026-11-06T11:06:43.002707+00:00",
     "kind": "powercontext",
     "op": "search_memory",
     "method": "POST",
     "path": "/v1/atomic-memory/search",
     "status": 200,
-    "latency_ms": 12.67,
+    "latency_ms": 10.42,
     "request": {
       "scope_id": "scp_33fe1rhdvv2sfa0de1hagpmb36",
       "query": "用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。",
@@ -141,13 +153,13 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:39.355657+00:00",
+    "ts": "2026-11-06T11:06:43.022920+00:00",
     "kind": "powercontext",
     "op": "prepare_context",
     "method": "POST",
     "path": "/v1/context/prepare",
     "status": 200,
-    "latency_ms": 22.87,
+    "latency_ms": 20.09,
     "request": {
       "scope_id": "scp_33fe1rhdvv2sfa0de1hagpmb36",
       "query": "用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。",
@@ -162,17 +174,17 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:47.737189+00:00",
+    "ts": "2026-11-06T11:06:52.243850+00:00",
     "kind": "powercontext",
     "op": "capture_source",
     "method": "POST",
     "path": "/v1/sources/content",
     "status": 202,
-    "latency_ms": 26.23,
+    "latency_ms": 18.48,
     "request": {
       "scope_id": "scp_33fe1rhdvv2sfa0de1hagpmb36",
-      "source_id": "synthesis-53315bf9dfcc",
-      "content": "问题：用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。\n\n论文：['Causal Inference Using Tractable Circuits', 'Causal inference via algebraic geometry: feasibility tests for functional causal structures with two binary observed variables', 'Bridging Finite and Super Population Causal Inference']\n\n回答摘要：## 1. 一句话结论\n\n所提供的三篇文献均聚焦于**因果推断**（分别涉及可处理电路、代数几何可行性检验、有限与超总体视角桥接），**没有任何一篇涉及 LLM Agent 的记忆机制或评测方法**，因此无法就“LLM Agent 记忆或评测上的主要差异”给出有文献依据的综述结论 [P1][P2][P3]。\n\n## 2. 对比表\n\n| 文献 | 研究问题 | 方法 | 数据/实验 | 主要结论 | 局限 |\n|---|---|---|---|---|---|\n| P1 (Darwiche, 2022) | 含未知因果机制的概率推断能否可处理 | 将非参数因果图编译为算术电路，实现与电路规模线性的推断 | 文献中未提供具体数据集或实验 | 电路规模有时可在因果图树宽无界时仍有界，从而实现可处理推断 [P1] | 文献片段未给出实验验证细节；属立场/综述性讨论 |\n| P2 (Lee & Spekkens, 2015/2017) | 从无控制统计数据推断因果结构 | 计算代数几何（Groebner 基），对两二值观测变量的功能因果结构分类 | 文献中未提供实证数据；为理论推导 | 给出观测等价类分类及联合分布的充要约束，并讨论因果参数可识别性 [P2] | 仅限两个二值观测变量的小规模结构；扩展性未验证 |\n| P3 (Ding, Li & Miratrix, 2017) | 有限总体与超总体两种因果分析视角的关系 | 方差分解与完备性论证 | 完全随机实验的理论分析 | 两种视角概念与数学上不同，但实际方差估计量相同，可建立桥接 [P3] | 限于完全随机实验；其他情形仅为展望 |\n\n## 3. 综合综述\n\n三篇文献的共同主题是因果推断的方法论，而非 LLM Agent。P1 关注推断的可处理性，提出将非参数因果图编译为算术电路，使推断时间与电路规模呈线性关系，并指出电路规模有时可在因果图树宽无界时仍保持有界 [P1]。P2 则从代数几何角度出发，针对仅含两个二值观测变量的功能因果结构，利用 Groebner 基给出观测等价类分类及联合分布的充要约束，并讨论因果参数的可识别性 [P2]。P3 讨论的是因果分析中有限总体视角与超总体视角的概念与数学差异，证明在完全随机实验下二者虽采样方差不同，但实际方差估计量一致，从而建立桥接 [P3]。\n\n从“评测”角度看，三篇文献均未提出针对 LLM Agent 的评测框架、基准或指标。P1 属理论性讨论，未提供实验评测 [P1]；P2 为理论推导，未涉及实证评测 [P2]；P3 虽涉及方差估计量的比较，但其对象是因果效应估计量而非 Agent 系统 [P3]。因此，若以“LLM Agent 记忆或评测”为筛选标准，这三篇文献均不构成直接相关证据。\n\n就“记忆”而言，三篇文献均未涉及任何形式的记忆机制、上下文保持、检索增强或长期记忆管理。P1 的算术电路是推断表示，不是记忆系统 [P1]；P2 的 Groebner 基是代数计算工具 [P2]；P3 的方差分解是统计推断工具 [P3]。三者均不能作为 LLM Agent 记忆研究的文献依据。\n\n综上，基于所提供材料，无法完成“总结这些论文在 LLM Agent 记忆或评测上的主要差异”这一任务；材料主题与任务目标不匹配。若需该综述，应补充 LLM Agent 记忆/评测相关文献。\n\n## 4. 证据不足之处\n\n- **主题不匹配**：三篇文献均为因果推断领域，未涉及 LLM、Agent、记忆机制或 Agent 评测 [P1][P2][P3]。\n- **缺少实验与评测细节**：P1、P2 的片段未提供数据集、实验设置或评测指标 [P1][P2]；P3 仅涉及理论方差分析 [P3]。\n- **无法比较“记忆或评测差异”**：文献中未提供任何关于 LLM Agent 记忆或评测的内容，故该维度的差异“文献中未提供”。\n\n## 5. 建议的下一步阅读或验证\n\n1. 补充检索 LLM Agent 记忆相关文献（如长期记忆、检索增强生成、上下文压缩、记忆写入/遗忘策略等），以及 Agent 评测基准（如任务完成率、工具调用正确性、多轮一致性等）。\n2. 若坚持使用现有三篇文献，可将综述主题改为“因果推断中的可处理性、可识别性与总体视角差异”，此时 P1/P2/P3 可形成“表示与可处理性—结构可识别性—统计视角桥接”的对比框架 [P1][P2][P3]。\n3. 验证 P1 所述“电路规模有界而树宽无界”的具体条件与证明出处；验证 P2 的观测等价类分类在更多变量下的扩展性；验证 P3 的桥接结论在非完全随机设计下是否成立——这些在片段中均“文献中未提供”充分细节。",
+      "source_id": "synthesis-2a34891ef994",
+      "content": "问题：用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。\n\n论文：['Causal Inference Using Tractable Circuits', 'Causal inference via algebraic geometry: feasibility tests for functional causal structures with two binary observed variables', 'Bridging Finite and Super Population Causal Inference']\n\n回答摘要：## 1. 一句话结论\n\n所提供的三篇文献均聚焦于**因果推断**的方法论问题（可处理电路、代数几何可行性检验、有限/超总体视角桥接），**没有任何一篇涉及 LLM Agent 的记忆机制或评测**，因此无法就“LLM Agent 记忆或评测上的主要差异”作出有文献依据的总结 [P1][P2][P3]。\n\n## 2. 对比表\n\n| 文献 | 研究问题 | 方法 | 数据/实验 | 主要结论 | 局限 |\n|---|---|---|---|---|---|\n| P1 (Darwiche, 2022) | 含未知因果机制的概率推断能否变得可处理 | 将非参数因果图编译为算术电路，实现与电路规模线性的推断 | 文献中未提供（理论性论文，无实验描述） | 电路规模有时可在因果图树宽无界时仍有界，从而对以往视为不可处理的模型实现可处理推断 [P1] | 文献中未提供 |\n| P2 (Lee & Spekkens, 2015/2017) | 如何从无控制的统计数据进行因果推断 | 计算代数几何（Groebner 基），对两二值观测变量的功能因果结构做可行性检验与观测等价类划分 | 文献中未提供（理论性论文） | 给出各观测等价类联合分布的充要约束，并说明如何判定与求解可识别的因果参数 [P2] | 仅限两个二值观测变量的小规模结构 [P2] |\n| P3 (Ding, Li & Miratrix, 2017) | 有限总体与超总体两种因果分析视角的关系 | 方差分解与完备性型论证 | 完全随机化实验（理论推导） | 两种视角在概念与数学上不同、采样方差不同，但实际得到的方差估计量相同 [P3] | 结论限于完全随机化实验，其他情形仅为展望 [P3] |\n\n## 3. 综合综述\n\n三篇文献的共同主题是因果推断的理论与方法，而非 LLM Agent。P1 关注推断的可处理性：它讨论了一个近期结果，即把非参数因果图编译为算术电路后，可在与电路规模线性的时间内完成推断，且电路规模有时能在因果图树宽无界时依然有界 [P1]。P2 关注从观测数据判定因果结构的可行性：它基于计算代数几何（Groebner 基），针对仅含两个二值观测变量的因果结构，给出观测等价类划分及联合分布的充要约束 [P2]。P3 关注因果分析中两种总体视角的关系：超总体视角把单元视为来自假想无限总体的独立样本，有限总体视角则把潜在结果视为固定、随机性仅来自处理分配的物理随机化，二者在概念与数学上不同、导致不同的采样方差，但在完全随机化实验中给出相同的方差估计量 [P3]。\n\n在方法论取向上，三者差异明显：P1 是电路编译与可处理性分析 [P1]；P2 是代数几何的可行性检验与等价类刻画 [P2]；P3 是抽样理论与方差分解的视角桥接 [P3]。在适用范围上，P2 明确限定于两个二值观测变量的小规模结构 [P2]，P3 的桥接结论限于完全随机化实验 [P3]，P1 则强调电路规模界并非普遍成立（“有时”可以有界）[P1]。\n\n需要强调的是，三篇文献的摘要与正文片段中均未出现 LLM、Agent、记忆（memory）或评测（evaluation/benchmark）相关的内容 [P1][P2][P3]。因此，就本任务所要求的“LLM Agent 记忆或评测上的主要差异”，文献中未提供任何可引用的证据。\n\n## 4. 证据不足之处\n\n- **主题不匹配**：三篇文献均为因果推断方法论论文，未涉及 LLM Agent 的记忆机制、记忆架构或评测基准 [P1][P2][P3]。\n- **实验数据缺失**：P1、P2 为理论性论文，正文片段中未提供实验设置或数据集信息 [P1][P2]；P3 仅描述完全随机化实验的理论推导，未提供具体实验数据 [P3]。\n- **局限与展望信息不完整**：各文献的局限部分在所提供的片段中未系统给出，表中“局限”一栏仅依据摘要中明确的范围限定填写 [P1][P2][P3]。\n\n## 5. 建议的下一步阅读或验证\n\n1. **确认文献集合是否错配**：当前三篇文献与“LLM Agent 记忆或评测”主题无关，建议核对是否应提供另一组文献（如涉及 agent memory、long-term memory、benchmark/evaluation 的论文）。\n2. **若需保留因果推断线索**：可进一步阅读 P1 所引的“近期结果”原始论文以核实电路规模界的条件 [P1]；阅读 P2 的完整正文以核实等价类分类的归纳方案细节 [P2]；阅读 P3 全文以核实“其他场景”桥接模板的具体条件 [P3]。\n3. **若目标确为 LLM Agent 综述**：在获得相关文献后，可按“记忆类型（短期/长期/外部）—评测维度（准确性/一致性/效率）—实验设置”的框架重新组织对比表。",
       "metadata": {
         "origin": "paperlens-synthesis",
         "project_id": "demo"
@@ -182,9 +194,9 @@
       "status": "accepted",
       "source": {
         "name": "content",
-        "source_id": "synthesis-53315bf9dfcc"
+        "source_id": "synthesis-2a34891ef994"
       },
-      "position": 34
+      "position": 44
     },
     "error": null
   }

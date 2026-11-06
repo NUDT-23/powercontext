@@ -137,9 +137,9 @@ class SynthesisService:
         user_name: str = "anonymous",
     ) -> Iterator[dict]:
         started = time.perf_counter()
-        papers = self.store.get_papers_by_ids(paper_ids)
+        papers = self.store.get_papers_by_ids(paper_ids, project_id=project_id)
         if not papers:
-            yield {"type": "error", "message": "未选择文献或文献不存在"}
+            yield {"type": "error", "message": "未选择文献或文献不属于该项目"}
             return
         memory_context, memories = self._memory_block(project_id, question, memory_enabled)
         yield {

@@ -1,6 +1,6 @@
 [
   {
-    "ts": "2026-11-06T02:49:38.891007+00:00",
+    "ts": "2026-11-06T11:06:42.619736+00:00",
     "kind": "seekdb_search",
     "project_id": "demo",
     "query": "How do LLM agents remember, plan and evaluate their work?",
@@ -10,7 +10,7 @@
     },
     "mode": "hybrid",
     "n_results": 8,
-    "latency_ms": 317.38,
+    "latency_ms": 113.66,
     "result_ids": [
       "c75d1453a8394fb9940f6e68#0",
       "24e4c633d6724b3f980f9084#0",
@@ -74,7 +74,7 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:39.105680+00:00",
+    "ts": "2026-11-06T11:06:42.788932+00:00",
     "kind": "seekdb_search",
     "project_id": "demo",
     "query": "agent memory long-term",
@@ -87,7 +87,7 @@
     },
     "mode": "hybrid",
     "n_results": 8,
-    "latency_ms": 200.76,
+    "latency_ms": 160.17,
     "result_ids": [
       "c75d1453a8394fb9940f6e68#0",
       "429b9b9721ec47119236f7a2#0",
@@ -151,7 +151,7 @@
     "error": null
   },
   {
-    "ts": "2026-11-06T02:49:39.262150+00:00",
+    "ts": "2026-11-06T11:06:42.942570+00:00",
     "kind": "seekdb_search",
     "project_id": "demo",
     "query": "agent memory survey cite sources",
@@ -161,7 +161,7 @@
     },
     "mode": "hybrid",
     "n_results": 3,
-    "latency_ms": 61.2,
+    "latency_ms": 59.15,
     "result_ids": [
       "24e4c633d6724b3f980f9084#0",
       "429b9b9721ec47119236f7a2#0",
