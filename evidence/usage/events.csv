@@ -1,0 +1,60 @@
+﻿id,project_id,user_name,action,query,latency_ms,result_count,created_at
+1,demo,anonymous,seed,added=20 skipped=0,0,20,2026-11-06T00:58:14
+2,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",122,7,2026-11-06T00:58:16
+3,demo,anonymous,search,agent memory long-term,68,6,2026-11-06T00:58:16
+4,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T00:58:16
+5,demo,anonymous,search,agent memory survey cite sources,105,3,2026-11-06T00:58:16
+6,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,34,3,2026-11-06T00:58:16
+1000001,demo,anonymous,search,LLM agent memory,827,4,2026-11-06T00:59:16
+1000002,demo,anonymous,search,LLM agent memory,855,4,2026-11-06T00:59:16
+1000003,demo,anonymous,search,LLM agent memory,964,4,2026-11-06T00:59:16
+1000004,demo,anonymous,search,LLM agent memory,926,4,2026-11-06T00:59:16
+1000005,demo,anonymous,search,LLM agent memory,1006,4,2026-11-06T00:59:16
+1000006,demo,anonymous,search,LLM agent memory,1034,4,2026-11-06T00:59:16
+1000007,demo,anonymous,search,LLM agent memory,1041,4,2026-11-06T00:59:16
+1000008,demo,anonymous,search,LLM agent memory,1230,4,2026-11-06T00:59:16
+1000009,demo,anonymous,search,LLM agent memory,1211,4,2026-11-06T00:59:16
+1000010,demo,anonymous,search,LLM agent memory,1288,4,2026-11-06T00:59:17
+1000011,demo,anonymous,search,How do LLM agents remember and plan?,108,8,2026-11-06T00:59:34
+2000001,demo,anonymous,synthesize,比较这些论文在方法、实验设计与局限性上的差异，并给出后续阅读建议。,42,3,2026-11-06T01:00:24
+2000002,demo,anonymous,synthesize,比较这些论文在方法、实验设计与局限性上的差异，并给出后续阅读建议。,1,3,2026-11-06T01:00:25
+2000003,demo,anonymous,synthesize,How do these LLM agent papers handle long-term memory and method comparison? What are their limitations?,66,3,2026-11-06T01:00:38
+2000004,demo,anonymous,synthesize,How do these LLM agent papers handle long-term memory and method comparison? What are their limitations?,1,3,2026-11-06T01:00:40
+2000005,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",307,7,2026-11-06T01:00:53
+2000006,demo,anonymous,search,agent memory long-term,157,6,2026-11-06T01:00:53
+2000007,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T01:00:53
+2000008,demo,anonymous,search,agent memory survey cite sources,106,3,2026-11-06T01:00:54
+2000009,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,32,3,2026-11-06T01:00:54
+3000001,demo,anonymous,memory_forget,,0,1,2026-11-06T01:02:06
+3000002,demo,anonymous,memory_forget,,0,1,2026-11-06T01:02:06
+4000001,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",349,7,2026-11-06T01:02:20
+4000002,demo,anonymous,search,agent memory long-term,150,6,2026-11-06T01:02:21
+4000003,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T01:02:21
+4000004,demo,anonymous,search,agent memory survey cite sources,90,3,2026-11-06T01:02:21
+4000005,demo,anonymous,memory_forget,,0,1,2026-11-06T01:02:21
+4000006,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,39,3,2026-11-06T01:02:21
+4000007,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",101,7,2026-11-06T01:02:22
+4000008,demo,anonymous,search,agent memory long-term,60,6,2026-11-06T01:02:22
+4000009,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T01:02:22
+4000010,demo,anonymous,search,agent memory survey cite sources,97,3,2026-11-06T01:02:22
+4000011,demo,anonymous,memory_forget,,0,1,2026-11-06T01:02:22
+4000012,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,38,3,2026-11-06T01:02:22
+4000013,demo,anonymous,search,How do these LLM agent papers handle long-term memory and method comparison? What are their limitations?,104,3,2026-11-06T01:02:29
+4000014,demo,anonymous,synthesize,How do these LLM agent papers handle long-term memory and method comparison? What are their limitations?,43,3,2026-11-06T01:02:38
+4000015,demo,anonymous,synthesize,How do these LLM agent papers handle long-term memory and method comparison? What are their limitations?,1,3,2026-11-06T01:02:41
+5000001,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",2120,7,2026-11-06T01:47:55
+5000002,demo,anonymous,search,agent memory long-term,187,6,2026-11-06T01:47:55
+5000003,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T01:47:55
+5000004,demo,anonymous,search,agent memory survey cite sources,104,3,2026-11-06T01:47:55
+5000005,demo,anonymous,memory_forget,,0,1,2026-11-06T01:47:55
+5000006,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,47,3,2026-11-06T01:47:55
+5000007,demo,anonymous,synthesize,简述这些文献的方法与局限。,1,2,2026-11-06T01:48:00
+5000008,demo,anonymous,synthesize,比较这些论文在方法、实验设计与局限性上的差异，并给出后续阅读建议。,39,3,2026-11-06T01:48:12
+6000001,demo,anonymous,synthesize,比较这些论文在方法、实验与局限性上的差异，并给出后续阅读建议。,13071,3,2026-11-06T01:50:40
+6000002,demo,anonymous,search,"How do LLM agents remember, plan and evaluate their work?",465,7,2026-11-06T01:50:45
+6000003,demo,anonymous,search,agent memory long-term,160,6,2026-11-06T01:50:45
+6000004,demo,anonymous,memory_remember,"Preference: when searching agent memory topics, prefer survey papers and always cite sources.",0,1,2026-11-06T01:50:45
+6000005,demo,anonymous,search,agent memory survey cite sources,124,3,2026-11-06T01:50:46
+6000006,demo,anonymous,memory_forget,,0,1,2026-11-06T01:50:46
+6000007,demo,anonymous,synthesize,用一段话总结这些论文在 LLM Agent 记忆或评测上的主要差异，并标注引用。,6963,3,2026-11-06T01:50:53
+6000008,demo,anonymous,synthesize,"Compare these papers on method, experiments and limitations. Give follow-up reading advice.",8806,3,2026-11-06T01:51:11

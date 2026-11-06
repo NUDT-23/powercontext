@@ -21,7 +21,6 @@ evidence/demo/*.mov
 evidence/qoder/*.mp4
 evidence/powercontext/*.png
 evidence/seekdb/*.png
-evidence/usage/*.csv
 
 .DS_Store
 Thumbs.db

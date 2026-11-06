@@ -28,9 +28,9 @@
 
 | 日期 | 功能 | 我的需求（Qoder 输入摘要） | Qoder 完成的工作 | 对应 commit | 截图 |
 | --- | --- | --- | --- | --- | --- |
-| 2026-11-06 | 架构分析 | 不改代码，阅读 README、`backend/app/`、`frontend/src/`，输出架构与请求数据流、两项技术的职责边界、最薄弱的 3 个点、最小改动清单 | 并行阅读前后端源码，梳理 seekdb 检索与 PowerContext 记忆的调用链，给出按 P0/P1 排序的改动清单 | `__BASELINE__` | `qoder-08-analysis.png` |
-| 2026-11-06 | 引用校验 | 解析最终答案里的 `[P#]`，只允许 `1..所选文献数`；非法编号通过 SSE `done` 的 `invalid_citations` 返回，前端在结果上方提示 | `synth_service.py` 增加 `validate_citations`，`api.ts` 扩展事件类型，`App.tsx` 渲染警告；验证 `[P0]`、`[P4]` 被正确判为越界 | `__BASELINE__` | `qoder-09-citation-check.png`、`qoder-09-citation-check-plan.png` |
-| 2026-11-06 | Markdown 导出 | 在综述结果区域增加「导出 Markdown」按钮，把当前 output 下载为带时间戳的 `.md`；纯前端实现，不改后端 | `App.tsx` 实现 `exportMarkdown`：拼装问题、时间、耗时、引用文献与正文，通过 Blob 触发下载 | `__BASELINE__` | `qoder-10-export.png` |
+| 2026-11-06 | 架构分析 | 不改代码，阅读 README、`backend/app/`、`frontend/src/`，输出架构与请求数据流、两项技术的职责边界、最薄弱的 3 个点、最小改动清单 | 并行阅读前后端源码，梳理 seekdb 检索与 PowerContext 记忆的调用链，给出按 P0/P1 排序的改动清单 | `0ee6ac9` | `qoder-08-analysis.png` |
+| 2026-11-06 | 引用校验 | 解析最终答案里的 `[P#]`，只允许 `1..所选文献数`；非法编号通过 SSE `done` 的 `invalid_citations` 返回，前端在结果上方提示 | `synth_service.py` 增加 `validate_citations`，`api.ts` 扩展事件类型，`App.tsx` 渲染警告；验证 `[P0]`、`[P4]` 被正确判为越界 | `0ee6ac9` | `qoder-09-citation-check.png`、`qoder-09-citation-check-plan.png` |
+| 2026-11-06 | Markdown 导出 | 在综述结果区域增加「导出 Markdown」按钮，把当前 output 下载为带时间戳的 `.md`；纯前端实现，不改后端 | `App.tsx` 实现 `exportMarkdown`：拼装问题、时间、耗时、引用文献与正文，通过 Blob 触发下载 | `0ee6ac9` | `qoder-10-export.png` |
 | 2026-11-__ |  |  |  | `<hash>` | `qoder-01-project-scope.png` |
 | 2026-11-__ |  |  |  | `<hash>` | `qoder-02-ingest.png` |
 | 2026-11-__ |  |  |  | `<hash>` | `qoder-03-hybrid-search.png` |
