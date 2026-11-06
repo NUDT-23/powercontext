@@ -66,6 +66,19 @@ make evidence    # 导出使用统计、反馈、记忆快照与 trace 到 evide
 
 ---
 
+## 项目网站（Qoder Sites）
+
+展示站源码在 `site/`，纯静态 HTML/CSS/JS，无外部 CDN 依赖，可由 Qoder Sites 直接发布：
+
+```bash
+python -m http.server 8090 --directory site
+# 打开 http://localhost:8090
+```
+
+站点包含项目简介、解决的痛点、核心功能、真实界面截图、seekdb / PowerContext 分工、验收数据、运行说明、Qoder 开发记录与仓库链接。发布后的公开地址填写在此处：`<待发布>`。
+
+---
+
 ## 配置说明
 
 关键环境变量（完整见 `.env.example`）：
@@ -174,7 +187,8 @@ qoder/
 │   └── src/{App.tsx, api.ts, styles.css}
 ├── seed/papers.json            # 20 篇 arXiv 公开文献元数据
 ├── scripts/                    # 语料抓取等辅助脚本
-└── evidence/                   # 验收证据输出（大文件不入库）
+├── site/                       # Qoder Sites 展示站（静态）
+└── evidence/                   # 验收证据输出
 ```
 
 ---

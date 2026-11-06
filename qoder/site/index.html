@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaperLens 文澜 · 科研文献混合检索与记忆增强综述</title>
+<meta name="description" content="PaperLens 文澜：用 seekdb 做向量、全文与元数据混合检索，用 PowerContext 记住研究偏好，生成带引用的文献综述。Qoder × OceanBase 2026 参赛作品。">
+<meta property="og:title" content="PaperLens 文澜 · 科研文献工作台">
+<meta property="og:description" content="混合检索 + 长期记忆 + 带引用综述，一次查询完成找文献、比方法、写初稿。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f5bd5'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white'%3EPL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="PaperLens 首页">
+      <span class="brand-mark">PL</span>
+      <span class="brand-text">
+        <strong>PaperLens</strong>
+        <small>文澜 · 科研工作台</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#problem">问题</a>
+      <a href="#features">功能</a>
+      <a href="#tech">技术</a>
+      <a href="#demo">演示</a>
+      <a href="#data">数据</a>
+      <a href="#run">运行</a>
+      <a href="#qoder">Qoder</a>
+    </nav>
+    <a class="btn btn-ghost header-cta" href="#repo">代码仓库</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="dot"></span>Qoder × OceanBase 2026 参赛作品</p>
+        <h1>把几十篇论文，<br>变成可检索、可对比、<br><em>可成稿</em>的研究助理。</h1>
+        <p class="hero-lead">
+          PaperLens 文澜面向科研阅读与写作：seekdb 在同一次查询里完成向量语义检索、全文关键词检索与元数据过滤，
+          PowerContext 跨会话记住你的研究关注点、语言风格与已读进度。找文献、比方法、写综述，从一次提问开始。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#run">三分钟跑起来</a>
+          <a class="btn btn-outline" href="#repo">查看源码</a>
+        </div>
+        <ul class="hero-badges" aria-label="技术要点">
+          <li>seekdb 混合检索 + RRF</li>
+          <li>PowerContext 长期记忆</li>
+          <li>SSE 流式综述</li>
+          <li>Docker 一键启动</li>
+        </ul>
+      </div>
+      <figure class="hero-shot reveal">
+        <img src="assets/ui-02-search-results.png" alt="PaperLens 混合检索结果页：顶部显示本次召回的记忆，结果为带章节和页码的原文片段" loading="eager">
+        <figcaption>一次混合检索：召回偏好记忆 + 带出处的原文片段</figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap stats-strip reveal" aria-label="关键数据">
+      <div class="stat"><strong>20</strong><span>篇演示文献</span></div>
+      <div class="stat"><strong>40</strong><span>个检索分块</span></div>
+      <div class="stat"><strong>30</strong><span>次混合检索</span></div>
+      <div class="stat"><strong>16</strong><span>次综述生成</span></div>
+      <div class="stat"><strong>8/8</strong><span>自动验收项通过</span></div>
+      <div class="stat"><strong>466<small>ms</small></strong><span>单次检索样例耗时</span></div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section" id="problem">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>真实痛点</p>
+        <h2>科研阅读的瓶颈，不在读，而在<em>找、记、写</em></h2>
+        <p class="lead">围绕 LLM Agent 与因果推断主题，把 20 篇 arXiv 论文导入后，三类高频动作仍然很慢：</p>
+      </header>
+      <div class="problem-grid">
+        <article class="card problem reveal">
+          <span class="problem-index">01</span>
+          <h3>找不准</h3>
+          <p>关键词搜不到语义相近的段落，纯向量检索又会漏掉精确术语、作者和年份条件。</p>
+          <p class="problem-fix"><strong>PaperLens：</strong>向量 + 全文 + 标量过滤在同一次查询内完成，RRF 融合排序，结果逐条带章节与页码。</p>
+        </article>
+        <article class="card problem reveal">
+          <span class="problem-index">02</span>
+          <h3>记不住</h3>
+          <p>每次都要重新说明研究关注点、偏好的论文类型与写作风格，否定过的方向还会反复出现。</p>
+          <p class="problem-fix"><strong>PaperLens：</strong>PowerContext 保存偏好、关注点、否定文献、阅读进度与反馈，检索和综述前自动召回。</p>
+        </article>
+        <article class="card problem reveal">
+          <span class="problem-index">03</span>
+          <h3>写不成</h3>
+          <p>对比多篇论文时要来回翻原文，整理完还容易丢引用，综述初稿变成二次劳动。</p>
+          <p class="problem-fix"><strong>PaperLens：</strong>勾选文献生成「问题—方法—数据—结论—局限」对比，强制 <code>[P#]</code> 引用并校验越界编号。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section-alt" id="features">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>核心功能</p>
+        <h2>从导入到成稿的完整闭环</h2>
+        <p class="lead">每个环节都留下可核对的检索记录或记忆读写 trace，而不是只在界面上“看起来能用”。</p>
+      </header>
+      <div class="feature-grid">
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          </div>
+          <h3>PDF / arXiv 导入</h3>
+          <p>粘贴 arXiv 链接或上传 PDF，自动抽取元数据，按段落分块并写入 seekdb，保留章节与页码。</p>
+        </article>
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+          </div>
+          <h3>混合检索 + RRF</h3>
+          <p>自然语言问题与精确关键词同时生效，年份、来源等元数据在候选集内过滤，再按 RRF 融合排序。</p>
+        </article>
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10Z"/></svg>
+          </div>
+          <h3>长期记忆召回</h3>
+          <p>偏好、研究关注点、否定方向与阅读进度写入 PowerContext，检索与综述前自动准备上下文。</p>
+        </article>
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18" cy="17" r="3"/></svg>
+          </div>
+          <h3>记忆开关 A/B</h3>
+          <p>同一问题可一键开启或关闭记忆，界面直接展示“本次召回的记忆”，差异可复现、可截图。</p>
+        </article>
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5M9 8h3"/></svg>
+          </div>
+          <h3>带引用综述</h3>
+          <p>SSE 流式输出对比表与综述初稿，每条结论标注 <code>[P#]</code>，生成后校验引用编号是否越界。</p>
+        </article>
+        <article class="card feature reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-5 3 3 5-7"/></svg>
+          </div>
+          <h3>证据与统计</h3>
+          <p>检索参数、结果、耗时写入 JSONL trace；使用事件与反馈进入 SQL 表，一键导出 CSV / JSON 与 Markdown。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="section" id="tech">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>技术实现</p>
+        <h2>seekdb 与 PowerContext 的分工</h2>
+        <p class="lead">seekdb 负责“找到与出处”，PowerContext 负责“记住与复用”。两者都在主流程中实际生效。</p>
+      </header>
+
+      <div class="arch card reveal" aria-label="系统架构">
+        <div class="arch-row">
+          <div class="arch-box soft">React 18 + Vite<small>检索 / 文献库 / 记忆 / 综述 / 统计</small></div>
+          <div class="arch-arrow" aria-hidden="true"></div>
+          <div class="arch-box brand">FastAPI<small>REST + SSE · 检索与综述编排</small></div>
+        </div>
+        <div class="arch-row arch-row-3">
+          <div class="arch-box purple">seekdb<small>论文、分块、向量 / 全文 / 标量混合检索</small></div>
+          <div class="arch-box purple">PowerContext<small>Scope · Memory · PreparedContext</small></div>
+          <div class="arch-box neutral">OpenAI 兼容 API<small>LLM 生成 + Embedding</small></div>
+        </div>
+        <p class="arch-note">Docker Compose 启动 <code>app</code> + <code>powercontext</code> 两个容器；前端构建后由 FastAPI 托管。</p>
+      </div>
+
+      <div class="tech-grid">
+        <article class="card tech reveal">
+          <header>
+            <span class="tag tag-purple">seekdb</span>
+            <h3>混合检索与证据链</h3>
+          </header>
+          <ul class="check-list">
+            <li>集合 <code>paper_chunks</code>：<code>id = paper_id#chunk_idx</code>，正文作为 document，元数据随行存储。</li>
+            <li>向量检索、<code>$contains</code> 全文匹配、<code>project_id / year / venue</code> 过滤在同一次调用内完成。</li>
+            <li>RRF 融合后返回 8 条候选，每条带 <code>section</code>、<code>page</code> 与距离。</li>
+            <li>每次检索写入 <code>seekdb_search_trace.jsonl</code>：输入、过滤条件、命中 id、耗时。</li>
+          </ul>
+          <pre class="code"><code>collection.hybrid_search(
+  query={
+    "where_document": {"$contains": keyword},
+    "where": {"project_id": pid, "year": {"$gte": 2024}},
+    "n_results": 20,
+  },
+  knn={"query_texts": [question],
+       "where": {"project_id": pid},
+       "n_results": 20},
+  rank={"rrf": {}},
+  n_results=8,
+)</code></pre>
+        </article>
+
+        <article class="card tech reveal">
+          <header>
+            <span class="tag tag-green">PowerContext</span>
+            <h3>长期记忆与上下文准备</h3>
+          </header>
+          <ul class="check-list">
+            <li>每个项目一个 Scope，<code>scope_id</code> 存回应用库，跨会话复用。</li>
+            <li>记忆类型：<code>preference / interest / negative-interest / progress / focus / decision</code>。</li>
+            <li>写入 <code>/v1/memory/remember</code>；检索 <code>/v1/atomic-memory/search</code>；生成前 <code>/v1/context/prepare</code>。</li>
+            <li>记忆可查看、修正、遗忘；所有操作写入 <code>powercontext_trace.jsonl</code>。</li>
+          </ul>
+          <div class="memory-demo">
+            <p class="memory-q">本次召回的记忆</p>
+            <p class="memory-item"><span class="chip">preference</span>研究关注点：LLM agents, agent memory, long-term memory, planning, evaluation；方法对比、可复现性与局限性</p>
+            <p class="memory-meta">1 条 · 108.17 ms · 注入检索与综述提示词</p>
+          </div>
+          <p class="tech-foot">验收时记录到的 PowerContext 操作：<code>ensure_scope</code>、<code>remember</code>、<code>search_memory</code>、<code>prepare_context</code>、<code>list_memory</code>、<code>forget_memory</code>、<code>capture_source</code>。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo -->
+  <section class="section section-alt" id="demo">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>界面演示</p>
+        <h2>主要流程，一屏一件事</h2>
+        <p class="lead">以下截图均在本地 Docker 环境实际运行，点击可放大查看。</p>
+      </header>
+      <div class="gallery">
+        <figure class="shot wide reveal">
+          <button class="shot-btn" data-full="assets/ui-01-search.png" data-title="混合检索入口">
+            <img src="assets/ui-01-search.png" alt="混合检索入口：研究问题、精确关键词、年份下限、期刊来源和记忆开关" loading="lazy">
+          </button>
+          <figcaption><strong>混合检索入口</strong><span>自然语言问题 + 精确关键词 / 年份 / 来源过滤，一键开关长期记忆。</span></figcaption>
+        </figure>
+        <figure class="shot wide reveal">
+          <button class="shot-btn" data-full="assets/ui-02-search-results.png" data-title="检索结果与记忆召回">
+            <img src="assets/ui-02-search-results.png" alt="检索结果页：召回记忆条、论文结果、命中片段与相关反馈按钮" loading="lazy">
+          </button>
+          <figcaption><strong>检索结果与记忆召回</strong><span>顶部展示本次召回的记忆，结果带命中片段、章节与页码。</span></figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-03-library.png" data-title="文献库与导入">
+            <img src="assets/ui-03-library.png" alt="文献库页面：arXiv 链接导入、PDF 上传与论文列表" loading="lazy">
+          </button>
+          <figcaption><strong>文献库与导入</strong><span>arXiv 链接或 PDF 上传，解析后自动分块入库。</span></figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-04-memory.png" data-title="长期记忆面板">
+            <img src="assets/ui-04-memory.png" alt="PowerContext 记忆面板：偏好、关注点、输出风格与遗忘按钮" loading="lazy">
+          </button>
+          <figcaption><strong>长期记忆面板</strong><span>查看、写入、遗忘偏好与关注点，操作全部留 trace。</span></figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-05-synth.png" data-title="综述生成">
+            <img src="assets/ui-05-synth.png" alt="综述生成页：选择多篇文献并输入综述问题" loading="lazy">
+          </button>
+          <figcaption><strong>综述生成</strong><span>勾选多篇文献，按统一维度生成对比与综述初稿。</span></figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-11-synth-llm.png" data-title="流式输出与引用">
+            <img src="assets/ui-11-synth-llm.png" alt="LLM 流式综述输出，带 P 编号引用与 Markdown 导出按钮" loading="lazy">
+          </button>
+          <figcaption><strong>流式输出与引用</strong><span>SSE 实时渲染，结论带 <code>[P#]</code> 引用，越界编号会提示。</span></figcaption>
+        </figure>
+
+        <div class="compare reveal">
+          <p class="compare-title">同一问题的记忆开 / 关对比</p>
+          <div class="compare-grid">
+            <figure class="shot">
+              <button class="shot-btn" data-full="assets/ui-08-synth-memory-on.png" data-title="记忆开启">
+                <img src="assets/ui-08-synth-memory-on.png" alt="记忆开启时的综述输出，显示召回的记忆偏好" loading="lazy">
+              </button>
+              <figcaption><span class="chip chip-on">记忆开</span><span>输出按偏好组织，优先给出对比与可复现性提示。</span></figcaption>
+            </figure>
+            <figure class="shot">
+              <button class="shot-btn" data-full="assets/ui-09-synth-memory-off.png" data-title="记忆关闭">
+                <img src="assets/ui-09-synth-memory-off.png" alt="记忆关闭时的综述输出，没有回忆偏好注入" loading="lazy">
+              </button>
+              <figcaption><span class="chip chip-off">记忆关</span><span>不注入偏好，输出更通用，风格与侧重点明显不同。</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-06-stats.png" data-title="使用统计">
+            <img src="assets/ui-06-stats.png" alt="使用统计页面：文献数、检索次数、综述次数、平均耗时与最近事件" loading="lazy">
+          </button>
+          <figcaption><strong>使用统计</strong><span>检索 / 综述次数与平均耗时，最近事件可导出为证据。</span></figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <button class="shot-btn" data-full="assets/ui-10-synth-export.png" data-title="Markdown 导出">
+            <img src="assets/ui-10-synth-export.png" alt="综述结果导出为带时间戳的 Markdown 文件" loading="lazy">
+          </button>
+          <figcaption><strong>Markdown 导出</strong><span>带时间戳、问题、耗时与引用文献列表，直接进入写作流程。</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data -->
+  <section class="section" id="data">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>实测数据</p>
+        <h2>验收结果与运行记录</h2>
+        <p class="lead">数据来自 <code>evidence/verification/verify_report.md</code> 与 <code>evidence/usage/stats.json</code>，可在仓库中核对。</p>
+      </header>
+
+      <div class="data-grid">
+        <article class="card table-card reveal">
+          <h3>自动验收 <span class="pass-pill">PASS · 8/8</span></h3>
+          <table>
+            <thead><tr><th>检查项</th><th>结果</th><th>关键数据</th></tr></thead>
+            <tbody>
+              <tr><td>health</td><td class="ok">PASS</td><td>20 篇文献 · PowerContext 已连接 · LLM 已配置</td></tr>
+              <tr><td>seed_corpus</td><td class="ok">PASS</td><td>papers=20</td></tr>
+              <tr><td>hybrid_search</td><td class="ok">PASS</td><td>7 条结果 · 465.88 ms</td></tr>
+              <tr><td>scalar_filter</td><td class="ok">PASS</td><td><code>year ≥ 2025</code> 收窄到 6 条</td></tr>
+              <tr><td>memory_write</td><td class="ok">PASS</td><td>5 条记忆可列出</td></tr>
+              <tr><td>memory_recall</td><td class="ok">PASS</td><td>召回 2 条，注入检索上下文</td></tr>
+              <tr><td>synthesis_stream</td><td class="ok">PASS</td><td>1,031 个 SSE 事件 · 1,825 字 · LLM 模式</td></tr>
+              <tr><td>audit_traces</td><td class="ok">PASS</td><td>seekdb 30 条 · PowerContext 138 条</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note">运行时间：2026-11-06 01:50 UTC；重新执行 <code>python -m app.verify</code> 可复现。</p>
+        </article>
+
+        <div class="data-side">
+          <article class="card metric reveal">
+            <p class="metric-label">混合检索</p>
+            <p class="metric-value">30<small>次</small></p>
+            <p class="metric-sub">平均 515.5 ms · 向量 + 全文 + 过滤 + RRF</p>
+          </article>
+          <article class="card metric reveal">
+            <p class="metric-label">综述生成</p>
+            <p class="metric-value">16<small>次</small></p>
+            <p class="metric-sub">平均 1.83 s · 离线抽取与 LLM 流式均可用</p>
+          </article>
+          <article class="card metric reveal">
+            <p class="metric-label">记忆读写</p>
+            <p class="metric-value">6<small>写 / 6 忘</small></p>
+            <p class="metric-sub">每次写、搜、准备上下文与遗忘均留 trace</p>
+          </article>
+          <article class="card metric metric-note reveal">
+            <p class="metric-label">真实用户试用</p>
+            <p class="metric-value metric-value-sm">进行中</p>
+            <p class="metric-sub">试用人数、前后耗时对比与问卷结果将在采集完成后更新；当前数据为开发与内测阶段记录。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Run -->
+  <section class="section section-alt" id="run">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>运行说明</p>
+        <h2>Docker Compose 一键启动</h2>
+        <p class="lead">seekdb 嵌入式后端与 PowerContext 依赖 Linux 运行时，Windows 请使用 Docker Desktop（WSL2 后端）。</p>
+      </header>
+
+      <div class="run-grid">
+        <article class="card run-card reveal">
+          <h3>环境要求</h3>
+          <ul class="check-list">
+            <li>Docker Desktop（启用 WSL2），8 GB+ 可用内存</li>
+            <li>可选：OpenAI 兼容 API Key（DeepSeek / DashScope / OpenAI）</li>
+            <li>不填 Key 时自动降级为本地嵌入 + 抽取式综述，全链路仍可运行</li>
+          </ul>
+          <pre class="code"><code>cp .env.example .env
+# 编辑 .env，填入 OPENAI_API_KEY / OPENAI_BASE_URL / LLM_MODEL
+# 嵌入维度需与 EMBEDDING_MODEL 一致
+
+docker compose up --build -d
+docker compose exec -T app python -m app.seed
+docker compose exec -T app python -m app.verify</code></pre>
+          <p class="run-note">首次构建约 5–10 分钟。打开 <code>http://localhost:8080</code>，健康状态见 <code>/api/health</code>。</p>
+        </article>
+
+        <article class="card run-card reveal">
+          <h3>验证样例</h3>
+          <ol class="steps">
+            <li>
+              <strong>混合检索</strong>
+              <p>在检索页输入 <code>How do LLM agents remember, plan and evaluate their work?</code>，开启长期记忆。</p>
+              <p class="expect">预期：7 条结果，顶部显示本次召回的记忆，首条带章节与页码；检索 trace 写入 <code>evidence/seekdb/</code>。</p>
+            </li>
+            <li>
+              <strong>标量过滤</strong>
+              <p>年份下限填 <code>2025</code>，重复检索。</p>
+              <p class="expect">预期：候选集收窄到 6 条，年份均为 2025 / 2026。</p>
+            </li>
+            <li>
+              <strong>记忆增删</strong>
+              <p>在长期记忆页写入一条偏好，再执行一次检索。</p>
+              <p class="expect">预期：检索结果上方出现该记忆；遗忘后不再召回。</p>
+            </li>
+            <li>
+              <strong>综述与引用</strong>
+              <p>勾选 3 篇文献生成综述。</p>
+              <p class="expect">预期：SSE 依次返回 <code>meta → delta → done</code>，正文带 <code>[P1]–[P3]</code>，<code>invalid_citations</code> 为空。</p>
+            </li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qoder -->
+  <section class="section" id="qoder">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow"><span class="dot"></span>Qoder 开发实践</p>
+        <h2>核心功能在 Qoder 中完成并留痕</h2>
+        <p class="lead">账号 UID：<code>nick049570947</code> · 桌面端（Qoder CN）。开发对话截图与 commit 对应关系见仓库 <code>evidence/qoder/</code>。</p>
+      </header>
+
+      <div class="qoder-grid">
+        <article class="card qoder-card reveal">
+          <div class="qoder-head">
+            <span class="tag tag-indigo">需求拆解</span>
+            <span class="qoder-date">2026-11-06</span>
+          </div>
+          <h3>架构分析与薄弱点</h3>
+          <p>让 Qoder 只读代码、不改代码，梳理前后端架构与请求数据流，明确 seekdb / PowerContext 职责边界，输出按优先级排序的最小改动清单。</p>
+          <p class="qoder-result">产出：模块调用链、三项薄弱点、P0/P1 改动清单。</p>
+          <button class="shot-btn qoder-shot" data-full="assets/qoder-08-analysis.png" data-title="Qoder：架构分析">
+            <img src="assets/qoder-08-analysis.png" alt="Qoder 桌面端架构分析对话截图" loading="lazy">
+          </button>
+        </article>
+
+        <article class="card qoder-card reveal">
+          <div class="qoder-head">
+            <span class="tag tag-indigo">编码 + 验证</span>
+            <span class="qoder-date">2026-11-06</span>
+          </div>
+          <h3>引用校验</h3>
+          <p>解析最终答案中的 <code>[P#]</code>，只允许所选文献范围；越界编号通过 SSE <code>done</code> 的 <code>invalid_citations</code> 返回，前端在结果上方提示。</p>
+          <p class="qoder-result">验证：3 篇文献下 <code>[P0]</code>、<code>[P4]</code> 被正确判为越界。</p>
+          <button class="shot-btn qoder-shot" data-full="assets/qoder-09-citation-check.png" data-title="Qoder：引用校验">
+            <img src="assets/qoder-09-citation-check.png" alt="Qoder 桌面端引用校验实现与验证截图" loading="lazy">
+          </button>
+        </article>
+
+        <article class="card qoder-card reveal">
+          <div class="qoder-head">
+            <span class="tag tag-indigo">前端功能</span>
+            <span class="qoder-date">2026-11-06</span>
+          </div>
+          <h3>Markdown 导出</h3>
+          <p>在综述结果区域增加「导出 Markdown」按钮，把当前 output 下载为带时间戳的 <code>.md</code>，包含问题、耗时、引用文献与正文。</p>
+          <p class="qoder-result">实现：纯前端 Blob 下载，不改后端接口。</p>
+          <button class="shot-btn qoder-shot" data-full="assets/qoder-10-export.png" data-title="Qoder：Markdown 导出">
+            <img src="assets/qoder-10-export.png" alt="Qoder 桌面端导出 Markdown 需求对话截图" loading="lazy">
+          </button>
+        </article>
+      </div>
+
+      <div class="card commit-card reveal">
+        <h3>提交与记录对应</h3>
+        <table>
+          <thead><tr><th>功能</th><th>Qoder 完成的工作</th><th>Commit</th></tr></thead>
+          <tbody>
+            <tr><td>架构分析</td><td>阅读全量前后端源码，输出调用链、薄弱点与改动清单</td><td><code>0ee6ac9</code></td></tr>
+            <tr><td>引用校验</td><td><code>validate_citations</code> + SSE 字段 + 前端警告</td><td><code>0ee6ac9</code></td></tr>
+            <tr><td>Markdown 导出</td><td><code>exportMarkdown</code>、时间戳文件与引用列表</td><td><code>0ee6ac9</code></td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">完整需求输入、完成说明与截图见 <a href="#repo">仓库 <code>evidence/qoder/README.md</code></a>。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repo -->
+  <section class="section section-dark" id="repo">
+    <div class="wrap">
+      <div class="repo-grid">
+        <div class="repo-copy reveal">
+          <p class="eyebrow"><span class="dot"></span>开源与复现</p>
+          <h2>代码、证据与运行说明</h2>
+          <p class="lead">作品位于 <code>oceanbase/powercontext</code> 竞赛分支的 <code>qoder/</code> 目录。仓库包含完整源码、自动验收脚本、检索与记忆 trace 样例，以及 Qoder 开发记录。</p>
+          <div class="repo-actions">
+            <a class="btn btn-primary" href="https://github.com/lzj161710/powercontext/tree/2026-competition-ecosystem/qoder" target="_blank" rel="noopener">打开代码仓库</a>
+            <a class="btn btn-outline" href="https://github.com/lzj161710/powercontext/tree/2026-competition-ecosystem/qoder/evidence" target="_blank" rel="noopener">查看证据包</a>
+          </div>
+        </div>
+        <div class="repo-facts reveal">
+          <div class="fact"><span>仓库</span><code>lzj161710/powercontext</code></div>
+          <div class="fact"><span>分支</span><code>2026-competition-ecosystem</code></div>
+          <div class="fact"><span>目录</span><code>qoder/</code></div>
+          <div class="fact"><span>启动</span><code>docker compose up --build -d</code></div>
+          <div class="fact"><span>验收</span><code>python -m app.verify</code></div>
+          <div class="fact"><span>数据</span><code>evidence/</code> 下可核对</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <strong>PaperLens 文澜</strong>
+      <p>面向科研文献的混合检索 + 记忆增强综述工作台。</p>
+    </div>
+    <div class="footer-meta">
+      <p>© <span id="year">2026</span> PaperLens · Qoder × OceanBase 参赛作品</p>
+      <p class="footer-fine">页面数据取自仓库 <code>evidence/</code>，更新于 2026-11-06。示例配置不含真实密钥。</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="截图预览">
+  <button class="lightbox-close" id="lightbox-close" aria-label="关闭预览">×</button>
+  <p class="lightbox-title" id="lightbox-title"></p>
+  <img id="lightbox-img" alt="">
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

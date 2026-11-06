@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-06T01:51:41.038392+00:00",
+  "generated_at": "2026-11-06T02:19:27.264925+00:00",
   "project_id": "demo",
   "papers": 20,
-  "events": 59,
+  "events": 65,
   "feedback": 0,
   "memories": 4,
   "files": [
@@ -22,6 +22,11 @@
     "manifest.json",
     "powercontext/powercontext_trace.jsonl",
     "qoder/README.md",
+    "qoder/qoder-08-analysis-changes.png",
+    "qoder/qoder-08-analysis.png",
+    "qoder/qoder-09-citation-check-plan.png",
+    "qoder/qoder-09-citation-check.png",
+    "qoder/qoder-10-export.png",
     "seekdb/seed_summary.json",
     "seekdb/seekdb_search_trace.jsonl",
     "usage/events.csv",
