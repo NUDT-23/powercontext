@@ -235,7 +235,7 @@ docker tag docker.m.daocloud.io/library/node:20-slim node:20-slim
 
 - 赛题：OceanBase 2026「Qoder × OceanBase」
 - 项目网站（Qoder Sites）：<https://paperlens-5efj7ylekjq.qoder.zone/>
-- 代码仓库：<https://github.com/lzj161710/powercontext/tree/2026-competition-ecosystem/qoder>
+- 代码仓库：<https://github.com/NUDT-23/powercontext/tree/2026-competition-ecosystem/qoder>
 - 提交分支：`2026-competition-ecosystem`，作品目录 `qoder/`
 - 开发工具：Qoder（核心功能开发记录见 `evidence/qoder/`）
 - 技术底座：seekdb（混合检索）+ PowerContext（长期记忆）
