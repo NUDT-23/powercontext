@@ -563,7 +563,7 @@ class OceanBaseMemoryHybridIndex:
         tagged = _HYBRID_CANDIDATES_SQL_TEMPLATE.format(
             fts_tags=memory_tag_sql("f"),
             vector_tags=memory_tag_sql("m"),
-            approximate="",
+            approximate=" APPROXIMATE",
         )
         common = (
             bindparam("memory_artifact_ids", expanding=True),
