@@ -1,10 +1,10 @@
 {
-  "startedAt": "2026-11-06T22:41:14.359Z",
+  "startedAt": "2026-11-07T09:18:10.743Z",
   "checks": [
     {
       "name": "create collection",
       "ok": true,
-      "ms": 3868,
+      "ms": 3735,
       "value": {
         "analyzer": "ik"
       }
@@ -12,15 +12,15 @@
     {
       "name": "warm up index manager",
       "ok": true,
-      "ms": 5730,
+      "ms": 5518,
       "value": {
-        "ms": 5730
+        "ms": 5518
       }
     },
     {
       "name": "import documents",
       "ok": true,
-      "ms": 158,
+      "ms": 132,
       "value": {
         "count": 6
       }
@@ -36,7 +36,7 @@
     {
       "name": "hybridSearch returns RRF results",
       "ok": true,
-      "ms": 31,
+      "ms": 23,
       "value": {
         "ids": [
           "h1",
@@ -92,5 +92,5 @@
     }
   ],
   "ok": true,
-  "finishedAt": "2026-11-06T22:41:24.967Z"
+  "finishedAt": "2026-11-07T09:18:20.969Z"
 }

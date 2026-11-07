@@ -1,14 +1,14 @@
 {
-  "startedAt": "2026-11-06T22:40:08.679Z",
+  "startedAt": "2026-11-07T09:17:05.532Z",
   "platform": "linux",
   "arch": "x64",
   "node": "v20.20.2",
-  "dbPath": "/data/verify-smoke-20261106224005",
+  "dbPath": "/data/verify-smoke-20261107091703",
   "steps": [
     {
       "name": "connect",
       "ok": true,
-      "ms": 0.057026,
+      "ms": 0.051715,
       "value": {
         "connected": false
       }
@@ -16,7 +16,7 @@
     {
       "name": "createCollection(ik)",
       "ok": true,
-      "ms": 211.090849,
+      "ms": 175.079361,
       "value": {
         "name": "smoke_docs",
         "dimension": 512
@@ -25,7 +25,7 @@
     {
       "name": "warmup_refresh",
       "ok": true,
-      "ms": 4921.938582,
+      "ms": 5121.207588,
       "value": {
         "warmed": true
       }
@@ -33,7 +33,7 @@
     {
       "name": "add",
       "ok": true,
-      "ms": 864.64781,
+      "ms": 179.962487,
       "value": {
         "inserted": 6
       }
@@ -41,13 +41,13 @@
     {
       "name": "count",
       "ok": true,
-      "ms": 5.822616,
+      "ms": 2.258284,
       "value": 6
     },
     {
       "name": "refresh_index",
       "ok": true,
-      "ms": 302.269676,
+      "ms": 401.382494,
       "value": {
         "refreshed": true
       }
@@ -55,7 +55,7 @@
     {
       "name": "hybridSearch",
       "ok": true,
-      "ms": 204.068782,
+      "ms": 26.051711,
       "value": {
         "ids": [
           [
@@ -96,7 +96,7 @@
     {
       "name": "query(vector only)",
       "ok": true,
-      "ms": 3.597625,
+      "ms": 1.961162,
       "value": {
         "ids": [
           [
@@ -137,7 +137,7 @@
     {
       "name": "get(fulltext only)",
       "ok": true,
-      "ms": 32.4643,
+      "ms": 1.471127,
       "value": {
         "ids": [
           "d1",
@@ -186,5 +186,5 @@
     "hybridDiffersFromFulltext": false,
     "hybridHasScores": true
   },
-  "finishedAt": "2026-11-06T22:40:20.068Z"
+  "finishedAt": "2026-11-07T09:17:15.569Z"
 }

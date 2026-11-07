@@ -261,7 +261,7 @@ export class SeekdbStore {
     return this.serialize(async () => {
       const collection = await this.getCollection(name);
       const start = nowMs();
-      await collection.refresh_index();
+      await refreshIndexReliably(collection);
       const refreshMs = elapsedMs(start);
       const state = this.ensureState(name);
       state.lastRefreshAt = new Date().toISOString();
@@ -363,7 +363,7 @@ export class SeekdbStore {
       // seekdb's background index manager starts lazily and intermittently fails
       // its first build; a refresh on the empty collection warms it up so later
       // refreshes reliably publish the HNSW index.
-      await collection.refresh_index();
+      await refreshIndexReliably(collection);
       this.indexManagerWarmed = true;
     }
     this.collections.set(name, collection);
@@ -449,6 +449,26 @@ export class SeekdbStore {
     fs.writeFileSync(tmp, `${JSON.stringify(this.state, null, 2)}\n`);
     fs.renameSync(tmp, this.options.statePath);
   }
+}
+
+async function refreshIndexReliably(collection: Collection): Promise<void> {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      await collection.refresh_index();
+      return;
+    } catch (error) {
+      // The HNSW builder intermittently exceeds its 30 s budget right after the
+      // engine starts (ret=-4012); a single retry publishes the index instead
+      // of failing an import that already wrote its documents.
+      if (attempt >= 2 || !isSeekdbTimeout(error)) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+}
+
+function isSeekdbTimeout(error: unknown): boolean {
+  const text = error instanceof Error ? error.message : String(error);
+  return /timeout|ret=-4012/i.test(text);
 }
 
 function normalizeMetadata(

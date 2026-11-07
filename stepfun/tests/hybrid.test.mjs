@@ -30,6 +30,20 @@ function embed(text) {
   return Array.from(v, (x) => x / norm);
 }
 
+async function refreshIndexReliably(collection) {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      await collection.refresh_index();
+      return;
+    } catch (error) {
+      if (attempt >= 2 || !/timeout|ret=-4012/i.test(String(error?.message || error))) {
+        throw error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+}
+
 function check(name, fn) {
   const start = Date.now();
   return Promise.resolve()
@@ -96,7 +110,7 @@ try {
 
   await check("warm up index manager", async () => {
     const start = Date.now();
-    await collection.refresh_index();
+    await refreshIndexReliably(collection);
     return { ms: Date.now() - start };
   });
 
@@ -114,7 +128,7 @@ try {
 
   await check("refresh publishes vectors", async () => {
     const start = Date.now();
-    await collection.refresh_index();
+    await refreshIndexReliably(collection);
     return { ms: Date.now() - start };
   });
 
@@ -181,7 +195,7 @@ try {
       embeddings: [embed(text)],
     });
     assert.equal(await collection.count(), docs.length + 1);
-    await collection.refresh_index();
+    await refreshIndexReliably(collection);
     const found = await collection.get({
       whereDocument: { $contains: "量子纠缠" },
       limit: 5,

@@ -44,7 +44,7 @@ INT8 用 1/3.95 的体积换到 Recall@5 下降 1.1 个百分点、nDCG@5 下降
 
 ## 5. 工程风险与处理
 
-- **HNSW 首次发布不稳定**：新建空集合后先执行一次 `refresh_index()` 预热索引管理器（约 5.6 s），后续刷新才能可靠发布向量索引。
+- **HNSW 首次发布不稳定**：新建空集合后先执行一次 `refresh_index()` 预热索引管理器（约 5.6 s），后续刷新才能可靠发布向量索引；引擎刚启动时刷新仍可能偶发 30 s 超时（ret=-4012），服务端与测试对超时自动重试一次。
 - **嵌入式引擎并发不安全**：多个 HTTP 请求并发访问同一 seekdb 实例会触发 `OB_ABORT`。`SeekdbStore` 用 Promise 队列串行化全部数据库操作，这是 E2E 稳定通过的关键修复。
 - **Windows 运行环境**：官方绑定为 Linux 版，Windows 通过 Docker 运行；容器需要 `seccomp=unconfined`（HNSW 建索引要创建线程）、64 MiB 线程栈，以及 `LD_PRELOAD` 指向缓存中的 `libseekdb.so`。数据目录使用 Docker volume，避免 Windows 绑定挂载的 I/O 问题。
 - **可复现性**：MSYS/Git Bash 会把 `/data/...` 环境变量改写成 Windows 路径；`verify` 在 Node 内部设置变量，规避该问题。
